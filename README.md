@@ -28,12 +28,12 @@
 - Ментор: [Перлин Леонид](https://github.com/perlinleo)
 - Тимлид: [Федосеев Александр](https://github.com/AlexanderFedoseeff)
   
-|                Имя                                          | Роль | Экраны |
-|-------------------------------------------------------------|------|--------|
-| [Федосеев Александр](https://github.com/AlexanderFedoseeff) | smth |  smth  |
-| [Мирошниченко Сергей](https://github.com/m1rosh)            | smth |  smth  |
-| [Денисов Александр](https://github.com/DenAlNik)            | smth |  smth  |
-| [Сарыглар Начын](https://github.com/ukidoshi)               | smth |  smth  |
+|                Имя                                          |                 Экраны |
+|-------------------------------------------------------------|-------------------------|
+| [Федосеев Александр](https://github.com/AlexanderFedoseeff) |  Список преподавателей  |
+| [Мирошниченко Сергей](https://github.com/m1rosh)            |  Поиск и фильтрация  |
+| [Денисов Александр](https://github.com/DenAlNik)            |  Личный профиль и его редактирования  |
+| [Сарыглар Начын](https://github.com/ukidoshi)               |  Избранное и профиль преподавателя  |
 
 ## Дизайн
 [![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/file/VphDd8NciEumH7q2rRmLeF/Otzovik?type=design&node-id=0-1&mode=design&t=qouymqRCoCnZ7xoM-0)
