@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.backgroundColor = .white
         
-        let root = factory.buildTabBar()
+        //let root = factory.buildTabBar()
+        let navigationController = UINavigationController(rootViewController: EntranceViewController())
+        navigationController.setNavigationBarHidden(true, animated: false)
+        let root = navigationController
         window?.rootViewController = root
         window?.makeKeyAndVisible()
         
