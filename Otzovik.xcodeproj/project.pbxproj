@@ -15,9 +15,18 @@
 		C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C40D52AE5370600761C3D /* SearchViewController.swift */; };
 		C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C40D72AE53A6F00761C3D /* AppFactory.swift */; };
 		C07C40DC2AE54AD200761C3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C07C40DB2AE54AD200761C3D /* Localizable.strings */; };
+		D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0030DCD2AFED34300D458A3 /* BaseEntranceViewController.swift */; };
+		D0030DD12AFEF79100D458A3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0030DD02AFEF79100D458A3 /* UserModel.swift */; };
+		D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0030DD22AFEF7AF00D458A3 /* RegistrationModel.swift */; };
 		D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */; };
-		D04D27012AEBB3B600B4B029 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27002AEBB3B600B4B029 /* RegistrationViewController.swift */; };
+		D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */; };
 		D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */; };
+		D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3D1562AFE601200414D50 /* InsetTextField.swift */; };
+		D0BD2E372AFFAFFF00EC4622 /* RegistrationLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationLoginViewController.swift */; };
+		D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */; };
+		D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */; };
+		D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */; };
+		D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +40,18 @@
 		C07C40D52AE5370600761C3D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C07C40D72AE53A6F00761C3D /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		C07C40DB2AE54AD200761C3D /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		D0030DCD2AFED34300D458A3 /* BaseEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntranceViewController.swift; sourceTree = "<group>"; };
+		D0030DD02AFEF79100D458A3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D0030DD22AFEF7AF00D458A3 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewController.swift; sourceTree = "<group>"; };
-		D04D27002AEBB3B600B4B029 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNameViewController.swift; sourceTree = "<group>"; };
 		D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D0B3D1562AFE601200414D50 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		D0BD2E362AFFAFFF00EC4622 /* RegistrationLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationLoginViewController.swift; sourceTree = "<group>"; };
+		D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOrganisationViewController.swift; sourceTree = "<group>"; };
+		D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPasswordViewController.swift; sourceTree = "<group>"; };
+		D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAvatarViewController.swift; sourceTree = "<group>"; };
+		D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationReadyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +97,7 @@
 		C07C40CD2AE5347900761C3D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D0B3D1552AFE5FEF00414D50 /* Helpers */,
 				D04D26FD2AEBB34000B4B029 /* Entrance */,
 				C07C40D02AE5349E00761C3D /* Favorites */,
 				C07C40CF2AE5349800761C3D /* Profile */,
@@ -120,14 +139,38 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		D0030DCF2AFEF77800D458A3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D0030DD02AFEF79100D458A3 /* UserModel.swift */,
+				D0030DD22AFEF7AF00D458A3 /* RegistrationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D04D26FD2AEBB34000B4B029 /* Entrance */ = {
 			isa = PBXGroup;
 			children = (
 				D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */,
-				D04D27002AEBB3B600B4B029 /* RegistrationViewController.swift */,
+				D0030DCD2AFED34300D458A3 /* BaseEntranceViewController.swift */,
 				D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */,
+				D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */,
+				D0BD2E362AFFAFFF00EC4622 /* RegistrationLoginViewController.swift */,
+				D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */,
+				D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */,
+				D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */,
+				D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */,
+				D0030DCF2AFEF77800D458A3 /* Models */,
 			);
 			path = Entrance;
+			sourceTree = "<group>";
+		};
+		D0B3D1552AFE5FEF00414D50 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D0B3D1562AFE601200414D50 /* InsetTextField.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,13 +245,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */,
+				D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */,
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
+				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
+				D0BD2E372AFFAFFF00EC4622 /* RegistrationLoginViewController.swift in Sources */,
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
+				D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */,
 				D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */,
-				D04D27012AEBB3B600B4B029 /* RegistrationViewController.swift in Sources */,
+				D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */,
+				D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */,
+				D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
+				D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
+				D0030DD12AFEF79100D458A3 /* UserModel.swift in Sources */,
+				D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

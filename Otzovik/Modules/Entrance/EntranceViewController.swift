@@ -64,7 +64,7 @@ class EntranceViewController: UIViewController {
     @objc
     private func registrationTap(_ sender: UITapGestureRecognizer) {
         print("tapped registration")
-        let vc: RegistrationViewController = RegistrationViewController()
+        let vc: RegistrationNameViewController = RegistrationNameViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc
@@ -86,7 +86,7 @@ extension EntranceViewController {
         for (i, _) in buttons.enumerated() {
             NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
             NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.7, constant: 0).isActive = true
-            NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+            NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 45).isActive = true
             
             NSLayoutConstraint(item: labels[i], attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttons[i], attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
             NSLayoutConstraint(item: labels[i], attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttons[i], attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
