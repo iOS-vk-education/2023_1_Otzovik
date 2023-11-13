@@ -67,10 +67,11 @@ class BaseEntranceViewController: UIViewController {
     private func nextVC(_ sender: UITapGestureRecognizer) {
         print(#function)
         UIView.animate(withDuration: self.animationTime) {
-            self.buttonView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 0.5)
+            
+            self.buttonView.layer.opacity = 0.5
         } completion: { isOk in
             UIView.animate(withDuration: self.animationTime) {
-                self.buttonView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
+                self.buttonView.layer.opacity = 1
             } completion: { isOk in
                 
                 self.nextVC()

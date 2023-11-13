@@ -7,6 +7,8 @@
 
 import Foundation
 
+import FirebaseAuth
+
 class UserModel {
     private init() {}
     static let shared = UserModel()
@@ -35,7 +37,15 @@ class UserModel {
     public func setPassword(password: String) {
         self.password = password
     }
-    public func checkLoginAndPasswordTmp(login: String, password: String) -> Bool {
-        return login == "test" && password == "psw"
+    public func checkLoginAndPasswordTmp(login: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().signIn(withEmail: login, password: password) {
+            authResult, error in
+            if error != nil {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+            
+        }
     }
 }

@@ -3,7 +3,7 @@
 ## Build generated
 build/
 DerivedData/
-
+.DS_store
 ## Various settings
 ExportOptions.plist
 *.pbxuser

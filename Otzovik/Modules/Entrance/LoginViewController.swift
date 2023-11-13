@@ -83,17 +83,21 @@ class LoginViewController: BaseEntranceViewController {
     public override func nextVC() {
         print(#function)
         if let login = loginTextField.text, let password = passwordTextField.text {
-            if UserModel.shared.checkLoginAndPasswordTmp(login: login, password: password) {
-                print("залогинились")
-            } else {
-                let alert = UIAlertController(title: "Неправильный пароль", message: "Проверьте правильность введенных данных и повторите попытку", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: { (action: UIAlertAction) in
-                    self.passwordTextField.text = ""
-                    self.tryToResineFirstResponder()
-                    print("Закрыть")
-                }))
-                self.present(alert, animated: true, completion: nil)
+            UserModel.shared.checkLoginAndPasswordTmp(login: login, password: password, completion: {
+                error in
+                if error == nil {
+                    print("залогинились")
+                } else {
+                    let alert = UIAlertController(title: "Неправильный пароль", message: "Проверьте правильность введенных данных и повторите попытку", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: { (action: UIAlertAction) in
+                        self.passwordTextField.text = ""
+                        self.tryToResineFirstResponder()
+                        print("Закрыть")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
+            )
         }
     }
 }
