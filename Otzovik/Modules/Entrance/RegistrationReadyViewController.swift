@@ -46,6 +46,10 @@ class RegistrationReadyViewController: BaseEntranceViewController {
     public override func nextVC() {
         print(#function)
         print("следующий шаг")
+        let factory = AppFactory()
+        let vc = factory.buildTabBar()
+        
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
 }
