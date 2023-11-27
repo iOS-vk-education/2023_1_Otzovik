@@ -12,12 +12,20 @@ class FavoritesViewController: UIViewController {
     
     private let tableView = UITableView()
     
+    private let searchController = UISearchController(searchResultsController: nil)
+        
+    
     private var teachers: [Teacher] = []
     private let teacherManager = TeacherManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+    
+        title = "Избранное"
+        
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
         
         tableView.frame = view.bounds
         tableView.dataSource = self
@@ -78,4 +86,12 @@ extension FavoritesViewController: UITableViewDelegate {
         return 76
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let teacherViewController = TeacherViewController(teacher: teachers[indexPath.row])
+        let navigationController = UINavigationController(rootViewController: teacherViewController)
+        
+        present(navigationController, animated: true)
+    }
 }

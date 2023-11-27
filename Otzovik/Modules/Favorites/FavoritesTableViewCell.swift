@@ -37,7 +37,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         
         chairLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         chairLabel.textColor = .gray
-        chairLabel.numberOfLines = 3
+        chairLabel.numberOfLines = 4
         
         ratingLabel.textAlignment = .right
         ratingLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -47,27 +47,44 @@ final class FavoritesTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        iconImageView.frame = .init(x: 26, y: 15.5, width: 45, height: 45)
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        iconImageView.topAnchor.constraint(
+            equalTo: contentView.safeAreaLayoutGuide.topAnchor,
+            constant: 15.5
+        ).isActive = true
+        iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26).isActive = true
+        iconImageView.widthAnchor.constraint(equalToConstant: 45).isActive = true
+        iconImageView.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
-        titleLabel.frame = .init(x: iconImageView.frame.maxX + 12,
-                                 y: 8,
-                                 width: contentView.frame.width - iconImageView.frame.maxX - ratingLabel.frame.width - 12,
-                                 height: 24)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: contentView.frame.width - iconImageView.frame.maxX - 80).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        chairLabel.frame = .init(x: iconImageView.frame.maxX + 12,
-                                 y: titleLabel.frame.maxY,
-                                 width: contentView.frame.width - iconImageView.frame.maxX - 90,
-                                 height: 48)
         
-        ratingLabel.frame = .init(x: chairLabel.frame.maxX, y: 8,
-                                  width: contentView.frame.width - iconImageView.frame.maxX - chairLabel.frame.width - 20,
-                                  height: 24)
+        chairLabel.translatesAutoresizingMaskIntoConstraints = false
+        chairLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0).isActive = true
+        chairLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12).isActive = true
+        chairLabel.widthAnchor.constraint(equalToConstant: contentView.frame.width - iconImageView.frame.width - 50).isActive = true
+
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingLabel.topAnchor.constraint(
+            equalTo: contentView.safeAreaLayoutGuide.topAnchor,
+            constant: 8
+        ).isActive = true
+        ratingLabel.leadingAnchor.constraint(
+            equalTo: titleLabel.trailingAnchor,
+            constant: 0
+        ).isActive = true
+
+        ratingLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
     func configure(with teacher: Teacher) {
         titleLabel.text = teacher.fio
         chairLabel.text = "Кафедра: " + teacher.chair
-        iconImageView.image = .init(systemName: "globe")
+        iconImageView.image = .init(named: "avatar2")
         
         let rating : Double = teacher.rating
         let imageAttachment = NSTextAttachment()

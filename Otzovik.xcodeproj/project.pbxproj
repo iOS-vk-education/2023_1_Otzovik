@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9069702E2B14597100850CA9 /* TeacherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069702D2B14597100850CA9 /* TeacherManager.swift */; };
 		906970302B145AF300850CA9 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069702F2B145AF300850CA9 /* FavoritesTableViewCell.swift */; };
+		906970322B145DEF00850CA9 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906970312B145DEF00850CA9 /* TeacherViewController.swift */; };
+		906970342B14957000850CA9 /* TeacherBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906970332B14957000850CA9 /* TeacherBadgesView.swift */; };
 		90DEC0062B1457190023CBBD /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DEC0052B1457190023CBBD /* Teacher.swift */; };
 		C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C40B72AE5338900761C3D /* AppDelegate.swift */; };
 		C07C40C12AE5338A00761C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C02AE5338A00761C3D /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		9069702D2B14597100850CA9 /* TeacherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherManager.swift; sourceTree = "<group>"; };
 		9069702F2B145AF300850CA9 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		906970312B145DEF00850CA9 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		906970332B14957000850CA9 /* TeacherBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherBadgesView.swift; sourceTree = "<group>"; };
 		90DEC0052B1457190023CBBD /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		C07C40B42AE5338900761C3D /* Otzovik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otzovik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07C40B72AE5338900761C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,10 +117,12 @@
 		C07C40D02AE5349E00761C3D /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				90DEC0042B14570E0023CBBD /* Models */,
 				C07C40D12AE536EE00761C3D /* FavoritesViewController.swift */,
 				9069702D2B14597100850CA9 /* TeacherManager.swift */,
 				9069702F2B145AF300850CA9 /* FavoritesTableViewCell.swift */,
+				906970312B145DEF00850CA9 /* TeacherViewController.swift */,
+				906970332B14957000850CA9 /* TeacherBadgesView.swift */,
+				90DEC0042B14570E0023CBBD /* Models */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -204,8 +210,10 @@
 				90DEC0062B1457190023CBBD /* Teacher.swift in Sources */,
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
+				906970342B14957000850CA9 /* TeacherBadgesView.swift in Sources */,
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
+				906970322B145DEF00850CA9 /* TeacherViewController.swift in Sources */,
 				906970302B145AF300850CA9 /* FavoritesTableViewCell.swift in Sources */,
 				9069702E2B14597100850CA9 /* TeacherManager.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
@@ -352,7 +360,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KD82SC4QSX;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -380,7 +388,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KD82SC4QSX;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
