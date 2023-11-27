@@ -17,7 +17,7 @@ final class AppFactory {
             buildProfile()
         ]
         
-        tabBarController.selectedIndex = 0
+        tabBarController.selectedIndex = 1
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.unselectedItemTintColor = .gray
         
@@ -26,12 +26,9 @@ final class AppFactory {
     
     func buildFavorites() -> UIViewController {
         let favorites = FavoritesViewController()
-        
-        
         let favoritesItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star"), selectedImage: nil)
-        
         favorites.tabBarItem = favoritesItem
-        
+        //let favoritesNav = UINavigationController(rootViewController: favorites)
         return favorites
     }
     
@@ -39,8 +36,8 @@ final class AppFactory {
         let search = SearchViewController()
         let searchItem = UITabBarItem(title: "Поиск", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
         search.tabBarItem = searchItem
-        
-        return search
+        let searchNavigationController = UINavigationController(rootViewController: search)
+        return searchNavigationController
     }
     
     func buildProfile() -> UIViewController {
@@ -53,3 +50,4 @@ final class AppFactory {
     
     
 }
+

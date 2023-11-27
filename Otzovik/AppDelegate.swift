@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         
         let root = factory.buildTabBar()
+        
         window?.rootViewController = root
         window?.makeKeyAndVisible()
         

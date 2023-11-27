@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class ProfileViewController: UIViewController {
+    private let activityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
     }
-    
 }
