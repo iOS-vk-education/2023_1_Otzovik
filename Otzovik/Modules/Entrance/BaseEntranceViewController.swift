@@ -47,13 +47,13 @@ class BaseEntranceViewController: UIViewController {
         buttonLabel.font = .systemFont(ofSize: 17)
         buttonLabel.textAlignment = .center
         buttonLabel.numberOfLines = 1
-        buttonLabel.text = "Продолжить"
         
         setColor()
         setConstraints()
     }
-    public func setTitle(title: String) {
+    public func setTitles(title: String, buttonTitle: String) {
         titleLabel.text = title
+        buttonLabel.text = buttonTitle
     }
     public func setIcon(image: UIImage) {
         iconImageView.image = image
@@ -111,14 +111,14 @@ extension BaseEntranceViewController {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint(item: iconImageView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: iconImageView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 0.35, constant: 0).isActive = true
-        NSLayoutConstraint(item: iconImageView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 80).isActive = true
+        NSLayoutConstraint(item: iconImageView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 0.45, constant: 0).isActive = true
+        NSLayoutConstraint(item: iconImageView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 90).isActive = true
         NSLayoutConstraint(item: iconImageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 70).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 0.5, constant: 0).isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: iconImageView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 25).isActive = true
         
         buttonView.translatesAutoresizingMaskIntoConstraints = false
         buttonLabel.translatesAutoresizingMaskIntoConstraints = false

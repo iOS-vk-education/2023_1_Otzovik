@@ -60,17 +60,17 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         facultyTextFieldLabel.textAlignment = .left
         departmentTextField.textAlignment = .left
         setIcon()
-        setTitle()
+        setTitles()
         
         setColor()
         setConstraints()
     }
     
-    private func setTitle() {
-        super.setTitle(title: "Учебное заведение")
+    private func setTitles() {
+        super.setTitles(title: "Учебное заведение", buttonTitle: "Продолжить")
     }
     private func setIcon() {
-        if let image = UIImage(systemName: "person.fill") {
+        if let image = UIImage(systemName: "graduationcap.fill") {
             super.setIcon(image: image)
         }
     }
@@ -104,12 +104,25 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
     public override func nextVC() {
         print(#function)
         print("следующий шаг")
+        let vc: RegistrationPasswordViewController = RegistrationPasswordViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 extension RegistrationOrganisationViewController {
     @objc
     private func textFieldDidChanged(textField: UITextField) {
-        print(textField.text)
+        if let text = textField.text {
+            print(text)
+            if textField == heiLabel {
+                RegistrationModel.shared.hei = text
+            }
+            if textField == facultyTextField {
+                RegistrationModel.shared.faculty = text
+            }
+            if textField == departmentTextField {
+                RegistrationModel.shared.department = text
+            }
+        }
         
     }
     @objc

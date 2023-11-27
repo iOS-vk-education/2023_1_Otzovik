@@ -45,14 +45,14 @@ class RegistrationNameViewController: BaseEntranceViewController {
         firstnameLabel.textAlignment = .left
         lastnameTextFieldLabel.textAlignment = .left
         setIcon()
-        setTitle()
+        setTitles()
         
         setColor()
         setConstraints()
     }
     
-    private func setTitle() {
-        super.setTitle(title: "Имя и фамилия")
+    private func setTitles() {
+        super.setTitles(title: "Имя и фамилия", buttonTitle: "Продолжить")
     }
     private func setIcon() {
         if let image = UIImage(systemName: "person.fill") {
@@ -83,15 +83,22 @@ class RegistrationNameViewController: BaseEntranceViewController {
     public override func nextVC() {
         print(#function)
         print("следующий шаг")
-        let vc: RegistrationLoginViewController = RegistrationLoginViewController()
+        let vc: RegistrationEmailViewController = RegistrationEmailViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 extension RegistrationNameViewController {
     @objc
     private func textFieldDidChanged(textField: UITextField) {
-        print(textField.text)
-        
+        if let text = textField.text {
+            print(text)
+            if textField == firstnameTextField {
+                RegistrationModel.shared.firstName = text
+            }
+            if textField == lastnameTextField {
+                RegistrationModel.shared.lastName = text
+            }
+        }
     }
     @objc
     private func textFieldDidBeginEditing(textField: UITextField) {

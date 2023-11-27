@@ -50,7 +50,7 @@
 		D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */; };
 		D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */; };
 		D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3D1562AFE601200414D50 /* InsetTextField.swift */; };
-		D0BD2E372AFFAFFF00EC4622 /* RegistrationLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationLoginViewController.swift */; };
+		D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */; };
 		D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */; };
 		D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */; };
 		D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */; };
@@ -76,7 +76,7 @@
 		D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNameViewController.swift; sourceTree = "<group>"; };
 		D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0B3D1562AFE601200414D50 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
-		D0BD2E362AFFAFFF00EC4622 /* RegistrationLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationLoginViewController.swift; sourceTree = "<group>"; };
+		D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
 		D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOrganisationViewController.swift; sourceTree = "<group>"; };
 		D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPasswordViewController.swift; sourceTree = "<group>"; };
 		D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAvatarViewController.swift; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 				D0030DCD2AFED34300D458A3 /* BaseEntranceViewController.swift */,
 				D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */,
 				D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */,
-				D0BD2E362AFFAFFF00EC4622 /* RegistrationLoginViewController.swift */,
+				D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */,
 				D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */,
 				D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */,
 				D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */,
@@ -339,7 +339,7 @@
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
 				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
-				D0BD2E372AFFAFFF00EC4622 /* RegistrationLoginViewController.swift in Sources */,
+				D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */,
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
 				D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */,
 				D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */,
