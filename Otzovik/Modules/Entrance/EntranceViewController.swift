@@ -17,6 +17,7 @@ class EntranceViewController: UIViewController {
     private let buttonTestLabel = UILabel()
     private var buttons: [UIView] = []
     private var labels: [UILabel] = []
+    private let animationTime: Double = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,30 +50,57 @@ class EntranceViewController: UIViewController {
     private func setColor() {
         view.backgroundColor = .white
         for button in buttons {
-            button.backgroundColor = .black
+            button.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
         }
         for label in labels {
-            label.textColor = .white
+            label.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
         }
     }
     @objc
     private func loginTap(_ sender: UITapGestureRecognizer) {
         print("tapped login")
-        let vc: LoginViewController = LoginViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        UIView.animate(withDuration: self.animationTime) {
+            self.buttons[0].layer.opacity = 0.5
+        } completion: { isOk in
+            UIView.animate(withDuration: self.animationTime) {
+                self.buttons[0].layer.opacity = 1
+            } completion: { isOk in
+                let vc: LoginViewController = LoginViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
     }
     @objc
     private func registrationTap(_ sender: UITapGestureRecognizer) {
         print("tapped registration")
-        let vc: RegistrationNameViewController = RegistrationNameViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        UIView.animate(withDuration: self.animationTime) {
+            self.buttons[1].layer.opacity = 0.5
+        } completion: { isOk in
+            UIView.animate(withDuration: self.animationTime) {
+                self.buttons[1].layer.opacity = 1
+            } completion: { isOk in
+                let vc: RegistrationNameViewController = RegistrationNameViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
     }
     @objc
     private func testTap(_ sender: UITapGestureRecognizer) {
         print("tapped test")
         //здесь нужно бы так, чтобы SearchViewController() был с таббаром определнным в AppDelegate
-        let vc: SearchViewController = SearchViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        UIView.animate(withDuration: self.animationTime) {
+            self.buttons[2].layer.opacity = 0.5
+        } completion: { isOk in
+            UIView.animate(withDuration: self.animationTime) {
+                self.buttons[2].layer.opacity = 1
+            } completion: { isOk in
+                let vc: SearchViewController = SearchViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
     }
 
 }
@@ -85,15 +113,15 @@ extension EntranceViewController {
         }
         for (i, _) in buttons.enumerated() {
             NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.7, constant: 0).isActive = true
+            NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.9, constant: 0).isActive = true
             NSLayoutConstraint(item: buttons[i], attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 45).isActive = true
             
             NSLayoutConstraint(item: labels[i], attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttons[i], attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
             NSLayoutConstraint(item: labels[i], attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttons[i], attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
         }
-        NSLayoutConstraint(item: buttonLoginView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttonRegistrationView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: -25).isActive = true
-        NSLayoutConstraint(item: buttonRegistrationView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: buttonTestView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttonRegistrationView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: buttonLoginView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttonRegistrationView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: -20).isActive = true
+        NSLayoutConstraint(item: buttonRegistrationView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: buttonTestView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: -20).isActive = true
+        NSLayoutConstraint(item: buttonTestView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: -50).isActive = true
 
     }
 }

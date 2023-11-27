@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class RegistrationModel {
     private init() {}
@@ -18,4 +19,22 @@ class RegistrationModel {
     public var hei: String = ""
     public var faculty: String = ""
     public var department: String = ""
+    
+    public func registration(completion: @escaping (Error?) -> Void) {
+        /*Auth.auth().createUser(withEmail: self.email, password: self.password) { registrationResult, error in
+            if error != nil {
+                completion(error)
+            } else {
+                Auth.auth().signIn(withEmail: self.email, password: self.password) {
+                    authResult, error in
+                    if error != nil {
+                        completion(error)
+                    } else {
+                        completion(nil)
+                    }
+                    
+                }
+            }
+        }*/
+    }
 }

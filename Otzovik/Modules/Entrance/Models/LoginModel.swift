@@ -1,5 +1,5 @@
 //
-//  UserModel.swift
+//  LoginModel.swift
 //  Otzovik
 //
 //  Created by  Alexander Fedoseev on 11.11.2023.
@@ -8,9 +8,9 @@
 import Foundation
 import FirebaseAuth
 
-class UserModel {
+class LoginModel {
     private init() {}
-    static let shared = UserModel()
+    static let shared = LoginModel()
     private var login: String = ""
     private var password: String = ""
     private let loginMinLength:Int = 3
@@ -36,15 +36,18 @@ class UserModel {
     public func setPassword(password: String) {
         self.password = password
     }
-    public func checkLoginAndPasswordTmp(login: String, password: String, completion: @escaping (Error?) -> Void) {
-        Auth.auth().signIn(withEmail: login, password: password) {
+    public func checkLoginAndPassword() -> Bool {
+        return true
+    }
+    public func login(completion: @escaping (String?) -> Void) {
+        Auth.auth().signIn(withEmail: self.login, password: self.password) {
             authResult, error in
-            if error != nil {
-                completion(error)
+            if let error = error {
+                print(error)
+                completion(error.localizedDescription)
             } else {
                 completion(nil)
             }
-            
         }
     }
 }
