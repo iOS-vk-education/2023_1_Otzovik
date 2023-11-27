@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66C1E6962B13FB3B00EEC606 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1E6952B13FB3B00EEC606 /* SettingsViewController.swift */; };
+		66C1E6982B1420F500EEC606 /* MyFeedbacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1E6972B1420F500EEC606 /* MyFeedbacksViewController.swift */; };
+		66C1E69A2B14296E00EEC606 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1E6992B14296E00EEC606 /* Feedback.swift */; };
 		C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C40B72AE5338900761C3D /* AppDelegate.swift */; };
 		C07C40C12AE5338A00761C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C02AE5338A00761C3D /* Assets.xcassets */; };
 		C07C40C42AE5338A00761C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C22AE5338A00761C3D /* LaunchScreen.storyboard */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66C1E6952B13FB3B00EEC606 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		66C1E6972B1420F500EEC606 /* MyFeedbacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedbacksViewController.swift; sourceTree = "<group>"; };
+		66C1E6992B14296E00EEC606 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		C07C40B42AE5338900761C3D /* Otzovik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otzovik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07C40B72AE5338900761C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07C40C02AE5338A00761C3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				C07C40D32AE536FC00761C3D /* ProfileViewController.swift */,
+				66C1E6952B13FB3B00EEC606 /* SettingsViewController.swift */,
+				66C1E6972B1420F500EEC606 /* MyFeedbacksViewController.swift */,
+				66C1E6992B14296E00EEC606 /* Feedback.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -189,6 +198,9 @@
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
+				66C1E6962B13FB3B00EEC606 /* SettingsViewController.swift in Sources */,
+				66C1E69A2B14296E00EEC606 /* Feedback.swift in Sources */,
+				66C1E6982B1420F500EEC606 /* MyFeedbacksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +344,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KD82SC4QSX;
+				DEVELOPMENT_TEAM = 5PM42AC732;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -360,7 +372,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KD82SC4QSX;
+				DEVELOPMENT_TEAM = 5PM42AC732;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

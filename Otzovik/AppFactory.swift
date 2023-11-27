@@ -40,15 +40,17 @@ final class AppFactory {
         let searchItem = UITabBarItem(title: "Поиск", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
         search.tabBarItem = searchItem
         
+        
         return search
     }
     
-    func buildProfile() -> UIViewController {
+    func buildProfile() -> UINavigationController {
         let profile = ProfileViewController()
         let profileItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: nil)
         profile.tabBarItem = profileItem
+        let profileNavigationController = UINavigationController(rootViewController: profile)
         
-        return profile
+        return profileNavigationController
     }
     
     
