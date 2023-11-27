@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
+		9069702E2B14597100850CA9 /* TeacherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069702D2B14597100850CA9 /* TeacherManager.swift */; };
+		906970302B145AF300850CA9 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069702F2B145AF300850CA9 /* FavoritesTableViewCell.swift */; };
+		906970322B145DEF00850CA9 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906970312B145DEF00850CA9 /* TeacherViewController.swift */; };
+		906970342B14957000850CA9 /* TeacherBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906970332B14957000850CA9 /* TeacherBadgesView.swift */; };
+		90DEC0062B1457190023CBBD /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DEC0052B1457190023CBBD /* Teacher.swift */; };
+
 		C074B2242B026DDA00BC19EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C074B2232B026DDA00BC19EA /* GoogleService-Info.plist */; };
 		C074B2272B026E9100BC19EA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2262B026E9100BC19EA /* FirebaseAnalytics */; };
 		C074B2292B026E9100BC19EA /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2282B026E9100BC19EA /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -35,6 +42,7 @@
 		C074B2572B026E9100BC19EA /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2562B026E9100BC19EA /* FirebaseRemoteConfigSwift */; };
 		C074B2592B026E9100BC19EA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2582B026E9100BC19EA /* FirebaseStorage */; };
 		C074B25B2B026E9100BC19EA /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = C074B25A2B026E9100BC19EA /* FirebaseStorageCombine-Community */; };
+
 		C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C40B72AE5338900761C3D /* AppDelegate.swift */; };
 		C07C40C12AE5338A00761C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C02AE5338A00761C3D /* Assets.xcassets */; };
 		C07C40C42AE5338A00761C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C22AE5338A00761C3D /* LaunchScreen.storyboard */; };
@@ -58,7 +66,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
+		9069702D2B14597100850CA9 /* TeacherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherManager.swift; sourceTree = "<group>"; };
+		9069702F2B145AF300850CA9 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		906970312B145DEF00850CA9 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		906970332B14957000850CA9 /* TeacherBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherBadgesView.swift; sourceTree = "<group>"; };
+		90DEC0052B1457190023CBBD /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+
 		C074B2232B026DDA00BC19EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+
 		C07C40B42AE5338900761C3D /* Otzovik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otzovik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07C40B72AE5338900761C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07C40C02AE5338A00761C3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,12 +137,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+
+		90DEC0042B14570E0023CBBD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				90DEC0052B1457190023CBBD /* Teacher.swift */,
+			);
+			path = Models;
+
 		C074B25C2B027C8200BC19EA /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				D0B3D1562AFE601200414D50 /* InsetTextField.swift */,
 			);
 			path = Components;
+
 			sourceTree = "<group>";
 		};
 		C07C40AB2AE5338900761C3D = {
@@ -191,6 +216,11 @@
 			isa = PBXGroup;
 			children = (
 				C07C40D12AE536EE00761C3D /* FavoritesViewController.swift */,
+				9069702D2B14597100850CA9 /* TeacherManager.swift */,
+				9069702F2B145AF300850CA9 /* FavoritesTableViewCell.swift */,
+				906970312B145DEF00850CA9 /* TeacherViewController.swift */,
+				906970332B14957000850CA9 /* TeacherBadgesView.swift */,
+				90DEC0042B14570E0023CBBD /* Models */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -334,12 +364,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
+				90DEC0062B1457190023CBBD /* Teacher.swift in Sources */,
+
 				D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */,
 				D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */,
+
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
 				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
+
+				906970342B14957000850CA9 /* TeacherBadgesView.swift in Sources */,
+
 				D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */,
+
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
 				D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */,
 				D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */,
@@ -347,7 +385,13 @@
 				D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */,
 				D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
+
+				906970322B145DEF00850CA9 /* TeacherViewController.swift in Sources */,
+				906970302B145AF300850CA9 /* FavoritesTableViewCell.swift in Sources */,
+				9069702E2B14597100850CA9 /* TeacherManager.swift in Sources */,
+
 				D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */,
+
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
 				D0030DD12AFEF79100D458A3 /* LoginModel.swift in Sources */,
 				D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */,
@@ -494,7 +538,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+
 				DEVELOPMENT_TEAM = 6864P4M57B;
+
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -522,7 +568,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+
 				DEVELOPMENT_TEAM = 6864P4M57B;
+
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
