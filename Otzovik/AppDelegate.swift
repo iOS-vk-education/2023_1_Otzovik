@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import FirebaseCore
-import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,29 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         
-        
-        FirebaseApp.configure()
-        
-        
         window?.backgroundColor = .white
         
-        
-        let firebaseAuth = Auth.auth()
-        
-        
-        var rootViewController: UIViewController?
-        
-        if let user = firebaseAuth.currentUser {
-            rootViewController = factory.buildTabBar()
-        } else {
-            rootViewController = EntranceViewController()
-        }
-        
-        guard let rootViewController else { return false }
-        
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.setNavigationBarHidden(true, animated: false)
-        let root = navigationController
+        let root = factory.buildTabBar()
         window?.rootViewController = root
         window?.makeKeyAndVisible()
         
