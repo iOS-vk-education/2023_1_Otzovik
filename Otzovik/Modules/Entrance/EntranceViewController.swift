@@ -48,7 +48,7 @@ class EntranceViewController: UIViewController {
         setConstraints()
     }
     private func setColor() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1.0)
         for button in buttons {
             button.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
         }
