@@ -19,7 +19,7 @@ final class SettingsViewController : UIViewController {
         let buttonBack = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(didTapCloseButton))
         navigationItem.leftBarButtonItem = buttonBack
         
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .secondarySystemBackground
         
         view.addSubview(tableButtons)
         tableButtons.translatesAutoresizingMaskIntoConstraints = false
@@ -75,9 +75,11 @@ extension SettingsViewController: UITableViewDataSource {
         return "Настройки профиля"
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath)
+        cell.backgroundColor = .systemBackground
+        tableView.backgroundColor = .secondarySystemBackground
+        tableView.isScrollEnabled = false
         var contentConfiguration = cell.defaultContentConfiguration()
         switch indexPath.row {
             case 0:
