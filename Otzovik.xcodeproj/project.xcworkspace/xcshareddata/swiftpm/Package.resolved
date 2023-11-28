@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "mspeekcollectionviewdelegateimplementation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MaherKSantina/MSPeekCollectionViewDelegateImplementation.git",
+      "state" : {
+        "revision" : "5bc891a2ff11be914fee9b58de7bfeabf0a6fff0",
+        "version" : "3.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}

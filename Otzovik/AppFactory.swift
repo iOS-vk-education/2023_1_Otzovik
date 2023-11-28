@@ -12,12 +12,12 @@ final class AppFactory {
     func buildTabBar() -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [
-            buildFavorites(),
             buildSearch(),
-            buildProfile()
+            buildProfile(),
+            buildFavorites()
         ]
         
-        tabBarController.selectedIndex = 0
+        tabBarController.selectedIndex = 2
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.unselectedItemTintColor = .gray
         
@@ -26,13 +26,16 @@ final class AppFactory {
     
     func buildFavorites() -> UIViewController {
         let favorites = FavoritesViewController()
-        
+                
+        let navigationController = UINavigationController(rootViewController: favorites)
         
         let favoritesItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star"), selectedImage: nil)
         
-        favorites.tabBarItem = favoritesItem
+        navigationController.tabBarItem = favoritesItem
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationItem.largeTitleDisplayMode = .always
         
-        return favorites
+        return navigationController
     }
     
     func buildSearch() -> UIViewController {

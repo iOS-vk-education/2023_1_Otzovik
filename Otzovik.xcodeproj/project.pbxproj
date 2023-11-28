@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90F39A082B15E53600E2B29E /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F39A072B15E53600E2B29E /* TeacherViewController.swift */; };
+		90F39A0A2B15E53F00E2B29E /* TeacherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F39A092B15E53F00E2B29E /* TeacherManager.swift */; };
+		90F39A0D2B15E56700E2B29E /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F39A0C2B15E56700E2B29E /* FavoritesTableViewCell.swift */; };
+		90F39A0F2B15E57200E2B29E /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F39A0E2B15E57200E2B29E /* Teacher.swift */; };
+		90F39A112B15E59900E2B29E /* TeacherBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F39A102B15E59900E2B29E /* TeacherBadgesView.swift */; };
+		90F39A132B15ED6100E2B29E /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F39A122B15ED6100E2B29E /* CustomCollectionViewCell.swift */; };
+		90F39A162B15FE0D00E2B29E /* MSPeekCollectionViewDelegateImplementation in Frameworks */ = {isa = PBXBuildFile; productRef = 90F39A152B15FE0D00E2B29E /* MSPeekCollectionViewDelegateImplementation */; };
 		C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C40B72AE5338900761C3D /* AppDelegate.swift */; };
 		C07C40C12AE5338A00761C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C02AE5338A00761C3D /* Assets.xcassets */; };
 		C07C40C42AE5338A00761C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07C40C22AE5338A00761C3D /* LaunchScreen.storyboard */; };
@@ -18,6 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		90F39A072B15E53600E2B29E /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		90F39A092B15E53F00E2B29E /* TeacherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherManager.swift; sourceTree = "<group>"; };
+		90F39A0C2B15E56700E2B29E /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		90F39A0E2B15E57200E2B29E /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		90F39A102B15E59900E2B29E /* TeacherBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherBadgesView.swift; sourceTree = "<group>"; };
+		90F39A122B15ED6100E2B29E /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		C07C40B42AE5338900761C3D /* Otzovik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otzovik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07C40B72AE5338900761C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07C40C02AE5338A00761C3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,12 +48,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90F39A162B15FE0D00E2B29E /* MSPeekCollectionViewDelegateImplementation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90F39A0B2B15E54500E2B29E /* Teacher */ = {
+			isa = PBXGroup;
+			children = (
+				90F39A0E2B15E57200E2B29E /* Teacher.swift */,
+			);
+			path = Teacher;
+			sourceTree = "<group>";
+		};
 		C07C40AB2AE5338900761C3D = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +122,12 @@
 			isa = PBXGroup;
 			children = (
 				C07C40D12AE536EE00761C3D /* FavoritesViewController.swift */,
+				90F39A0C2B15E56700E2B29E /* FavoritesTableViewCell.swift */,
+				90F39A072B15E53600E2B29E /* TeacherViewController.swift */,
+				90F39A092B15E53F00E2B29E /* TeacherManager.swift */,
+				90F39A102B15E59900E2B29E /* TeacherBadgesView.swift */,
+				90F39A0B2B15E54500E2B29E /* Teacher */,
+				90F39A122B15ED6100E2B29E /* CustomCollectionViewCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -129,6 +157,9 @@
 			dependencies = (
 			);
 			name = Otzovik;
+			packageProductDependencies = (
+				90F39A152B15FE0D00E2B29E /* MSPeekCollectionViewDelegateImplementation */,
+			);
 			productName = Otzovik;
 			productReference = C07C40B42AE5338900761C3D /* Otzovik.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +188,9 @@
 				Base,
 			);
 			mainGroup = C07C40AB2AE5338900761C3D;
+			packageReferences = (
+				90F39A142B15FE0D00E2B29E /* XCRemoteSwiftPackageReference "MSPeekCollectionViewDelegateImplementation" */,
+			);
 			productRefGroup = C07C40B52AE5338900761C3D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -187,8 +221,14 @@
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
+				90F39A112B15E59900E2B29E /* TeacherBadgesView.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
+				90F39A0D2B15E56700E2B29E /* FavoritesTableViewCell.swift in Sources */,
+				90F39A0F2B15E57200E2B29E /* Teacher.swift in Sources */,
+				90F39A0A2B15E53F00E2B29E /* TeacherManager.swift in Sources */,
+				90F39A082B15E53600E2B29E /* TeacherViewController.swift in Sources */,
+				90F39A132B15ED6100E2B29E /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		90F39A142B15FE0D00E2B29E /* XCRemoteSwiftPackageReference "MSPeekCollectionViewDelegateImplementation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MaherKSantina/MSPeekCollectionViewDelegateImplementation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		90F39A152B15FE0D00E2B29E /* MSPeekCollectionViewDelegateImplementation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90F39A142B15FE0D00E2B29E /* XCRemoteSwiftPackageReference "MSPeekCollectionViewDelegateImplementation" */;
+			productName = MSPeekCollectionViewDelegateImplementation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C07C40AC2AE5338900761C3D /* Project object */;
 }
