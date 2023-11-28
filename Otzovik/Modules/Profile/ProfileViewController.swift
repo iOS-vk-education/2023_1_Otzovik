@@ -25,6 +25,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .secondarySystemBackground
         
         view.addSubview(avatarImage)
@@ -122,10 +123,16 @@ extension ProfileViewController: UITableViewDelegate {
 
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if tableView == twoButtonsTable {
+            return 2
+        }
+        else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.isScrollEnabled = false
         if tableView == twoButtonsTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "buttonInTable", for: indexPath)
             tableView.separatorInset = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0)

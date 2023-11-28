@@ -73,7 +73,7 @@ final class MyFeedbacksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         title = "Мои отзывы"
         let buttonBack = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(didTapCloseButton))
         navigationItem.leftBarButtonItem = buttonBack
