@@ -94,6 +94,9 @@ class LoginViewController: BaseEntranceViewController {
                 self.present(alert, animated: true, completion: nil)
             } else {
                 print("залогинились")
+                let factory = AppFactory()
+                let vc = factory.buildTabBar()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         })
     }

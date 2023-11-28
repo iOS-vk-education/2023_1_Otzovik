@@ -12,12 +12,12 @@ final class AppFactory {
     func buildTabBar() -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [
-            buildFavorites(),
             buildSearch(),
-            buildProfile()
+            buildProfile(),
+            buildFavorites()
         ]
         
-        tabBarController.selectedIndex = 0
+        tabBarController.selectedIndex = 2
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.unselectedItemTintColor = .gray
         
@@ -26,30 +26,34 @@ final class AppFactory {
     
     func buildFavorites() -> UIViewController {
         let favorites = FavoritesViewController()
-        
+                
+        let navigationController = UINavigationController(rootViewController: favorites)
         
         let favoritesItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star"), selectedImage: nil)
         
-        favorites.tabBarItem = favoritesItem
+        navigationController.tabBarItem = favoritesItem
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationItem.largeTitleDisplayMode = .always
         
-        return favorites
+        return navigationController
     }
     
     func buildSearch() -> UIViewController {
         let search = SearchViewController()
         let searchItem = UITabBarItem(title: "Поиск", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
         search.tabBarItem = searchItem
-        
-        return search
+        let searchNavigationController = UINavigationController(rootViewController: search)
+        return searchNavigationController
     }
     
-    func buildProfile() -> UIViewController {
-        let profile = ProfileViewController()
-        let profileItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: nil)
-        profile.tabBarItem = profileItem
-        
-        return profile
-    }
+    func buildProfile() -> UINavigationController {
+            let profile = ProfileViewController()
+            let profileItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: nil)
+            profile.tabBarItem = profileItem
+            let profileNavigationController = UINavigationController(rootViewController: profile)
+            
+            return profileNavigationController
+        }
     
     
 }

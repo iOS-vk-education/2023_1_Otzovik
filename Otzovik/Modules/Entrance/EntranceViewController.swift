@@ -96,7 +96,8 @@ class EntranceViewController: UIViewController {
             UIView.animate(withDuration: self.animationTime) {
                 self.buttons[2].layer.opacity = 1
             } completion: { isOk in
-                let vc: SearchViewController = SearchViewController()
+                let factory = AppFactory()
+                let vc = factory.buildTabBar()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

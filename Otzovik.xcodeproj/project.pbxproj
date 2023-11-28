@@ -55,6 +55,19 @@
 		D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */; };
 		D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */; };
 		D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */; };
+		D0C89FA12B16036800D89E69 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */; };
+		D0C89FA32B16039E00D89E69 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */; };
+		D0C89FA52B1603F200D89E69 /* TeacherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA42B1603F200D89E69 /* TeacherManager.swift */; };
+		D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA62B16043200D89E69 /* TeacherViewController.swift */; };
+		D0C89FAA2B16047600D89E69 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA92B16047600D89E69 /* Teacher.swift */; };
+		D0C89FAC2B1604EA00D89E69 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FAB2B1604EA00D89E69 /* Feedback.swift */; };
+		D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FAD2B16050E00D89E69 /* MyFeedbacksViewController.swift */; };
+		D0C89FB22B16058E00D89E69 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FB12B16058E00D89E69 /* SettingsViewController.swift */; };
+		D0C89FB42B1609F300D89E69 /* ChooseUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FB32B1609F300D89E69 /* ChooseUniversityViewController.swift */; };
+		D0C89FB62B160A3D00D89E69 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FB52B160A3D00D89E69 /* FilterViewController.swift */; };
+		D0C89FB82B160A7C00D89E69 /* UniversityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FB72B160A7C00D89E69 /* UniversityManager.swift */; };
+		D0C89FBA2B160AAB00D89E69 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FB92B160AAB00D89E69 /* University.swift */; };
+		D0C89FBC2B160BE800D89E69 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FBB2B160BE800D89E69 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +94,19 @@
 		D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPasswordViewController.swift; sourceTree = "<group>"; };
 		D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAvatarViewController.swift; sourceTree = "<group>"; };
 		D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationReadyViewController.swift; sourceTree = "<group>"; };
+		D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		D0C89FA42B1603F200D89E69 /* TeacherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherManager.swift; sourceTree = "<group>"; };
+		D0C89FA62B16043200D89E69 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		D0C89FA92B16047600D89E69 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		D0C89FAB2B1604EA00D89E69 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		D0C89FAD2B16050E00D89E69 /* MyFeedbacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedbacksViewController.swift; sourceTree = "<group>"; };
+		D0C89FB12B16058E00D89E69 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D0C89FB32B1609F300D89E69 /* ChooseUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewController.swift; sourceTree = "<group>"; };
+		D0C89FB52B160A3D00D89E69 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		D0C89FB72B160A7C00D89E69 /* UniversityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityManager.swift; sourceTree = "<group>"; };
+		D0C89FB92B160AAB00D89E69 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
+		D0C89FBB2B160BE800D89E69 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +201,11 @@
 			isa = PBXGroup;
 			children = (
 				C07C40D52AE5370600761C3D /* SearchViewController.swift */,
+				D0C89FB32B1609F300D89E69 /* ChooseUniversityViewController.swift */,
+				D0C89FB52B160A3D00D89E69 /* FilterViewController.swift */,
+				D0C89FB72B160A7C00D89E69 /* UniversityManager.swift */,
+				D0C89FB92B160AAB00D89E69 /* University.swift */,
+				D0C89FBB2B160BE800D89E69 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -183,6 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				C07C40D32AE536FC00761C3D /* ProfileViewController.swift */,
+				D0C89FAB2B1604EA00D89E69 /* Feedback.swift */,
+				D0C89FAD2B16050E00D89E69 /* MyFeedbacksViewController.swift */,
+				D0C89FB12B16058E00D89E69 /* SettingsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -190,7 +224,12 @@
 		C07C40D02AE5349E00761C3D /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				D0C89FA82B16045400D89E69 /* Teacher */,
 				C07C40D12AE536EE00761C3D /* FavoritesViewController.swift */,
+				D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */,
+				D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */,
+				D0C89FA42B1603F200D89E69 /* TeacherManager.swift */,
+				D0C89FA62B16043200D89E69 /* TeacherViewController.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -228,6 +267,14 @@
 				D0030DCF2AFEF77800D458A3 /* Models */,
 			);
 			path = Entrance;
+			sourceTree = "<group>";
+		};
+		D0C89FA82B16045400D89E69 /* Teacher */ = {
+			isa = PBXGroup;
+			children = (
+				D0C89FA92B16047600D89E69 /* Teacher.swift */,
+			);
+			path = Teacher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,22 +382,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */,
+				D0C89FA12B16036800D89E69 /* CustomCollectionViewCell.swift in Sources */,
 				D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */,
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
 				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
+				D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
+				D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */,
 				D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */,
+				D0C89FBC2B160BE800D89E69 /* SearchTableViewCell.swift in Sources */,
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,
 				D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */,
+				D0C89FAA2B16047600D89E69 /* Teacher.swift in Sources */,
 				D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */,
+				D0C89FA52B1603F200D89E69 /* TeacherManager.swift in Sources */,
 				D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */,
 				D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */,
 				D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
 				D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */,
+				D0C89FB82B160A7C00D89E69 /* UniversityManager.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
 				D0030DD12AFEF79100D458A3 /* LoginModel.swift in Sources */,
+				D0C89FBA2B160AAB00D89E69 /* University.swift in Sources */,
+				D0C89FB62B160A3D00D89E69 /* FilterViewController.swift in Sources */,
 				D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */,
+				D0C89FA32B16039E00D89E69 /* FavoritesTableViewCell.swift in Sources */,
+				D0C89FB42B1609F300D89E69 /* ChooseUniversityViewController.swift in Sources */,
+				D0C89FB22B16058E00D89E69 /* SettingsViewController.swift in Sources */,
+				D0C89FAC2B1604EA00D89E69 /* Feedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
