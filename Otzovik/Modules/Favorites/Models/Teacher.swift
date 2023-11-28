@@ -15,6 +15,4 @@ struct Teacher {
     let imageURL: String
     let rating: Double
     let degree: String
-    
-    let description: String
 }
