@@ -49,6 +49,10 @@
 		D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */; };
 		D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */; };
 		D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */; };
+		D08AA8842B1D0A41008BD9E1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8832B1D0A41008BD9E1 /* Colors.swift */; };
+		D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */; };
+		D08AA8882B1D3F93008BD9E1 /* EntranceSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */; };
+		D0A60F4A2B1DBBD1003CAF84 /* EntranceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */; };
 		D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3D1562AFE601200414D50 /* InsetTextField.swift */; };
 		D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */; };
 		D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */; };
@@ -88,6 +92,10 @@
 		D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewController.swift; sourceTree = "<group>"; };
 		D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNameViewController.swift; sourceTree = "<group>"; };
 		D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D08AA8832B1D0A41008BD9E1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceTextFieldsView.swift; sourceTree = "<group>"; };
+		D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceSeparatorView.swift; sourceTree = "<group>"; };
+		D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceButton.swift; sourceTree = "<group>"; };
 		D0B3D1562AFE601200414D50 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
 		D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOrganisationViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				D0B3D1562AFE601200414D50 /* InsetTextField.swift */,
+				D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */,
+				D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */,
+				D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -182,6 +193,7 @@
 				C07C40CD2AE5347900761C3D /* Modules */,
 				C07C40C22AE5338A00761C3D /* LaunchScreen.storyboard */,
 				C07C40C52AE5338A00761C3D /* Info.plist */,
+				D08AA8832B1D0A41008BD9E1 /* Colors.swift */,
 			);
 			path = Otzovik;
 			sourceTree = "<group>";
@@ -227,9 +239,9 @@
 				D0C89FA82B16045400D89E69 /* Teacher */,
 				C07C40D12AE536EE00761C3D /* FavoritesViewController.swift */,
 				D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */,
+				D0C89FA62B16043200D89E69 /* TeacherViewController.swift */,
 				D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */,
 				D0C89FA42B1603F200D89E69 /* TeacherManager.swift */,
-				D0C89FA62B16043200D89E69 /* TeacherViewController.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -381,11 +393,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D08AA8882B1D3F93008BD9E1 /* EntranceSeparatorView.swift in Sources */,
 				D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */,
 				D0C89FA12B16036800D89E69 /* CustomCollectionViewCell.swift in Sources */,
 				D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */,
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
+				D0A60F4A2B1DBBD1003CAF84 /* EntranceButton.swift in Sources */,
 				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
+				D08AA8842B1D0A41008BD9E1 /* Colors.swift in Sources */,
+				D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */,
 				D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
 				D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */,

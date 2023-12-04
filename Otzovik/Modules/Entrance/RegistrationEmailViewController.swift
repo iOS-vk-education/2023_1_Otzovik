@@ -9,32 +9,37 @@ import UIKit
 
 class RegistrationEmailViewController: BaseEntranceViewController {
 
-    let emailTextField: InsetTextField = InsetTextField()
-    let emailLabel: UILabel = UILabel()
-    let textFieldsView: UIView = UIView()
+    private let emailTextField: InsetTextField = {
+        let textField = InsetTextField()
+        textField.config(leftInset: 65.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //emailTextField.placeholder = "email"
+        return textField
+    }()
+    
+    private let emailTextFieldLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Email"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    
+    private lazy var textFieldsView: EntranceTextFieldsView = EntranceTextFieldsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tryToResineFirstResponder(_:))))
         view.addSubview(textFieldsView)
-        textFieldsView.layer.cornerRadius = 12
-        textFieldsView.layer.masksToBounds = true
-        
         textFieldsView.addSubview(emailTextField)
-        emailTextField.autocorrectionType = .no
-        emailTextField.autocapitalizationType = .none
-        //loginTextField.placeholder = "email"
         emailTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         emailTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         emailTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
-        
-        emailTextField.addSubview(emailLabel)
-        emailLabel.text = "Email"
-        emailLabel.textAlignment = .left
+        emailTextField.addSubview(emailTextFieldLabel)
         setIcon()
         setTitles()
-        
-        setColor()
         setConstraints()
     }
     
@@ -46,12 +51,6 @@ class RegistrationEmailViewController: BaseEntranceViewController {
             super.setIcon(image: image)
         }
     }
-    
-    private func setColor() {
-        textFieldsView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        emailTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        emailLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-    }
     @objc
     private func tryToResineFirstResponder(_ sender: UITapGestureRecognizer) {
         tryToResineFirstResponder()
@@ -62,7 +61,6 @@ class RegistrationEmailViewController: BaseEntranceViewController {
         }
     }
     public override func nextVC() {
-        print("следующий шаг")
         let vc: RegistrationOrganisationViewController = RegistrationOrganisationViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -79,38 +77,31 @@ extension RegistrationEmailViewController {
         
     }
     @objc
-    private func textFieldDidBeginEditing(textField: UITextField) {
-        print(textField.text)
-        
-    }
+    private func textFieldDidBeginEditing(textField: UITextField) { }
     @objc
-    private func textFieldDidEndEditing(textField: UITextField) {
-        print(textField.text)
-    }
+    private func textFieldDidEndEditing(textField: UITextField) { }
     @objc
-    private func onReturn(textField: UITextField) {
-        print(textField.text)
-    }
+    private func onReturn(textField: UITextField) { }
 }
 extension RegistrationEmailViewController {
     private func setConstraints() {
         
-        textFieldsView.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.translatesAutoresizingMaskIntoConstraints = false
+        let _ =
+        [textFieldsView,
+        emailTextField,
+        emailTextFieldLabel].map({ $0.translatesAutoresizingMaskIntoConstraints = false })
         
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.9, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 35).isActive = true
+        textFieldsView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        textFieldsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
+        textFieldsView.topAnchor.constraint(equalTo: super.titleLabel.bottomAnchor, constant: 35).isActive = true
         
-        NSLayoutConstraint(item: emailTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: emailTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: emailTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: emailTextField, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: textFieldsView.topAnchor).isActive = true
+        emailTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        emailTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        emailTextField.bottomAnchor.constraint(equalTo: textFieldsView.bottomAnchor).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: emailTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
-        
-        NSLayoutConstraint(item: emailLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: emailTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: emailLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: emailTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
+        emailTextFieldLabel.centerYAnchor.constraint(equalTo: emailTextField.centerYAnchor).isActive = true
+        emailTextFieldLabel.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor, constant: 15).isActive = true
     }
 }

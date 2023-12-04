@@ -9,14 +9,6 @@ import Foundation
 import FirebaseAuth
 
 class LoginModel {
-    private init() {}
-    static let shared = LoginModel()
-    private var login: String = ""
-    private var password: String = ""
-    private let loginMinLength:Int = 3
-    private let passwordMinLength:Int = 4
-    private let loginMaxLength:Int = 8
-    private let passwordMaxLength:Int = 8
     
     public func checkLoginValid(login: String) -> Bool {
         return login.count >= loginMinLength && login.count <= loginMaxLength
@@ -50,4 +42,12 @@ class LoginModel {
             }
         }
     }
+    private init() {}
+    static let shared = LoginModel()
+    private var login: String = ""
+    private var password: String = ""
+    private let loginMinLength: Int = 3
+    private let passwordMinLength: Int = 4
+    private let loginMaxLength: Int = 8
+    private let passwordMaxLength: Int = 8
 }

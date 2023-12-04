@@ -47,13 +47,13 @@ final class AppFactory {
     }
     
     func buildProfile() -> UINavigationController {
-            let profile = ProfileViewController()
-            let profileItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: nil)
-            profile.tabBarItem = profileItem
-            UITabBar.appearance().backgroundColor = .systemBackground
-            let profileNavigationController = UINavigationController(rootViewController: profile)
-            return profileNavigationController
-        }
+        let profile = ProfileViewController()
+        let profileItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: nil)
+        profile.tabBarItem = profileItem
+        UITabBar.appearance().backgroundColor = .systemBackground
+        let profileNavigationController = UINavigationController(rootViewController: profile)
+        return profileNavigationController
+    }
     
     
 }

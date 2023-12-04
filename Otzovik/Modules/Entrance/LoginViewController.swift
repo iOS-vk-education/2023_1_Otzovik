@@ -9,50 +9,63 @@ import UIKit
 
 class LoginViewController: BaseEntranceViewController {
 
-    let separatorView: UIView = UIView()
-    let loginTextField: InsetTextField = InsetTextField()
-    let loginTextFieldLabel: UILabel = UILabel()
-    let passwordTextField: InsetTextField = InsetTextField()
-    let passwordTextFieldLabel: UILabel = UILabel()
-    let textFieldsView: UIView = UIView()
+    private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
+    private lazy var loginTextField: InsetTextField = {
+        var textField = InsetTextField()
+        textField.config(leftInset: 85.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //textField.placeholder = "почта"
+        return textField
+    }()
+    private lazy var loginTextFieldLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Почта"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var passwordTextField: InsetTextField = {
+        var textField = InsetTextField()
+        textField.config(leftInset: 85.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        textField.isSecureTextEntry = true
+        //textField.placeholder = "пароль"
+        return textField
+    }()
+    private lazy var passwordTextFieldLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Пароль"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var textFieldsView: EntranceTextFieldsView = EntranceTextFieldsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tryToResineFirstResponder(_:))))
         view.addSubview(textFieldsView)
-        textFieldsView.layer.cornerRadius = 12
-        textFieldsView.layer.masksToBounds = true
-        
         textFieldsView.addSubview(loginTextField)
-        loginTextField.autocorrectionType = .no
-        loginTextField.autocapitalizationType = .none
-        //loginTextField.placeholder = "почта"
+        textFieldsView.addSubview(passwordTextField)
         loginTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         loginTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         loginTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
-        textFieldsView.addSubview(passwordTextField)
-        passwordTextField.autocorrectionType = .no
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.isSecureTextEntry = true
-        //passwordTextField.placeholder = "пароль"
         passwordTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         passwordTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         textFieldsView.addSubview(separatorView)
         loginTextField.addSubview(loginTextFieldLabel)
         passwordTextField.addSubview(passwordTextFieldLabel)
-        loginTextFieldLabel.text = "Почта"
-        passwordTextFieldLabel.text = "Пароль"
-        loginTextFieldLabel.textAlignment = .left
-        passwordTextFieldLabel.textAlignment = .left
         setIcon()
-        setTitleы()
-        
-        setColor()
+        setTitle()
         setConstraints()
     }
     
-    private func setTitleы() {
+    private func setTitle() {
         super.setTitles(title: "Вход", buttonTitle: "Продолжить")
     }
     private func setIcon() {
@@ -61,14 +74,6 @@ class LoginViewController: BaseEntranceViewController {
         }
     }
     
-    private func setColor() {
-        textFieldsView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        separatorView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.36)
-        loginTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        passwordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        loginTextFieldLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        passwordTextFieldLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-    }
     @objc
     private func tryToResineFirstResponder(_ sender: UITapGestureRecognizer) {
         tryToResineFirstResponder()
@@ -105,7 +110,6 @@ extension LoginViewController {
     @objc
     private func textFieldDidChanged(textField: UITextField) {
         if let text = textField.text {
-            print(text)
             if textField == loginTextField {
                 LoginModel.shared.setLogin(login: text)
             }
@@ -116,55 +120,47 @@ extension LoginViewController {
         
     }
     @objc
-    private func textFieldDidBeginEditing(textField: UITextField) {
-        print(textField.text)
-        
-    }
+    private func textFieldDidBeginEditing(textField: UITextField) { }
     @objc
-    private func textFieldDidEndEditing(textField: UITextField) {
-        print(textField.text)
-    }
+    private func textFieldDidEndEditing(textField: UITextField) { }
     @objc
-    private func onReturn(textField: UITextField) {
-        print(textField.text)
-    }
+    private func onReturn(textField: UITextField) { }
 }
 extension LoginViewController {
     private func setConstraints() {
         
-        textFieldsView.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.translatesAutoresizingMaskIntoConstraints = false
-        loginTextFieldLabel.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextFieldLabel.translatesAutoresizingMaskIntoConstraints = false
+        let _ =
+        [textFieldsView,
+        loginTextField,
+        passwordTextField,
+        separatorView,
+        loginTextFieldLabel,
+        passwordTextFieldLabel].map({ $0.translatesAutoresizingMaskIntoConstraints = false})
         
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.9, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 35).isActive = true
+        textFieldsView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        textFieldsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
+        textFieldsView.topAnchor.constraint(equalTo: super.titleLabel.bottomAnchor, constant: 35).isActive = true
         
-        NSLayoutConstraint(item: loginTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: loginTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: loginTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
+        loginTextField.topAnchor.constraint(equalTo: textFieldsView.topAnchor).isActive = true
+        loginTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        loginTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        loginTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: loginTextField, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 1).isActive = true
+        separatorView.topAnchor.constraint(equalTo: loginTextField.bottomAnchor).isActive = true
+        separatorView.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor, constant: 20).isActive = true
+        separatorView.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        NSLayoutConstraint(item: passwordTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: separatorView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: passwordTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: passwordTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: passwordTextField, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: separatorView.bottomAnchor).isActive = true
+        passwordTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        passwordTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        passwordTextField.bottomAnchor.constraint(equalTo: textFieldsView.bottomAnchor).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: loginTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
-        NSLayoutConstraint(item: passwordTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        loginTextFieldLabel.centerYAnchor.constraint(equalTo: loginTextField.centerYAnchor).isActive = true
+        loginTextFieldLabel.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor, constant: 15).isActive = true
         
-        NSLayoutConstraint(item: loginTextFieldLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: loginTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: loginTextFieldLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: loginTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
-        NSLayoutConstraint(item: passwordTextFieldLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: passwordTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: passwordTextFieldLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: passwordTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
-        
-        
+        passwordTextFieldLabel.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor).isActive = true
+        passwordTextFieldLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: 15).isActive = true
     }
 }

@@ -9,45 +9,58 @@ import UIKit
 
 class RegistrationNameViewController: BaseEntranceViewController {
 
-    let separatorView: UIView = UIView()
-    let firstnameTextField: InsetTextField = InsetTextField()
-    let firstnameLabel: UILabel = UILabel()
-    let lastnameTextField: InsetTextField = InsetTextField()
-    let lastnameTextFieldLabel: UILabel = UILabel()
-    let textFieldsView: UIView = UIView()
+    private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
+    private lazy var firstnameTextField: InsetTextField = {
+        var textField = InsetTextField()
+        textField.config(leftInset: 95.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //textField.placeholder = "имя"
+        return textField
+    }()
+    private lazy var firstnameTextFieldLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Имя"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var lastnameTextField: InsetTextField = {
+        var textField = InsetTextField()
+        textField.config(leftInset: 95.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //textField.placeholder = "фамилия"
+        return textField
+    }()
+    private lazy var lastnameTextFieldLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Фамилия"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var textFieldsView: EntranceTextFieldsView = EntranceTextFieldsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tryToResineFirstResponder(_:))))
         view.addSubview(textFieldsView)
-        textFieldsView.layer.cornerRadius = 12
-        textFieldsView.layer.masksToBounds = true
-        
         textFieldsView.addSubview(firstnameTextField)
-        firstnameTextField.autocorrectionType = .no
-        firstnameTextField.autocapitalizationType = .none
-        //firstnameTextField.placeholder = "имя"
         firstnameTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         firstnameTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         firstnameTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         textFieldsView.addSubview(lastnameTextField)
-        lastnameTextField.autocorrectionType = .no
-        lastnameTextField.autocapitalizationType = .none
-        //lastnameTextField.placeholder = "фамилия"
         lastnameTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         lastnameTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         lastnameTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         textFieldsView.addSubview(separatorView)
-        firstnameTextField.addSubview(firstnameLabel)
+        firstnameTextField.addSubview(firstnameTextFieldLabel)
         lastnameTextField.addSubview(lastnameTextFieldLabel)
-        firstnameLabel.text = "Имя"
-        lastnameTextFieldLabel.text = "Фамилия"
-        firstnameLabel.textAlignment = .left
-        lastnameTextFieldLabel.textAlignment = .left
         setIcon()
         setTitles()
-        
-        setColor()
         setConstraints()
     }
     
@@ -58,15 +71,6 @@ class RegistrationNameViewController: BaseEntranceViewController {
         if let image = UIImage(systemName: "person.fill") {
             super.setIcon(image: image)
         }
-    }
-    
-    private func setColor() {
-        textFieldsView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        separatorView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.36)
-        firstnameTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        lastnameTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        firstnameLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        lastnameTextFieldLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
     }
     @objc
     private func tryToResineFirstResponder(_ sender: UITapGestureRecognizer) {
@@ -81,10 +85,10 @@ class RegistrationNameViewController: BaseEntranceViewController {
         }
     }
     public override func nextVC() {
-        print(#function)
-        print("следующий шаг")
         let vc: RegistrationEmailViewController = RegistrationEmailViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+        /*self.present(vc, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)*/
     }
 }
 extension RegistrationNameViewController {
@@ -101,55 +105,47 @@ extension RegistrationNameViewController {
         }
     }
     @objc
-    private func textFieldDidBeginEditing(textField: UITextField) {
-        print(textField.text)
-        
-    }
+    private func textFieldDidBeginEditing(textField: UITextField) { }
     @objc
-    private func textFieldDidEndEditing(textField: UITextField) {
-        print(textField.text)
-    }
+    private func textFieldDidEndEditing(textField: UITextField) { }
     @objc
-    private func onReturn(textField: UITextField) {
-        print(textField.text)
-    }
+    private func onReturn(textField: UITextField) { }
 }
 extension RegistrationNameViewController {
     private func setConstraints() {
         
-        textFieldsView.translatesAutoresizingMaskIntoConstraints = false
-        firstnameTextField.translatesAutoresizingMaskIntoConstraints = false
-        lastnameTextField.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.translatesAutoresizingMaskIntoConstraints = false
-        firstnameLabel.translatesAutoresizingMaskIntoConstraints = false
-        lastnameTextFieldLabel.translatesAutoresizingMaskIntoConstraints = false
+        let _ =
+        [textFieldsView,
+        firstnameTextField,
+        lastnameTextField,
+        separatorView,
+        firstnameTextFieldLabel,
+        lastnameTextFieldLabel].map({ $0.translatesAutoresizingMaskIntoConstraints = false})
         
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.9, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 35).isActive = true
+        textFieldsView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        textFieldsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
+        textFieldsView.topAnchor.constraint(equalTo: super.titleLabel.bottomAnchor, constant: 35).isActive = true
         
-        NSLayoutConstraint(item: firstnameTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: firstnameTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: firstnameTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
+        firstnameTextField.topAnchor.constraint(equalTo: textFieldsView.topAnchor).isActive = true
+        firstnameTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        firstnameTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        firstnameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstnameTextField, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separatorView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 1).isActive = true
+        separatorView.topAnchor.constraint(equalTo: firstnameTextField.bottomAnchor).isActive = true
+        separatorView.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor, constant: 20).isActive = true
+        separatorView.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        NSLayoutConstraint(item: lastnameTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: separatorView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: lastnameTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: lastnameTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: lastnameTextField, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
+        lastnameTextField.topAnchor.constraint(equalTo: separatorView.bottomAnchor).isActive = true
+        lastnameTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        lastnameTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        lastnameTextField.bottomAnchor.constraint(equalTo: textFieldsView.bottomAnchor).isActive = true
+        lastnameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: firstnameTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
-        NSLayoutConstraint(item: lastnameTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        firstnameTextFieldLabel.centerYAnchor.constraint(equalTo: firstnameTextField.centerYAnchor).isActive = true
+        firstnameTextFieldLabel.leadingAnchor.constraint(equalTo: firstnameTextField.leadingAnchor, constant: 15).isActive = true
         
-        NSLayoutConstraint(item: firstnameLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstnameTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: firstnameLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstnameTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
-        NSLayoutConstraint(item: lastnameTextFieldLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: lastnameTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: lastnameTextFieldLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: lastnameTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
-        
-        
+        lastnameTextFieldLabel.centerYAnchor.constraint(equalTo: lastnameTextField.centerYAnchor).isActive = true
+        lastnameTextFieldLabel.leadingAnchor.constraint(equalTo: lastnameTextField.leadingAnchor, constant: 15).isActive = true
     }
 }

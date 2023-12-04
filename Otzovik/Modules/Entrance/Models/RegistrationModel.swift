@@ -9,16 +9,6 @@ import Foundation
 import FirebaseAuth
 
 class RegistrationModel {
-    private init() {}
-    static let shared = RegistrationModel()
-    public var firstName: String = ""
-    public var lastName: String = ""
-    public var email: String = ""
-    public var password: String = ""
-    public var confirmation: String = ""
-    public var hei: String = ""
-    public var faculty: String = ""
-    public var department: String = ""
     
     public func registration(completion: @escaping (Error?) -> Void) {
         /*Auth.auth().createUser(withEmail: self.email, password: self.password) { registrationResult, error in
@@ -37,4 +27,14 @@ class RegistrationModel {
             }
         }*/
     }
+    private init() {}
+    static let shared = RegistrationModel()
+    public var firstName: String = ""
+    public var lastName: String = ""
+    public var email: String = ""
+    public var password: String = ""
+    public var confirmation: String = ""
+    public var hei: String = ""
+    public var faculty: String = ""
+    public var department: String = ""
 }

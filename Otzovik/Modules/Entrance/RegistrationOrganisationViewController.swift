@@ -9,60 +9,81 @@ import UIKit
 
 class RegistrationOrganisationViewController: BaseEntranceViewController {
 
-    let separator1View: UIView = UIView()
-    let separator2View: UIView = UIView()
-    let heiTextField: InsetTextField = InsetTextField()
-    let heiLabel: UILabel = UILabel()
-    let facultyTextField: InsetTextField = InsetTextField()
-    let facultyTextFieldLabel: UILabel = UILabel()
-    let departmentTextField: InsetTextField = InsetTextField()
-    let departmentTextFieldLabel: UILabel = UILabel()
-    let textFieldsView: UIView = UIView()
+    private lazy var upperSeparatorView: EntranceSeparatorView = EntranceSeparatorView()
+    private lazy var bottomSeparatorView: EntranceSeparatorView = EntranceSeparatorView()
+    private lazy var heiTextField: InsetTextField = {
+        let textField = InsetTextField()
+        textField.config(leftInset: 100.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //textField.placeholder = "ВУЗ"
+        return textField
+    }()
+    private lazy var heiTextFieldLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ВУЗ"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var facultyTextField: InsetTextField = {
+        let textField = InsetTextField()
+        textField.config(leftInset: 100.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //facultyTextField.placeholder = "факультет"
+        return textField
+    }()
+    private lazy var facultyTextFieldLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Факультет"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var departmentTextField: InsetTextField = {
+        let textField = InsetTextField()
+        textField.config(leftInset: 100.0)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.textColor = Colors.textFieldText
+        //departmentTextField.placeholder = "кафедра"
+        return textField
+    }()
+    private lazy var departmentTextFieldLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Кафедра"
+        label.textAlignment = .left
+        label.textColor = Colors.labelText
+        return label
+    }()
+    private lazy var textFieldsView: EntranceTextFieldsView = EntranceTextFieldsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tryToResineFirstResponder(_:))))
         view.addSubview(textFieldsView)
-        textFieldsView.layer.cornerRadius = 12
-        textFieldsView.layer.masksToBounds = true
-        
         textFieldsView.addSubview(heiTextField)
-        heiTextField.autocorrectionType = .no
-        heiTextField.autocapitalizationType = .none
-        //heiTextField.placeholder = "ВУЗ"
         heiTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         heiTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         heiTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         textFieldsView.addSubview(facultyTextField)
-        facultyTextField.autocorrectionType = .no
-        facultyTextField.autocapitalizationType = .none
-        //facultyTextField.placeholder = "факультет"
         facultyTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         facultyTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         facultyTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         textFieldsView.addSubview(departmentTextField)
-        departmentTextField.autocorrectionType = .no
-        departmentTextField.autocapitalizationType = .none
-        //departmentTextField.placeholder = "кафедра"
         departmentTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         departmentTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
         departmentTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
-        
-        textFieldsView.addSubview(separator1View)
-        textFieldsView.addSubview(separator2View)
-        heiTextField.addSubview(heiLabel)
+        textFieldsView.addSubview(upperSeparatorView)
+        textFieldsView.addSubview(bottomSeparatorView)
+        heiTextField.addSubview(heiTextFieldLabel)
         facultyTextField.addSubview(facultyTextFieldLabel)
         departmentTextField.addSubview(departmentTextFieldLabel)
-        heiLabel.text = "ВУЗ"
-        facultyTextFieldLabel.text = "Факультет"
-        departmentTextFieldLabel.text = "Кафедра"
-        heiLabel.textAlignment = .left
-        facultyTextFieldLabel.textAlignment = .left
-        departmentTextField.textAlignment = .left
         setIcon()
         setTitles()
-        
-        setColor()
         setConstraints()
     }
     
@@ -73,18 +94,6 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         if let image = UIImage(systemName: "graduationcap.fill") {
             super.setIcon(image: image)
         }
-    }
-    
-    private func setColor() {
-        textFieldsView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        separator1View.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.36)
-        separator2View.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.36)
-        heiTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        facultyTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        departmentTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        heiLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        facultyTextFieldLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        departmentTextFieldLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
     }
     @objc
     private func tryToResineFirstResponder(_ sender: UITapGestureRecognizer) {
@@ -102,8 +111,6 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         }
     }
     public override func nextVC() {
-        print(#function)
-        print("следующий шаг")
         let vc: RegistrationPasswordViewController = RegistrationPasswordViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -113,7 +120,7 @@ extension RegistrationOrganisationViewController {
     private func textFieldDidChanged(textField: UITextField) {
         if let text = textField.text {
             print(text)
-            if textField == heiLabel {
+            if textField == heiTextFieldLabel {
                 RegistrationModel.shared.hei = text
             }
             if textField == facultyTextField {
@@ -126,18 +133,11 @@ extension RegistrationOrganisationViewController {
         
     }
     @objc
-    private func textFieldDidBeginEditing(textField: UITextField) {
-        print(textField.text)
-        
-    }
+    private func textFieldDidBeginEditing(textField: UITextField) { }
     @objc
-    private func textFieldDidEndEditing(textField: UITextField) {
-        print(textField.text)
-    }
+    private func textFieldDidEndEditing(textField: UITextField) { }
     @objc
-    private func onReturn(textField: UITextField) {
-        print(textField.text)
-    }
+    private func onReturn(textField: UITextField) { }
 }
 extension RegistrationOrganisationViewController {
     private func setConstraints() {
@@ -146,50 +146,49 @@ extension RegistrationOrganisationViewController {
         heiTextField.translatesAutoresizingMaskIntoConstraints = false
         facultyTextField.translatesAutoresizingMaskIntoConstraints = false
         departmentTextField.translatesAutoresizingMaskIntoConstraints = false
-        separator1View.translatesAutoresizingMaskIntoConstraints = false
-        separator2View.translatesAutoresizingMaskIntoConstraints = false
-        heiLabel.translatesAutoresizingMaskIntoConstraints = false
+        upperSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        bottomSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        heiTextFieldLabel.translatesAutoresizingMaskIntoConstraints = false
         facultyTextFieldLabel.translatesAutoresizingMaskIntoConstraints = false
         departmentTextFieldLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.9, constant: 0).isActive = true
-        NSLayoutConstraint(item: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 35).isActive = true
+        textFieldsView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        textFieldsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
+        textFieldsView.topAnchor.constraint(equalTo: super.titleLabel.bottomAnchor, constant: 35).isActive = true
         
-        NSLayoutConstraint(item: heiTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: heiTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: heiTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
+        heiTextField.topAnchor.constraint(equalTo: textFieldsView.topAnchor).isActive = true
+        heiTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        heiTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        heiTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: separator1View, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: heiTextField, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separator1View, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: separator1View, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separator1View, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 1).isActive = true
+        upperSeparatorView.topAnchor.constraint(equalTo: heiTextField.bottomAnchor).isActive = true
+        upperSeparatorView.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor, constant: 20).isActive = true
+        upperSeparatorView.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        upperSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        NSLayoutConstraint(item: facultyTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: separator1View, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: facultyTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: facultyTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
+        facultyTextField.topAnchor.constraint(equalTo: upperSeparatorView.bottomAnchor).isActive = true
+        facultyTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        facultyTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        facultyTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: separator2View, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: facultyTextField, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separator2View, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: separator2View, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: separator2View, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 1).isActive = true
+        bottomSeparatorView.topAnchor.constraint(equalTo: facultyTextField.bottomAnchor).isActive = true
+        bottomSeparatorView.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor, constant: 20).isActive = true
+        bottomSeparatorView.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        bottomSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        NSLayoutConstraint(item: departmentTextField, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: separator2View, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: departmentTextField, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: departmentTextField, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: departmentTextField, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: textFieldsView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0).isActive = true
+        departmentTextField.topAnchor.constraint(equalTo: bottomSeparatorView.bottomAnchor).isActive = true
+        departmentTextField.leadingAnchor.constraint(equalTo: textFieldsView.leadingAnchor).isActive = true
+        departmentTextField.trailingAnchor.constraint(equalTo: textFieldsView.trailingAnchor).isActive = true
+        departmentTextField.bottomAnchor.constraint(equalTo: textFieldsView.bottomAnchor).isActive = true
+        departmentTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        NSLayoutConstraint(item: heiTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
-        NSLayoutConstraint(item: facultyTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
-        NSLayoutConstraint(item: departmentTextField, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        heiTextFieldLabel.centerYAnchor.constraint(equalTo: heiTextField.centerYAnchor).isActive = true
+        heiTextFieldLabel.leadingAnchor.constraint(equalTo: heiTextField.leadingAnchor, constant: 15).isActive = true
         
-        NSLayoutConstraint(item: heiLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: heiTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: heiLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: heiTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
-        NSLayoutConstraint(item: facultyTextFieldLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: facultyTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: facultyTextFieldLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: facultyTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
-        NSLayoutConstraint(item: departmentTextFieldLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: departmentTextField, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: departmentTextFieldLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: departmentTextField, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 15).isActive = true
+        facultyTextFieldLabel.centerYAnchor.constraint(equalTo: facultyTextField.centerYAnchor).isActive = true
+        facultyTextFieldLabel.leadingAnchor.constraint(equalTo: facultyTextField.leadingAnchor, constant: 15).isActive = true
         
-        
+        departmentTextFieldLabel.centerYAnchor.constraint(equalTo: departmentTextField.centerYAnchor).isActive = true
+        departmentTextFieldLabel.leadingAnchor.constraint(equalTo: departmentTextField.leadingAnchor, constant: 15).isActive = true
     }
 }
