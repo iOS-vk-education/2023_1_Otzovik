@@ -20,7 +20,6 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .secondarySystemBackground
         title = "Избранное"
         
         searchController.obscuresBackgroundDuringPresentation = true

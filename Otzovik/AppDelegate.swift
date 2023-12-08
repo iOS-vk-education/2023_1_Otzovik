@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             rootViewController = EntranceViewController()
         }
+        //rootViewController = factory.buildTabBar()
         guard let rootViewController else { return false }
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.setNavigationBarHidden(true, animated: false)

@@ -54,8 +54,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return true
     }
     override func viewDidLoad() {
-        //view.backgroundColor = .white
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .white
         title = "Поиск"
         navigationItem.title = "МГТУ им. Баумана"
         
