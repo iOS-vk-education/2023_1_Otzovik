@@ -19,8 +19,6 @@ final class MyFeedbacksViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         title = "Мои отзывы"
-        let buttonBack = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(didTapCloseButton))
-        navigationItem.leftBarButtonItem = buttonBack
         
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Поиск"
@@ -41,7 +39,6 @@ final class MyFeedbacksViewController: UIViewController, UISearchBarDelegate {
             self?.tableMyFeedbacks.reloadData()
         }
     }
-    
     @objc private func didTapCloseButton() {
         dismiss(animated: true)
     }

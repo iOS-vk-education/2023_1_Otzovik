@@ -27,6 +27,10 @@ final class ProfileViewController: UIViewController {
         
         loadData()
         
+        title = "Профиль"
+        //self.navigationController?.navigationBar.prefersLargeTitles = true
+        //self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 20)!]
+        
         view.addSubview(avatarImage)
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         avatarImage.layer.cornerRadius =  60
@@ -96,15 +100,11 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 1 {
             let settingsViewController = SettingsViewController()
-            let navigationController = UINavigationController(rootViewController: settingsViewController)
-            navigationController.modalPresentationStyle = .fullScreen
-            present(navigationController, animated: true)
+            navigationController?.pushViewController(settingsViewController, animated: true)
         }
         if indexPath.section == 0 && indexPath.row == 0 {
             let myFeedbackViewController = MyFeedbacksViewController()
-            let navigationController = UINavigationController(rootViewController: myFeedbackViewController)
-            navigationController.modalPresentationStyle = .fullScreen
-            present(navigationController, animated: true)
+            navigationController?.pushViewController(myFeedbackViewController, animated: true)
         }
         if indexPath.section == 1 {
             let alertExitController = UIAlertController(title: "Внимание!", message: "Вы уверены, что хотите выйти из своего профиля?", preferredStyle: .alert)
