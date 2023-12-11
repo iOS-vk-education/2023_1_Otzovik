@@ -73,7 +73,7 @@ class LoginViewController: BaseEntranceViewController {
             super.setIcon(image: image)
         }
     }
-    
+
     @objc
     private func tryToResineFirstResponder(_ sender: UITapGestureRecognizer) {
         tryToResineFirstResponder()

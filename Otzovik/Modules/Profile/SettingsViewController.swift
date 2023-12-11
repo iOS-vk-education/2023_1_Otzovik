@@ -37,7 +37,7 @@ final class SettingsViewController : UIViewController {
         segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
         segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        segmentedControl.selectedSegmentIndex = 1
+        segmentedControl.selectedSegmentIndex = Colors.getColorSchemeForSegmentedControl()
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         
     }
@@ -45,12 +45,15 @@ final class SettingsViewController : UIViewController {
         switch sender.selectedSegmentIndex {
             case 0:
                 print("light theme")
+                Colors.colorScheme = .light
                 break
             case 1:
                 print("system theme")
+                Colors.colorScheme = .system
                 break
             case 2:
                 print("dark theme")
+                Colors.colorScheme = .dark
                 break
             default:
                 break
