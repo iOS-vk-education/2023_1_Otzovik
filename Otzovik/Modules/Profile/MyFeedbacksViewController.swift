@@ -7,6 +7,7 @@
 
 import UIKit
 
+<<<<<<< HEAD
 final class MyFeedbacksViewController: UIViewController {
     
     private let searchBarMyFeedbacks = UISearchBar()
@@ -96,12 +97,49 @@ final class MyFeedbacksViewController: UIViewController {
         tableMyFeedbacks.register(cellFeedback.self, forCellReuseIdentifier: "cellFeedback")
         tableMyFeedbacks.delegate = self
         tableMyFeedbacks.dataSource = self
+=======
+final class MyFeedbacksViewController: UIViewController, UISearchBarDelegate {
+    
+    private let tableMyFeedbacks = UITableView()
+    private let searchController = UISearchController(searchResultsController: nil)
+    
+    private var feedbacks: [Feedback] = []
+    private let feedbackManager = FeedbackManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = "Мои отзывы"
+        
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.setValue("Отмена", forKey: "cancelButtonText")
+        navigationItem.searchController = searchController
+        
+        tableMyFeedbacks.frame = view.bounds
+        tableMyFeedbacks.delegate = self
+        tableMyFeedbacks.dataSource = self
+        tableMyFeedbacks.register(cellFeedback.self, forCellReuseIdentifier: "cellFeedback")
+        loadData()
+        view.addSubview(tableMyFeedbacks)
+    }
+    
+    func loadData() {
+        feedbackManager.loadFeedbacks() { [weak self] feedbacks in
+            self?.feedbacks = feedbacks
+            self?.tableMyFeedbacks.reloadData()
+        }
+>>>>>>> presentation
     }
     @objc private func didTapCloseButton() {
         dismiss(animated: true)
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> presentation
 extension MyFeedbacksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 98
@@ -123,6 +161,7 @@ extension MyFeedbacksViewController: UITableViewDataSource {
         return cell
     }
 }
+<<<<<<< HEAD
 
 final class cellFeedback: UITableViewCell {
     private let labelName = UILabel()
@@ -177,3 +216,5 @@ final class cellFeedback: UITableViewCell {
         labelDate.text = "\((feedback.date.year ?? 1900) - 2000).\(feedback.date.month ?? 1).\(feedback.date.day ?? 1)"
     }
 }
+=======
+>>>>>>> presentation

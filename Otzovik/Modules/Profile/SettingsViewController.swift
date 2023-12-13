@@ -10,12 +10,18 @@ import UIKit
 
 final class SettingsViewController : UIViewController {
     
+<<<<<<< HEAD
     private let tableButtons = UITableView(frame: .zero, style: .grouped)
+=======
+    private let tableButtons = UITableView(frame: .zero, style: .insetGrouped)
+    private let segmentedControl = UISegmentedControl(items: ["Светлая", "Системная", "Темная"])
+>>>>>>> presentation
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Настройки"
+<<<<<<< HEAD
         let buttonBack = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(didTapCloseButton))
         navigationItem.leftBarButtonItem = buttonBack
         
@@ -27,10 +33,52 @@ final class SettingsViewController : UIViewController {
         tableButtons.heightAnchor.constraint(equalToConstant: 152).isActive = true
         tableButtons.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
+=======
+        
+        view.backgroundColor = .secondarySystemBackground
+        
+        view.addSubview(tableButtons)
+        tableButtons.translatesAutoresizingMaskIntoConstraints = false
+        tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
+        tableButtons.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        tableButtons.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
+        
+>>>>>>> presentation
         tableButtons.register(tableCell.self, forCellReuseIdentifier: "TableCell")
         tableButtons.delegate = self
         tableButtons.dataSource = self
         
+<<<<<<< HEAD
+=======
+        view.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        segmentedControl.selectedSegmentIndex = Colors.getColorSchemeForSegmentedControl()
+        segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
+        
+    }
+    @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+            case 0:
+                print("light theme")
+                Colors.colorScheme = .light
+                break
+            case 1:
+                print("system theme")
+                Colors.colorScheme = .system
+                break
+            case 2:
+                print("dark theme")
+                Colors.colorScheme = .dark
+                break
+            default:
+                break
+        }
+>>>>>>> presentation
     }
     
     @objc private func didTapCloseButton() {
@@ -40,17 +88,31 @@ final class SettingsViewController : UIViewController {
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+<<<<<<< HEAD
         return 20
+=======
+        if section == 0 {
+            return 22
+        }
+        return 22
+>>>>>>> presentation
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
             case 0:
+<<<<<<< HEAD
                 //переход на view controller с выбором
                 break
             case 1:
                 //переход на view controller c настройками под себя
+=======
+                break
+            case 1:
+                let changeInfoController = RegistrationNameViewController()
+                navigationController?.pushViewController(changeInfoController, animated: true)
+>>>>>>> presentation
                 break
             case 2:
                 let alertController = UIAlertController(title: "Внимание!", message: "Вы уверены, что хотите сбросить все свои избранные?", preferredStyle: .alert)
@@ -68,6 +130,7 @@ extension SettingsViewController: UITableViewDelegate {
 
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+<<<<<<< HEAD
         return 3
     }
     
@@ -99,6 +162,52 @@ extension SettingsViewController: UITableViewDataSource {
                 break
             default:
                 break
+=======
+        if section == 0 {
+            return 1
+        }
+        else {
+            return 3
+        }
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Тема"
+        }
+        else {
+            return "Настройки профиля"
+        }
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath)
+        cell.backgroundColor = .systemBackground
+        tableView.backgroundColor = .secondarySystemBackground
+        tableView.isScrollEnabled = false
+        var contentConfiguration = cell.defaultContentConfiguration()
+        if indexPath.section == 0 {
+            cell.backgroundColor = .clear
+            cell.isUserInteractionEnabled = false
+        }
+        if indexPath.section == 1 {
+            switch indexPath.row {
+                case 0:
+                    contentConfiguration.text = "Сменить вуз/кафедру"
+                    cell.accessoryType = .disclosureIndicator
+                    break
+                case 1:
+                    contentConfiguration.text = "Изменить информацию о себе"
+                    cell.accessoryType = .disclosureIndicator
+                    break
+                case 2:
+                    contentConfiguration.text = "Сбросить все свои избранные"
+                    break
+                default:
+                    break
+            }
+>>>>>>> presentation
         }
         cell.contentConfiguration = contentConfiguration
         return cell
