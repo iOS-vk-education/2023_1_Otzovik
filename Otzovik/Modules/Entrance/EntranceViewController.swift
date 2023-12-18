@@ -49,6 +49,7 @@ class EntranceViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+//        present(LoginViewController(), animated: true)
         
     }
     @objc
@@ -64,7 +65,7 @@ class EntranceViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
+//        present(RegistrationNameViewController(), animated: true)
     }
     @objc
     private func testTap(_ sender: UITapGestureRecognizer) {

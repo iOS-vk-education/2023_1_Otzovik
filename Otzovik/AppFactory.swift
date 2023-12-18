@@ -28,27 +28,16 @@ final class AppFactory {
         let search = SearchViewController()
         let searchItem = UITabBarItem(title: "Поиск", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
         search.tabBarItem = searchItem
-<<<<<<< HEAD
-        
-        
-        return search
-=======
         let searchNavigationController = UINavigationController(rootViewController: search)
         return searchNavigationController
->>>>>>> presentation
     }
     
     func buildProfile() -> UINavigationController {
         let profile = ProfileViewController()
         let profileItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: nil)
         profile.tabBarItem = profileItem
-<<<<<<< HEAD
-        let profileNavigationController = UINavigationController(rootViewController: profile)
-        
-=======
         UITabBar.appearance().backgroundColor = .systemBackground
         let profileNavigationController = UINavigationController(rootViewController: profile)
->>>>>>> presentation
         return profileNavigationController
     }
     

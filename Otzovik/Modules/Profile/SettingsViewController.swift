@@ -6,61 +6,27 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 final class SettingsViewController : UIViewController {
     
-<<<<<<< HEAD
-    private let tableButtons = UITableView(frame: .zero, style: .grouped)
-=======
     private let tableButtons = UITableView(frame: .zero, style: .insetGrouped)
     private let segmentedControl = UISegmentedControl(items: ["Светлая", "Системная", "Темная"])
->>>>>>> presentation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Настройки"
-<<<<<<< HEAD
-        let buttonBack = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(didTapCloseButton))
-        navigationItem.leftBarButtonItem = buttonBack
-        
-        view.backgroundColor = .systemGroupedBackground
-        
-        view.addSubview(tableButtons)
-        tableButtons.translatesAutoresizingMaskIntoConstraints = false
-        tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
-        tableButtons.heightAnchor.constraint(equalToConstant: 152).isActive = true
-        tableButtons.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
-=======
-        
+        title = "Настройки"
         view.backgroundColor = .secondarySystemBackground
-        
         view.addSubview(tableButtons)
-        tableButtons.translatesAutoresizingMaskIntoConstraints = false
-        tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
-        tableButtons.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        tableButtons.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
-        
->>>>>>> presentation
+        view.addSubview(segmentedControl)
         tableButtons.register(tableCell.self, forCellReuseIdentifier: "TableCell")
         tableButtons.delegate = self
         tableButtons.dataSource = self
-        
-<<<<<<< HEAD
-=======
-        view.addSubview(segmentedControl)
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
-        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedControl.selectedSegmentIndex = Colors.getColorSchemeForSegmentedControl()
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
-        
+        setConstraints()
     }
+    
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
             case 0:
@@ -78,41 +44,25 @@ final class SettingsViewController : UIViewController {
             default:
                 break
         }
->>>>>>> presentation
-    }
-    
-    @objc private func didTapCloseButton() {
-        dismiss(animated: true)
     }
 }
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-<<<<<<< HEAD
-        return 20
-=======
         if section == 0 {
             return 22
         }
         return 22
->>>>>>> presentation
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
             case 0:
-<<<<<<< HEAD
-                //переход на view controller с выбором
-                break
-            case 1:
-                //переход на view controller c настройками под себя
-=======
                 break
             case 1:
                 let changeInfoController = RegistrationNameViewController()
                 navigationController?.pushViewController(changeInfoController, animated: true)
->>>>>>> presentation
                 break
             case 2:
                 let alertController = UIAlertController(title: "Внимание!", message: "Вы уверены, что хотите сбросить все свои избранные?", preferredStyle: .alert)
@@ -130,39 +80,6 @@ extension SettingsViewController: UITableViewDelegate {
 
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-<<<<<<< HEAD
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Настройки профиля"
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath)
-        var contentConfiguration = cell.defaultContentConfiguration()
-        switch indexPath.row {
-            case 0:
-                cell.clipsToBounds = true
-                cell.layer.cornerRadius = 10
-                cell.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-                contentConfiguration.text = "Сменить вуз/кафедру"
-                cell.accessoryType = .disclosureIndicator
-                break
-            case 1:
-                contentConfiguration.text = "Изменить информацию о себе"
-                cell.accessoryType = .disclosureIndicator
-                break
-            case 2:
-                contentConfiguration.text = "Сбросить все свои избранные"
-                cell.clipsToBounds = true
-                cell.layer.cornerRadius = 10
-                cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                break
-            default:
-                break
-=======
         if section == 0 {
             return 1
         }
@@ -171,7 +88,12 @@ extension SettingsViewController: UITableViewDataSource {
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        if let user = Auth.auth().currentUser {
+            return 2
+        }
+        else {
+            return 1
+        }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
@@ -207,7 +129,6 @@ extension SettingsViewController: UITableViewDataSource {
                 default:
                     break
             }
->>>>>>> presentation
         }
         cell.contentConfiguration = contentConfiguration
         return cell
@@ -215,3 +136,22 @@ extension SettingsViewController: UITableViewDataSource {
 }
 
 final class tableCell: UITableViewCell {}
+
+extension SettingsViewController {
+    private func setConstraints() {
+        let _ = [
+        tableButtons,
+        segmentedControl
+        ].map({$0.translatesAutoresizingMaskIntoConstraints = false
+            $0.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true})
+
+
+        tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
+        tableButtons.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
+        
+        segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+    }
+}
