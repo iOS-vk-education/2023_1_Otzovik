@@ -28,6 +28,8 @@ class EntranceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = .white
         view.addSubview(buttonLoginView)
         view.addSubview(buttonRegistrationView)
         view.addSubview(buttonTestView)

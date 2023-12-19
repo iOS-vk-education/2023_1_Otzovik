@@ -24,6 +24,10 @@ final class ProfileViewController: UIViewController {
     private let logInButton = UIButton(type: .system)
     private let lableOfRegistration = UILabel()
     
+    override func viewDidAppear(_ animated: Bool) {
+        // ...
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
