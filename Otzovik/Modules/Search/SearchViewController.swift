@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 // MARK: 1st VC
 class SearchViewController: UIViewController, UISearchBarDelegate {
