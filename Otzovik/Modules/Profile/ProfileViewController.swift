@@ -5,93 +5,97 @@
 //  Created by Leonid Perlin on 10/22/23.
 //
 
-import Foundation
 import UIKit
-
+import FirebaseAuth
 
 final class ProfileViewController: UIViewController {
     
     private let userManager = UserManager()
     private var authUser: User?
-    private let avatarImage = UIImageView()
+    
+    private var avatarImage = UIImageView()
     private let nameOfStudent = UILabel()
     private let university = UILabel()
     private let faculty = UILabel()
     private let cathedra = UILabel()
     private let buttonsTable = UITableView(frame: CGRect(), style: .insetGrouped)
     
+    private let imageOfRegistration = UIImageView()
+    private let logInButton = UIButton(type: .system)
+    private let lableOfRegistration = UILabel()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // ...
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .secondarySystemBackground
-        
-        loadData()
-        
         title = "Профиль"
-        //self.navigationController?.navigationBar.prefersLargeTitles = true
-        //self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 20)!]
         
-        view.addSubview(avatarImage)
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        avatarImage.layer.cornerRadius =  60
-        avatarImage.layer.masksToBounds = true
-        avatarImage.image = UIImage(named: authUser?.profileImageURL ?? "")
-        avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13.0).isActive = true
-        avatarImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        avatarImage.widthAnchor.constraint(equalToConstant: 120.0).isActive = true
-        avatarImage.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
-        
-        view.addSubview(nameOfStudent)
-        nameOfStudent.text = authUser?.name
-        nameOfStudent.translatesAutoresizingMaskIntoConstraints = false
-        nameOfStudent.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameOfStudent.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 15.0).isActive = true
-        nameOfStudent.font = UIFont(name:"HelveticaNeue-Medium", size: 24.0)
-        
-        view.addSubview(university)
-        university.text = "Студент " + (authUser?.university ?? "")
-        university.font = university.font.withSize(13.0)
-        university.translatesAutoresizingMaskIntoConstraints = false
-        university.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        university.topAnchor.constraint(equalTo: nameOfStudent.bottomAnchor, constant: 8.0).isActive = true
-        university.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        university.numberOfLines = 0
-        university.textAlignment = .center
-        
-        view.addSubview(faculty)
-        faculty.text = "Факультет: " + (authUser?.faculty ?? "")
-        faculty.font = faculty.font.withSize(13.0)
-        faculty.translatesAutoresizingMaskIntoConstraints = false
-        faculty.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        faculty.topAnchor.constraint(equalTo: university.bottomAnchor, constant: 3.0).isActive = true
-        faculty.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        faculty.numberOfLines = 0
-        faculty.textAlignment = .center
-        
-        view.addSubview(cathedra)
-        cathedra.text = "Кафедра: " + (authUser?.cathedra ?? "")
-        cathedra.font = cathedra.font.withSize(13.0)
-        cathedra.translatesAutoresizingMaskIntoConstraints = false
-        cathedra.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        cathedra.topAnchor.constraint(equalTo: faculty.bottomAnchor, constant: 3.0).isActive = true
-        cathedra.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        cathedra.numberOfLines = 0
-        cathedra.textAlignment = .center
-        
-        buttonsTable.delegate = self
-        buttonsTable.dataSource = self
-        
-        view.addSubview(buttonsTable)
-        buttonsTable.translatesAutoresizingMaskIntoConstraints = false
-        buttonsTable.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
-        buttonsTable.heightAnchor.constraint(equalToConstant: 176.0).isActive = true
-        buttonsTable.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        buttonsTable.topAnchor.constraint(equalTo: cathedra.bottomAnchor, constant: 41.0).isActive = true
-        buttonsTable.register(buttonInTable.self, forCellReuseIdentifier: "buttonInTable")
+        if let user = Auth.auth().currentUser {
+            loadData()
+            
+            view.addSubview(avatarImage)
+            view.addSubview(nameOfStudent)
+            view.addSubview(university)
+            view.addSubview(faculty)
+            view.addSubview(cathedra)
+            view.addSubview(buttonsTable)
+            
+            avatarImage.layer.cornerRadius =  60
+            avatarImage.layer.masksToBounds = true
+            avatarImage.image = UIImage(named: authUser?.profileImageURL ?? "")
+            nameOfStudent.text = authUser?.name
+            nameOfStudent.font = UIFont(name:"HelveticaNeue-Medium", size: 24.0)
+            university.text = "Студент " + (authUser?.university ?? "")
+            university.font = university.font.withSize(13.0)
+            university.numberOfLines = 0
+            university.textAlignment = .center
+            faculty.text = "Факультет: " + (authUser?.faculty ?? "")
+            faculty.font = faculty.font.withSize(13.0)
+            faculty.numberOfLines = 0
+            faculty.textAlignment = .center
+            cathedra.text = "Кафедра: " + (authUser?.cathedra ?? "")
+            cathedra.font = cathedra.font.withSize(13.0)
+            cathedra.numberOfLines = 0
+            cathedra.textAlignment = .center
+            buttonsTable.delegate = self
+            buttonsTable.dataSource = self
+            buttonsTable.register(buttonInTable.self, forCellReuseIdentifier: "buttonInTable")
+            func loadData() {
+                userManager.loadUserInfo() {[weak self] authUser in
+                    self?.authUser = authUser}
+            }
+        }
+        else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(didButtonSettingsTapped))
+            
+            view.addSubview(lableOfRegistration)
+            view.addSubview(imageOfRegistration)
+            view.addSubview(logInButton)
+
+            imageOfRegistration.image = UIImage(systemName: "person.fill.xmark")
+            imageOfRegistration.tintColor = .systemGray4
+            lableOfRegistration.text = "Для того, чтобы работать с профилем и оставлять отзывы, войдите или зарегистрируйтесь"
+            lableOfRegistration.textColor = .systemGray2
+            lableOfRegistration.numberOfLines = 0
+            lableOfRegistration.font = UIFont(name: "Helvetica Neue", size: 14.0)
+            lableOfRegistration.textAlignment = .center
+            logInButton.setTitle("Зарегистрироваться / войти", for: .normal)
+            logInButton.addTarget(self, action: #selector(didLogInButtonTapped), for: .touchUpInside)
+        }
+        setConstraints()
     }
-    func loadData() {
-        userManager.loadUserInfo() {[weak self] authUser in
-            self?.authUser = authUser}
+    @objc func didButtonSettingsTapped(sender: UIButton) {
+        let settingsViewController = SettingsViewController()
+        navigationController?.pushViewController(settingsViewController, animated: true)
+    }
+    @objc func didLogInButtonTapped(sender: UIButton) {
+        present(EntranceViewController(), animated: true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
     }
 }
 
@@ -110,7 +114,15 @@ extension ProfileViewController: UITableViewDelegate {
             let alertExitController = UIAlertController(title: "Внимание!", message: "Вы уверены, что хотите выйти из своего профиля?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
             alertExitController.addAction(cancelAction)
-            let exitAction = UIAlertAction(title: "Выйти", style: .destructive) { UIAlertAction in print("Exit") }
+            let exitAction = UIAlertAction(title: "Выйти", style: .destructive) {
+                UIAlertAction in
+                do {
+                    try Auth.auth().signOut()
+                    
+                } catch _ {
+                    print("Error of sign out")
+                }
+            }
             alertExitController.addAction(exitAction)
             present(alertExitController, animated: true)
         }
@@ -160,3 +172,56 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 final class buttonInTable: UITableViewCell {}
+
+extension ProfileViewController {
+    private func setConstraints() {
+        if let user = Auth.auth().currentUser {
+            let _ = [
+            avatarImage,
+            nameOfStudent,
+            university,
+            faculty,
+            cathedra,
+            buttonsTable
+            ].map({$0.translatesAutoresizingMaskIntoConstraints = false
+                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true})
+            
+            avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13.0).isActive = true
+            avatarImage.widthAnchor.constraint(equalToConstant: 120.0).isActive = true
+            avatarImage.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        
+            nameOfStudent.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 15.0).isActive = true
+            
+            university.topAnchor.constraint(equalTo: nameOfStudent.bottomAnchor, constant: 8.0).isActive = true
+            university.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+            
+            faculty.topAnchor.constraint(equalTo: university.bottomAnchor, constant: 3.0).isActive = true
+            faculty.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+            
+            cathedra.topAnchor.constraint(equalTo: faculty.bottomAnchor, constant: 3.0).isActive = true
+            cathedra.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+            
+            buttonsTable.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
+            buttonsTable.heightAnchor.constraint(equalToConstant: 176.0).isActive = true
+            buttonsTable.topAnchor.constraint(equalTo: cathedra.bottomAnchor, constant: 41.0).isActive = true
+        }
+        else {
+            let _ = [
+            imageOfRegistration,
+            logInButton,
+            lableOfRegistration
+            ].map({$0.translatesAutoresizingMaskIntoConstraints = false
+                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true})
+            
+            imageOfRegistration.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 99).isActive = true
+            imageOfRegistration.widthAnchor.constraint(equalToConstant: 243).isActive = true
+            imageOfRegistration.heightAnchor.constraint(equalToConstant: 171).isActive = true
+            
+            lableOfRegistration.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+            lableOfRegistration.topAnchor.constraint(equalTo: imageOfRegistration.bottomAnchor, constant: 10).isActive = true
+        
+            logInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -27).isActive = true
+        }
+    }
+    
+}

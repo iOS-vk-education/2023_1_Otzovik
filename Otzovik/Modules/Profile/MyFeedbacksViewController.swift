@@ -10,21 +10,21 @@ import UIKit
 final class MyFeedbacksViewController: UIViewController, UISearchBarDelegate {
     
     private let tableMyFeedbacks = UITableView()
-    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchController: UISearchController {
+        var searchController_ = UISearchController(searchResultsController: nil)
+        searchController_.obscuresBackgroundDuringPresentation = true
+        searchController_.searchBar.placeholder = "Поиск"
+        searchController_.searchBar.setValue("Отмена", forKey: "cancelButtonText")
+        return searchController_
+    };
     
     private var feedbacks: [Feedback] = []
     private let feedbackManager = FeedbackManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Мои отзывы"
-        
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Поиск"
-        searchController.searchBar.setValue("Отмена", forKey: "cancelButtonText")
         navigationItem.searchController = searchController
-        
         tableMyFeedbacks.frame = view.bounds
         tableMyFeedbacks.delegate = self
         tableMyFeedbacks.dataSource = self
@@ -33,17 +33,14 @@ final class MyFeedbacksViewController: UIViewController, UISearchBarDelegate {
         view.addSubview(tableMyFeedbacks)
     }
     
-    func loadData() {
-        feedbackManager.loadFeedbacks() { [weak self] feedbacks in
-            self?.feedbacks = feedbacks
-            self?.tableMyFeedbacks.reloadData()
+    private func loadData() {
+        feedbackManager.loadFeedbacks() { [weak self] feedbacks_ in
+            guard let self else { return }
+            feedbacks = feedbacks_
+            tableMyFeedbacks.reloadData()
         }
     }
-    @objc private func didTapCloseButton() {
-        dismiss(animated: true)
-    }
 }
-
 
 extension MyFeedbacksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

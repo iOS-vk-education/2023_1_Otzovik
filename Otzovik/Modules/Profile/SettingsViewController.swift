@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 final class SettingsViewController : UIViewController {
     
@@ -15,32 +15,18 @@ final class SettingsViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Настройки"
-        
+        title = "Настройки"
         view.backgroundColor = .secondarySystemBackground
-        
         view.addSubview(tableButtons)
-        tableButtons.translatesAutoresizingMaskIntoConstraints = false
-        tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
-        tableButtons.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        tableButtons.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
-        
+        view.addSubview(segmentedControl)
         tableButtons.register(tableCell.self, forCellReuseIdentifier: "TableCell")
         tableButtons.delegate = self
         tableButtons.dataSource = self
-        
-        view.addSubview(segmentedControl)
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
-        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedControl.selectedSegmentIndex = Colors.getColorSchemeForSegmentedControl()
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
-        
+        setConstraints()
     }
+    
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
             case 0:
@@ -58,10 +44,6 @@ final class SettingsViewController : UIViewController {
             default:
                 break
         }
-    }
-    
-    @objc private func didTapCloseButton() {
-        dismiss(animated: true)
     }
 }
 
@@ -106,7 +88,12 @@ extension SettingsViewController: UITableViewDataSource {
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        if let user = Auth.auth().currentUser {
+            return 2
+        }
+        else {
+            return 1
+        }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
@@ -149,3 +136,22 @@ extension SettingsViewController: UITableViewDataSource {
 }
 
 final class tableCell: UITableViewCell {}
+
+extension SettingsViewController {
+    private func setConstraints() {
+        let _ = [
+        tableButtons,
+        segmentedControl
+        ].map({$0.translatesAutoresizingMaskIntoConstraints = false
+            $0.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true})
+
+
+        tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
+        tableButtons.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
+        
+        segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+    }
+}

@@ -21,12 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         let firebaseAuth = Auth.auth()
         var rootViewController: UIViewController?
-        if let user = firebaseAuth.currentUser {
-            rootViewController = factory.buildTabBar()
-        } else {
-            rootViewController = EntranceViewController()
-        }
-        //rootViewController = factory.buildTabBar()
+//        if let user = firebaseAuth.currentUser {
+//            rootViewController = factory.buildTabBar()
+//        } else {
+//            rootViewController = EntranceViewController()
+//        }
+        rootViewController = factory.buildTabBar()
         guard let rootViewController else { return false }
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.setNavigationBarHidden(true, animated: false)

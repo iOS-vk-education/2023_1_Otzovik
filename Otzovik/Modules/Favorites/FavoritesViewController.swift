@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class FavoritesViewController: UIViewController {
-    
+
     private let tableView = UITableView()
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -22,6 +22,8 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         title = "Избранное"
         
+        searchController.searchBar.delegate = self
+
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
@@ -92,5 +94,15 @@ extension FavoritesViewController: UITableViewDelegate {
         let navigationController = UINavigationController(rootViewController: teacherViewController)
         
         present(navigationController, animated: true)
+    }
+}
+
+extension FavoritesViewController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("searchBarTextDidEndEditing")
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // searchBar.resignFirstResponder()
     }
 }

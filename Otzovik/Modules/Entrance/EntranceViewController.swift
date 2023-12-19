@@ -28,6 +28,8 @@ class EntranceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = .white
         view.addSubview(buttonLoginView)
         view.addSubview(buttonRegistrationView)
         view.addSubview(buttonTestView)
@@ -49,6 +51,7 @@ class EntranceViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+//        present(LoginViewController(), animated: true)
         
     }
     @objc
@@ -64,7 +67,7 @@ class EntranceViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
+//        present(RegistrationNameViewController(), animated: true)
     }
     @objc
     private func testTap(_ sender: UITapGestureRecognizer) {

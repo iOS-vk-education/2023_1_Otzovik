@@ -442,8 +442,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "logout()"
-            landmarkType = "7">
+            landmarkName = "ProfileViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "E5393943-3BDF-412C-9FC8-8B830DCE9E42 - 891663f930f7fc8c"
@@ -488,10 +488,170 @@
             filePath = "Otzovik/Modules/Profile/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "logout()"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D8F2C3D-E61F-4CFD-8F40-8988F0D2BFC5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Otzovik/Modules/Profile/ProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6BE65FF-8219-4AFE-B240-99A2599A9FA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Otzovik/Modules/Favorites/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "searchBarTextDidEndEditing(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D6BE65FF-8219-4AFE-B240-99A2599A9FA9 - 571065a9806cc5a0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.FavoritesViewController.searchBarTextDidEndEditing(__C.UISearchBar) -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blacksnow/Code/Github/2023_1_Otzovik/Otzovik/Modules/Favorites/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "D6BE65FF-8219-4AFE-B240-99A2599A9FA9 - 571065a9806cc581"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.FavoritesViewController.searchBarTextDidEndEditing(__C.UISearchBar) -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blacksnow/Code/Github/2023_1_Otzovik/Otzovik/Modules/Favorites/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59AC98BB-21CB-4110-9C3D-85D64E6B5B51"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Otzovik/Modules/Favorites/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "searchBarCancelButtonClicked(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "59AC98BB-21CB-4110-9C3D-85D64E6B5B51 - d7fb41d69741a1f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.FavoritesViewController.searchBarCancelButtonClicked(__C.UISearchBar) -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blacksnow/Code/Github/2023_1_Otzovik/Otzovik/Modules/Favorites/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "59AC98BB-21CB-4110-9C3D-85D64E6B5B51 - d7fb41d69741a00a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.FavoritesViewController.searchBarCancelButtonClicked(__C.UISearchBar) -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blacksnow/Code/Github/2023_1_Otzovik/Otzovik/Modules/Favorites/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36B1CAE9-3793-442D-8CF8-72355948CB90"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Otzovik/Modules/Profile/ProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "36B1CAE9-3793-442D-8CF8-72355948CB90 - 71318d8e86652c6e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.ProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blacksnow/Code/Github/2023_1_Otzovik/Otzovik/Modules/Profile/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "392">
+               </Location>
+               <Location
+                  uuid = "36B1CAE9-3793-442D-8CF8-72355948CB90 - 71318d8e86652c31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.ProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blacksnow/Code/Github/2023_1_Otzovik/Otzovik/Modules/Profile/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
