@@ -26,71 +26,45 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .secondarySystemBackground
         title = "Профиль"
         
         if let user = Auth.auth().currentUser {
             loadData()
-            
+            setInfoAboutUser()
+            setParamsOfElementsAuth()
             view.addSubview(avatarImage)
             view.addSubview(nameOfStudent)
             view.addSubview(university)
             view.addSubview(faculty)
             view.addSubview(cathedra)
             view.addSubview(buttonsTable)
-            
-            avatarImage.layer.cornerRadius =  60
-            avatarImage.layer.masksToBounds = true
-            avatarImage.image = UIImage(named: authUser?.profileImageURL ?? "")
-            nameOfStudent.text = authUser?.name
-            nameOfStudent.font = UIFont(name:"HelveticaNeue-Medium", size: 24.0)
-            university.text = "Студент " + (authUser?.university ?? "")
-            university.font = university.font.withSize(13.0)
-            university.numberOfLines = 0
-            university.textAlignment = .center
-            faculty.text = "Факультет: " + (authUser?.faculty ?? "")
-            faculty.font = faculty.font.withSize(13.0)
-            faculty.numberOfLines = 0
-            faculty.textAlignment = .center
-            cathedra.text = "Кафедра: " + (authUser?.cathedra ?? "")
-            cathedra.font = cathedra.font.withSize(13.0)
-            cathedra.numberOfLines = 0
-            cathedra.textAlignment = .center
-            buttonsTable.delegate = self
-            buttonsTable.dataSource = self
-            buttonsTable.register(buttonInTable.self, forCellReuseIdentifier: "buttonInTable")
-            func loadData() {
-                userManager.loadUserInfo() {[weak self] authUser in
-                    self?.authUser = authUser}
-            }
         }
         else {
+            setParamsOfElementsNotAuth()
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(didButtonSettingsTapped))
-            
             view.addSubview(lableOfRegistration)
             view.addSubview(imageOfRegistration)
             view.addSubview(logInButton)
-
-            imageOfRegistration.image = UIImage(systemName: "person.fill.xmark")
-            imageOfRegistration.tintColor = .systemGray4
-            lableOfRegistration.text = "Для того, чтобы работать с профилем и оставлять отзывы, войдите или зарегистрируйтесь"
-            lableOfRegistration.textColor = .systemGray2
-            lableOfRegistration.numberOfLines = 0
-            lableOfRegistration.font = UIFont(name: "Helvetica Neue", size: 14.0)
-            lableOfRegistration.textAlignment = .center
-            logInButton.setTitle("Зарегистрироваться / войти", for: .normal)
-            logInButton.addTarget(self, action: #selector(didLogInButtonTapped), for: .touchUpInside)
         }
         setConstraints()
     }
+    
+    private func loadData() {
+        userManager.loadUserInfo() {[weak self] authUser_ in
+            guard let self else {return}
+            authUser = authUser_}
+    }
+    
     @objc func didButtonSettingsTapped(sender: UIButton) {
         let settingsViewController = SettingsViewController()
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
+    
     @objc func didLogInButtonTapped(sender: UIButton) {
         present(EntranceViewController(), animated: true)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
     }
 }
@@ -114,7 +88,8 @@ extension ProfileViewController: UITableViewDelegate {
                 UIAlertAction in
                 do {
                     try Auth.auth().signOut()
-                    
+                    self.loadView()
+                    self.viewDidLoad()
                 } catch _ {
                     print("Error of sign out")
                 }
@@ -142,6 +117,7 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.isScrollEnabled = false
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        tableView.backgroundColor = .secondarySystemBackground
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "buttonInTable", for: indexPath)
         var contentConfiguration = cell.defaultContentConfiguration()
@@ -162,6 +138,7 @@ extension ProfileViewController: UITableViewDataSource {
             contentConfiguration.attributedText = NSAttributedString(string: "Выйти", attributes: [ NSAttributedString.Key.foregroundColor: UIColor.systemRed ])
             cell.accessoryType = .disclosureIndicator
         }
+        cell.backgroundColor = .systemBackground
         cell.contentConfiguration = contentConfiguration
         return cell
     }
@@ -181,22 +158,16 @@ extension ProfileViewController {
             buttonsTable
             ].map({$0.translatesAutoresizingMaskIntoConstraints = false
                 $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true})
-            
             avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13.0).isActive = true
             avatarImage.widthAnchor.constraint(equalToConstant: 120.0).isActive = true
             avatarImage.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
-        
             nameOfStudent.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 15.0).isActive = true
-            
             university.topAnchor.constraint(equalTo: nameOfStudent.bottomAnchor, constant: 8.0).isActive = true
             university.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-            
             faculty.topAnchor.constraint(equalTo: university.bottomAnchor, constant: 3.0).isActive = true
             faculty.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-            
             cathedra.topAnchor.constraint(equalTo: faculty.bottomAnchor, constant: 3.0).isActive = true
             cathedra.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-            
             buttonsTable.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
             buttonsTable.heightAnchor.constraint(equalToConstant: 176.0).isActive = true
             buttonsTable.topAnchor.constraint(equalTo: cathedra.bottomAnchor, constant: 41.0).isActive = true
@@ -208,16 +179,53 @@ extension ProfileViewController {
             lableOfRegistration
             ].map({$0.translatesAutoresizingMaskIntoConstraints = false
                 $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true})
-            
             imageOfRegistration.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 99).isActive = true
             imageOfRegistration.widthAnchor.constraint(equalToConstant: 243).isActive = true
             imageOfRegistration.heightAnchor.constraint(equalToConstant: 171).isActive = true
-            
             lableOfRegistration.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
             lableOfRegistration.topAnchor.constraint(equalTo: imageOfRegistration.bottomAnchor, constant: 10).isActive = true
-        
             logInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -27).isActive = true
         }
     }
     
+    private func setInfoAboutUser() {
+        university.text = "Студент " + (authUser?.university ?? "")
+        avatarImage.image = UIImage(named: authUser?.profileImageURL ?? "")
+        faculty.text = "Факультет: " + (authUser?.faculty ?? "")
+        nameOfStudent.text = authUser?.name
+        cathedra.text = "Кафедра: " + (authUser?.cathedra ?? "")
+
+    }
+    
+    private func setParamsOfElementsAuth() {
+        avatarImage.layer.cornerRadius = 60
+        avatarImage.layer.masksToBounds = true
+        nameOfStudent.font = UIFont(name:"HelveticaNeue-Medium", size: 24.0)
+        university.font = university.font.withSize(13.0)
+        university.numberOfLines = 0
+        university.textAlignment = .center
+        faculty.font = faculty.font.withSize(13.0)
+        faculty.numberOfLines = 0
+        faculty.textAlignment = .center
+        cathedra.font = cathedra.font.withSize(13.0)
+        cathedra.numberOfLines = 0
+        cathedra.textAlignment = .center
+        
+        buttonsTable.delegate = self
+        buttonsTable.dataSource = self
+        buttonsTable.register(buttonInTable.self, forCellReuseIdentifier: "buttonInTable")
+    }
+    
+    private func setParamsOfElementsNotAuth() {
+        imageOfRegistration.image = UIImage(systemName: "person.fill.xmark")
+        imageOfRegistration.tintColor = .systemGray4
+        lableOfRegistration.text = "Для того, чтобы работать с профилем и оставлять отзывы, войдите или зарегистрируйтесь"
+        lableOfRegistration.textColor = .systemGray2
+        lableOfRegistration.numberOfLines = 0
+        lableOfRegistration.font = UIFont(name: "Helvetica Neue", size: 14.0)
+        lableOfRegistration.textAlignment = .center
+        logInButton.setTitle("Зарегистрироваться / войти", for: .normal)
+        logInButton.addTarget(self, action: #selector(didLogInButtonTapped), for: .touchUpInside)
+    }
 }
+
