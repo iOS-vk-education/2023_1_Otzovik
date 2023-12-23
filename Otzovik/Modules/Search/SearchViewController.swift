@@ -66,7 +66,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         self.navigationItem.searchController = UISearchController(searchResultsController: nil)
         let searchBar = self.navigationItem.searchController?.searchBar
         
-        
+        self.navigationItem.searchController?.obscuresBackgroundDuringPresentation = true
         searchBar?.delegate = self
         searchBar?.showsBookmarkButton = true
         searchBar?.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
@@ -89,9 +89,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         loadData()
         view.addSubview(tableView)
-        
+        let ref = Database.database().reference().child("bgarf")
+        print(ref)
         super.viewDidLoad()
     }
+    
     
     func loadData() {
         teacherManager.loadTeachers { [weak self] teachers in
@@ -151,5 +153,6 @@ extension SearchViewController: UITableViewDelegate {
         let navigationController = UINavigationController(rootViewController: teacherViewController)
         
         present(navigationController, animated: true)
+        
     }
 }
