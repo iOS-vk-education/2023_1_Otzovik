@@ -60,7 +60,8 @@ class BaseEntranceViewController: UIViewController {
     }
     @objc
     private func backTap(_ sender: UITapGestureRecognizer) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popViewController(animated: true)
     }
     @objc
     private func nextVC(_ sender: UITapGestureRecognizer) {
@@ -88,7 +89,7 @@ extension BaseEntranceViewController {
             buttonView
         ].map({ $0.translatesAutoresizingMaskIntoConstraints = false })
         
-        backView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 3).isActive = true
+        backView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 7).isActive = true
         backView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         backView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         backView.heightAnchor.constraint(equalToConstant: 35).isActive = true

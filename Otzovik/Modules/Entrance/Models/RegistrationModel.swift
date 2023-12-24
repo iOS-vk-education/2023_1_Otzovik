@@ -29,6 +29,7 @@ class RegistrationModel {
     }
     private init() {}
     static let shared = RegistrationModel()
+    
     public var firstName: String = ""
     public var lastName: String = ""
     public var email: String = ""

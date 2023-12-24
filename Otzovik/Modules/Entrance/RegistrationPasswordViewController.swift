@@ -90,7 +90,7 @@ class RegistrationPasswordViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationReadyViewController = RegistrationReadyViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true)
     }
 }
 extension RegistrationPasswordViewController {

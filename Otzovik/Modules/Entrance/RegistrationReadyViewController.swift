@@ -42,10 +42,10 @@ class RegistrationReadyViewController: BaseEntranceViewController {
     }
     
     public override func nextVC() {
-        let factory = AppFactory()
-        let vc = factory.buildTabBar()
-        self.navigationController?.pushViewController(vc, animated: true)    
+        //здесь регистрация
+        self.dismiss(animated: true)
     }
+    
 }
 extension RegistrationReadyViewController {
     private func setConstraints() {  
@@ -55,3 +55,4 @@ extension RegistrationReadyViewController {
         textLabel.topAnchor.constraint(equalTo: super.titleLabel.bottomAnchor, constant: 10).isActive = true
     }
 }
+

@@ -61,7 +61,6 @@
 		D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */; };
 		D0BD2E392AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */; };
 		D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */; };
-		D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */; };
 		D0BD2E3F2AFFB0D100EC4622 /* RegistrationReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */; };
 		D0C89FA12B16036800D89E69 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */; };
 		D0C89FA32B16039E00D89E69 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */; };
@@ -108,7 +107,6 @@
 		D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
 		D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOrganisationViewController.swift; sourceTree = "<group>"; };
 		D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPasswordViewController.swift; sourceTree = "<group>"; };
-		D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAvatarViewController.swift; sourceTree = "<group>"; };
 		D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationReadyViewController.swift; sourceTree = "<group>"; };
 		D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 				D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */,
 				D0BD2E382AFFB03C00EC4622 /* RegistrationOrganisationViewController.swift */,
 				D0BD2E3A2AFFB08400EC4622 /* RegistrationPasswordViewController.swift */,
-				D0BD2E3C2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift */,
 				D0BD2E3E2AFFB0D100EC4622 /* RegistrationReadyViewController.swift */,
 				D0030DCF2AFEF77800D458A3 /* Models */,
 			);
@@ -428,7 +425,6 @@
 				D0C89FA52B1603F200D89E69 /* TeacherManager.swift in Sources */,
 				D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */,
 				D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */,
-				D0BD2E3D2AFFB0B100EC4622 /* RegistrationAvatarViewController.swift in Sources */,
 				66E27BDC2B231EBE00DFE8D2 /* User.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
 				D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */,
