@@ -11,6 +11,8 @@
 		66E27BDA2B2317FF00DFE8D2 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BD92B2317FF00DFE8D2 /* FeedbackManager.swift */; };
 		66E27BDC2B231EBE00DFE8D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BDB2B231EBE00DFE8D2 /* User.swift */; };
 		66E27BDE2B231F9500DFE8D2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BDD2B231F9500DFE8D2 /* UserManager.swift */; };
+		74B018592B37A40F003F296F /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B018582B37A40F003F296F /* ReminderViewController.swift */; };
+		74B0185B2B37A504003F296F /* TestViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0185A2B37A504003F296F /* TestViewConroller.swift */; };
 		C074B2242B026DDA00BC19EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C074B2232B026DDA00BC19EA /* GoogleService-Info.plist */; };
 		C074B2272B026E9100BC19EA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2262B026E9100BC19EA /* FirebaseAnalytics */; };
 		C074B2292B026E9100BC19EA /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2282B026E9100BC19EA /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -83,6 +85,8 @@
 		66E27BD92B2317FF00DFE8D2 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		66E27BDB2B231EBE00DFE8D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66E27BDD2B231F9500DFE8D2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		74B018582B37A40F003F296F /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		74B0185A2B37A504003F296F /* TestViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewConroller.swift; sourceTree = "<group>"; };
 		C074B2232B026DDA00BC19EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C07C40B42AE5338900761C3D /* Otzovik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otzovik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07C40B72AE5338900761C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				D0C89FB72B160A7C00D89E69 /* UniversityManager.swift */,
 				D0C89FB92B160AAB00D89E69 /* University.swift */,
 				D0C89FBB2B160BE800D89E69 /* SearchTableViewCell.swift */,
+				74B018582B37A40F003F296F /* ReminderViewController.swift */,
+				74B0185A2B37A504003F296F /* TestViewConroller.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 				D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */,
 				D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
+				74B018592B37A40F003F296F /* ReminderViewController.swift in Sources */,
 				D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */,
 				D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */,
 				D0C89FBC2B160BE800D89E69 /* SearchTableViewCell.swift in Sources */,
@@ -433,6 +440,7 @@
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
 				D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */,
 				D0C89FB82B160A7C00D89E69 /* UniversityManager.swift in Sources */,
+				74B0185B2B37A504003F296F /* TestViewConroller.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
 				D0030DD12AFEF79100D458A3 /* LoginModel.swift in Sources */,
 				66E27BDA2B2317FF00DFE8D2 /* FeedbackManager.swift in Sources */,

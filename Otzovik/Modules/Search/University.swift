@@ -7,12 +7,21 @@
 
 import Foundation
 
-struct University {
-    let abbreviation: String
-    let fullName: String
-    
+struct Teacherr: Codable {
+    var name: String
+    var rating: Float
 }
 
+struct Department: Codable {
+    var name: String
+    var teachers: [Teacherr]
+}
+
+struct University: Codable {
+    var name: String
+    var fullName: String
+    var departments: [Department]
+}
 struct Faculty{
-    let name: String
+    var name: String
 }
