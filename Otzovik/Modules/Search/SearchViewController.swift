@@ -2,6 +2,10 @@ import UIKit
 import Firebase
 
 // MARK: 1st VC
+struct Univers{
+    let name: String
+}
+
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
     private let tableView = UITableView()
@@ -18,17 +22,32 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return button
     }()
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("changed")
+    }
+    
     @objc
     private func changeUniversity() {
         let universityController = ChooseUniversityViewController()
+        universityController.onDismiss = { [weak self, unowned universityController] in
+            self?.navigationItem.title = universityController.choosenUniversity
+        }
         self.present(UINavigationController(rootViewController: universityController), animated: true, completion: nil)
         
     }
     @objc
     private func openFilters() {
         let filterViewController = FilterViewController()
+        filterViewController.currentUniversity = self.navigationItem.title
         navigationController?.pushViewController(filterViewController, animated: true)
     }
+    @objc
+    private func openTest() {
+        let filterViewController = TestViewConroller()
+        navigationController?.pushViewController(filterViewController, animated: true)
+    }
+    
+    
     
     @objc
     func dismissKeyboard() {
@@ -49,6 +68,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         openFilters()
+        //openTest()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -89,8 +109,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         loadData()
         view.addSubview(tableView)
-        let ref = Database.database().reference().child("bgarf")
-        print(ref)
         super.viewDidLoad()
     }
     
