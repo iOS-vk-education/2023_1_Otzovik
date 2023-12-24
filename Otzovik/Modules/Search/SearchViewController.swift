@@ -41,11 +41,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         filterViewController.currentUniversity = self.navigationItem.title
         navigationController?.pushViewController(filterViewController, animated: true)
     }
-    @objc
-    private func openTest() {
-        let filterViewController = TestViewConroller()
-        navigationController?.pushViewController(filterViewController, animated: true)
-    }
+//    @objc
+//    private func openTest() {
+//        let filterViewController = TestViewConroller()
+//        navigationController?.pushViewController(filterViewController, animated: true)
+//    }
     
     
     

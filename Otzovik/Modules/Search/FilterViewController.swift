@@ -158,7 +158,9 @@ extension FilterViewController: UITableViewDataSource{
         //conf.text = allFaculties[indexPath.row].name
         print(indexPath.row)
         print(allDepartments)
+        
         conf.text = allDepartments[indexPath.row]
+        
         print(conf.text)
         cell.contentConfiguration = conf
         cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
@@ -166,7 +168,9 @@ extension FilterViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allFaculties.count
+        //print(allFaculties.count)
+        //return 300
+        return allDepartments.count
     }
 }
 
