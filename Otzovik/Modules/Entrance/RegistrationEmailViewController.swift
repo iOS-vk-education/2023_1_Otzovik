@@ -62,7 +62,8 @@ class RegistrationEmailViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationOrganisationViewController = RegistrationOrganisationViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
     }
 }
 extension RegistrationEmailViewController {

@@ -112,7 +112,9 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationPasswordViewController = RegistrationPasswordViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
+
     }
 }
 extension RegistrationOrganisationViewController {
