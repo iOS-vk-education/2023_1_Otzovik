@@ -10,32 +10,32 @@ import Firebase
 
 final class Manager{
     var all_universities: [University] = []
-    func loadUniversities2() {
-        let ref = Database.database().reference().child("universities")
-
-        let group = DispatchGroup()
-
-        group.enter()
-
-        ref.observeSingleEvent(of: .value) { snapshot in
-            guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
-                  let universities = try? JSONDecoder().decode([University].self, from: data) else {
-                group.leave()
-                return
-            }
-
-            self.all_universities = universities
-            print(self.all_universities[0])
-        }
-
-        group.notify(queue: .main) {
-            print(self.all_universities)
-            if let encodedData = try? PropertyListEncoder().encode(self.all_universities) {
-                UserDefaults.standard.set(encodedData, forKey: "all_univers")
-                
-            }
-        }
-    }
+//    func loadUniversities2() {
+//        let ref = Database.database().reference().child("universities")
+//
+//        let group = DispatchGroup()
+//
+//        group.enter()
+//
+//        ref.observeSingleEvent(of: .value) { snapshot in
+//            guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
+//                  let universities = try? JSONDecoder().decode([University].self, from: data) else {
+//                group.leave()
+//                return
+//            }
+//
+//            self.all_universities = universities
+//            print(self.all_universities[0])
+//        }
+//
+//        group.notify(queue: .main) {
+//            print(self.all_universities)
+//            if let encodedData = try? PropertyListEncoder().encode(self.all_universities) {
+//                UserDefaults.standard.set(encodedData, forKey: "all_univers")
+//
+//            }
+//        }
+//    }
     func loadUniversities(completion: @escaping () -> Void) {
         let ref = Database.database().reference().child("universities")
         

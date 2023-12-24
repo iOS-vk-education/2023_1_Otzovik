@@ -156,6 +156,8 @@ extension FilterViewController: UITableViewDataSource{
         let cell = facultyTable.dequeueReusableCell(withIdentifier: "FacultyCell", for: indexPath)
         var conf = cell.defaultContentConfiguration()
         //conf.text = allFaculties[indexPath.row].name
+        print(indexPath.row)
+        print(allDepartments)
         conf.text = allDepartments[indexPath.row]
         print(conf.text)
         cell.contentConfiguration = conf
