@@ -17,7 +17,8 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //textField.placeholder = "ВУЗ"
+        textField.text = RegistrationModel.shared.hei
+        textField.placeholder = "ВУЗ"
         return textField
     }()
     private lazy var heiTextFieldLabel: UILabel = {
@@ -33,7 +34,8 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //facultyTextField.placeholder = "факультет"
+        textField.text = RegistrationModel.shared.faculty
+        textField.placeholder = "факультет"
         return textField
     }()
     private lazy var facultyTextFieldLabel: UILabel = {
@@ -49,7 +51,8 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //departmentTextField.placeholder = "кафедра"
+        textField.text = RegistrationModel.shared.department
+        textField.placeholder = "кафедра"
         return textField
     }()
     private lazy var departmentTextFieldLabel: UILabel = {
@@ -112,9 +115,7 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationPasswordViewController = RegistrationPasswordViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
         self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
-
     }
 }
 extension RegistrationOrganisationViewController {

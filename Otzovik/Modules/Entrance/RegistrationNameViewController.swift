@@ -16,7 +16,8 @@ class RegistrationNameViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //textField.placeholder = "имя"
+        textField.text = RegistrationModel.shared.firstName
+        textField.placeholder = "имя"
         return textField
     }()
     private lazy var firstnameTextFieldLabel: UILabel = {
@@ -32,7 +33,8 @@ class RegistrationNameViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //textField.placeholder = "фамилия"
+        textField.text = RegistrationModel.shared.lastName
+        textField.placeholder = "фамилия"
         return textField
     }()
     private lazy var lastnameTextFieldLabel: UILabel = {
@@ -86,7 +88,6 @@ class RegistrationNameViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationEmailViewController = RegistrationEmailViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
         self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
     }
 }

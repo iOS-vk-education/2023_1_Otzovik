@@ -15,7 +15,8 @@ class RegistrationEmailViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //emailTextField.placeholder = "email"
+        textField.text = RegistrationModel.shared.email
+        textField.placeholder = "email"
         return textField
     }()
     
@@ -62,7 +63,6 @@ class RegistrationEmailViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationOrganisationViewController = RegistrationOrganisationViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
         self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
     }
 }
