@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: BaseEntranceViewController {
-
+    
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var loginTextField: InsetTextField = {
         var textField = InsetTextField()
@@ -87,21 +87,21 @@ class LoginViewController: BaseEntranceViewController {
         }
     }
     public override func nextVC() {
-        print(#function)
+//        print(#function)
         LoginModel.shared.login(completion: { errorMessage in
             if let errorMessage = errorMessage {
                 let alert = UIAlertController(title: "Ошибка", message: "Проверьте правильность введенных данных и повторите попытку (\(errorMessage)", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: { (action: UIAlertAction) in
                     self.passwordTextField.text = ""
                     self.tryToResineFirstResponder()
-                    print("Закрыть")
                 }))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                print("залогинились")
-                let factory = AppFactory()
-                let vc = factory.buildTabBar()
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let factory = AppFactory()
+//                let vc = factory.buildTabBar()
+//                //self.navigationController?.pushViewController(vc, animated: true)
+//                self.present(vc, animated: true)
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
             }
         })
     }

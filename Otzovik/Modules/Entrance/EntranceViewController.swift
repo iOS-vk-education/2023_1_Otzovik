@@ -8,6 +8,8 @@
 import UIKit
 
 class EntranceViewController: UIViewController {
+    
+    weak var delegate: ProfileViewControllerDelegate?
 
     private lazy var buttonLoginView: EntranceButton = {
         var view = EntranceButton()
@@ -19,6 +21,7 @@ class EntranceViewController: UIViewController {
         view.titleLabel.text = "Регистрация"
         return view
     }()
+    
     private lazy var buttonCancelView: EntranceButton = {
         var view = EntranceButton()
         view.titleLabel.text = "Отмена"
@@ -32,6 +35,7 @@ class EntranceViewController: UIViewController {
         view.backgroundColor = Colors.background
         view.addSubview(buttonLoginView)
         view.addSubview(buttonRegistrationView)
+
         view.addSubview(buttonCancelView)
         buttonLoginView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.loginTap(_:))))
         buttonRegistrationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.registrationTap(_:))))
@@ -40,7 +44,6 @@ class EntranceViewController: UIViewController {
     }
     @objc
     private func loginTap(_ sender: UITapGestureRecognizer) {
-        print("tapped login")
         UIView.animate(withDuration: self.animationTime) {
             self.buttonLoginView.layer.opacity = 0.5
         } completion: { isOk in
@@ -48,15 +51,13 @@ class EntranceViewController: UIViewController {
                 self.buttonLoginView.layer.opacity = 1.0
             } completion: { isOk in
                 let vc: LoginViewController = LoginViewController()
-                //self.navigationController?.pushViewController(vc, animated: true)
-                self.present(vc, animated: true)
+                self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
+//                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
     }
     @objc
     private func registrationTap(_ sender: UITapGestureRecognizer) {
-        print("tapped registration")
         UIView.animate(withDuration: self.animationTime) {
             self.buttonRegistrationView.layer.opacity = 0.5
         } completion: { isOk in
@@ -64,8 +65,8 @@ class EntranceViewController: UIViewController {
                 self.buttonRegistrationView.layer.opacity = 1.0
             } completion: { isOk in
                 let vc: RegistrationNameViewController = RegistrationNameViewController()
-                //self.navigationController?.pushViewController(vc, animated: true)
-                self.present(vc, animated: true)
+                self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
+//                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
@@ -81,6 +82,23 @@ class EntranceViewController: UIViewController {
             }
         }
     }
+    
+//    @objc
+//    private func testTap(_ sender: UITapGestureRecognizer) {
+//        UIView.animate(withDuration: self.animationTime) {
+//            self.buttonTestView.layer.opacity = 0.5
+//        } completion: { isOk in
+//            UIView.animate(withDuration: self.animationTime) {
+//                self.buttonTestView.layer.opacity = 1.0
+//            } completion: { isOk in
+//                let factory = AppFactory()
+//                let vc = factory.buildTabBar()
+//                self.present(vc, animated: true)
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
+//        
+//    }
 
 }
 
@@ -113,6 +131,5 @@ extension EntranceViewController {
         buttonLoginView.bottomAnchor.constraint(equalTo: buttonRegistrationView.topAnchor, constant: -20).isActive = true
         buttonRegistrationView.bottomAnchor.constraint(equalTo: buttonCancelView.topAnchor, constant: -20).isActive = true
         buttonCancelView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
-
     }
 }

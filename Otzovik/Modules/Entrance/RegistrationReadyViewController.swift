@@ -43,7 +43,7 @@ class RegistrationReadyViewController: BaseEntranceViewController {
     
     public override func nextVC() {
         //здесь регистрация
-        self.dismiss(animated: true)
+        self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
     }
     
 }

@@ -14,7 +14,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let factory = AppFactory()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         let firebaseOptions = FirebaseOptions(googleAppID: "1:494060081491:ios:593dc1edfdace69fb5d1a6",
@@ -41,6 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         return true
+    }
+    func applicationWillTerminate(_ application: UIApplication) {
+        UserDefaults.standard.removeObject(forKey: "selectedUniversityPath")
+        UserDefaults.standard.removeObject(forKey: "selectedCells")
+        
     }
 
 }

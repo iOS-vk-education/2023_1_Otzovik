@@ -8,7 +8,15 @@
 import UIKit
 
 final class ChooseUniversityViewController: UIViewController{
-    
+    var onDismiss: (() -> Void)?
+    var choosenUniversity: String?
+    deinit{
+        if let encodedData = try? PropertyListEncoder().encode(selectedIndexPaths) {
+            UserDefaults.standard.set(encodedData, forKey: "selectedUniversityPath")
+        }
+        
+    }
+    var selectedIndexPaths: [IndexPath] = []
     private var UniversityList: UITableView = {
         let List = UITableView()
         return List
@@ -20,6 +28,8 @@ final class ChooseUniversityViewController: UIViewController{
     private var allUniversities: [University] = []
     private let universityManager = Manager()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,45 +39,95 @@ final class ChooseUniversityViewController: UIViewController{
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
         navigationItem.setRightBarButton(closeButton, animated: true)
         view.addSubview(universityTable)
+        universityTable.allowsMultipleSelection = false
         universityTable.frame = view.bounds
         universityTable.layer.cornerRadius = 10.0
         universityTable.dataSource = self
         universityTable.delegate = self
         
         universityTable.register(UniversityCell.self, forCellReuseIdentifier: "UniversityCell")
-        
         loadData()
-        print(allUniversities)
+        if let savedData = UserDefaults.standard.data(forKey: "selectedUniversityPath"),
+           let loadedArray = try? PropertyListDecoder().decode([IndexPath].self, from: savedData) {
+            selectedIndexPaths = loadedArray
+            
+        }
+        if selectedIndexPaths.count == 0{
+            selectedIndexPaths = [[0,5]]
+        }
+        print(selectedIndexPaths)
         
     }
+    
     func loadData(){
-        universityManager.loadUniversities{ [weak self] allUniversities in
-            self?.allUniversities = allUniversities
-            self?.universityTable.reloadData()
+        if let savedData = UserDefaults.standard.data(forKey: "all_univers"),
+           let loadedArray = try? PropertyListDecoder().decode([University].self, from: savedData) {
+            self.allUniversities = loadedArray
+        }
+        if self.allUniversities.count != 0{
+            self.universityTable.reloadData()
+            print(self.allUniversities[0])
+        }
+        return
+            universityManager.loadUniversities{
+                self.allUniversities = self.universityManager.all_universities
+                print(self.allUniversities[0])
+                self.universityTable.reloadData()
+            }
+        }
+    func loadData2(){
+        if let savedData = UserDefaults.standard.data(forKey: "all_univers"),
+           let loadedArray = try? PropertyListDecoder().decode([University].self, from: savedData) {
+            self.allUniversities = loadedArray
+            print(loadedArray)
         }
     }
     
     @objc
     private func didTapCloseButton(){
         dismiss(animated: true)
+//        {
+//            [weak self] in
+//            self?.onDismiss?()
+//        }
     }
 }
 
 extension ChooseUniversityViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        universityTable.deselectRow(at: indexPath, animated: true)
+        for cellIndex in selectedIndexPaths{
+            let cell = universityTable.cellForRow(at: cellIndex)
+            cell?.accessoryType = .none
+        }
+        selectedIndexPaths = []
+        selectedIndexPaths.append(indexPath)
+        updateCellAccessoryType(at: indexPath)
+        
+    }
     
     
+    
+    func updateCellAccessoryType(at indexPath: IndexPath) {
+        if let cell = universityTable.cellForRow(at: indexPath) {
+            cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
+            choosenUniversity = allUniversities[indexPath.row].name
+            onDismiss?()
+        }
+        
+        
+    }
 }
 
 extension ChooseUniversityViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = universityTable.dequeueReusableCell(withIdentifier: "UniversityCell", for: indexPath)
         var configuration = cell.defaultContentConfiguration()
-        configuration.text = allUniversities[indexPath.row].abbreviation
+        configuration.text = allUniversities[indexPath.row].name
         configuration.secondaryText = allUniversities[indexPath.row].fullName
         cell.contentConfiguration = configuration
-        if configuration.text == "МГТУ им. Н.Э. Баумана"{
-            cell.accessoryType = .checkmark
-        }
+        cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
+        
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

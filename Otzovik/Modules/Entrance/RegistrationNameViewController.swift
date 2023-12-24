@@ -8,7 +8,7 @@
 import UIKit
 
 class RegistrationNameViewController: BaseEntranceViewController {
-
+    
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var firstnameTextField: InsetTextField = {
         var textField = InsetTextField()
@@ -88,7 +88,7 @@ class RegistrationNameViewController: BaseEntranceViewController {
     }
     public override func nextVC() {
         let vc: RegistrationEmailViewController = RegistrationEmailViewController()
-        self.present(vc, animated: true)
+        self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
     }
 }
 extension RegistrationNameViewController {
