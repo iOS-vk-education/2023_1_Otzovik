@@ -146,17 +146,19 @@ final class FilterViewController: UIViewController{
     @objc
     func goBack(){
         choosenFilters = []
-        facultyTable.scrollToRow(at: [0, 0], at: .top, animated: false)
-        for indexPath in newSelectedCells{
-            if let cell = facultyTable.cellForRow(at: indexPath) {
-                if let configuration = cell.contentConfiguration as? UIListContentConfiguration{
-                    if let cellText = configuration.text{
-                        choosenFilters.append(cellText)
+        if newSelectedCells != selectedIndexPaths{
+            facultyTable.scrollToRow(at: [0, 0], at: .top, animated: false)
+            for indexPath in newSelectedCells{
+                if let cell = facultyTable.cellForRow(at: indexPath) {
+                    if let configuration = cell.contentConfiguration as? UIListContentConfiguration{
+                        if let cellText = configuration.text{
+                            choosenFilters.append(cellText)
+                        }
                     }
                 }
             }
+            filterDelegate?.sendfilters(choosenFilters)
         }
-        filterDelegate?.sendfilters(choosenFilters)
         alreadySaveParametrs = true
         if let encodedData = try? PropertyListEncoder().encode(newSelectedCells) {
             UserDefaults.standard.set(encodedData, forKey: "selectedCells")
