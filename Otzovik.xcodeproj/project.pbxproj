@@ -11,6 +11,7 @@
 		66E27BDA2B2317FF00DFE8D2 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BD92B2317FF00DFE8D2 /* FeedbackManager.swift */; };
 		66E27BDC2B231EBE00DFE8D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BDB2B231EBE00DFE8D2 /* User.swift */; };
 		66E27BDE2B231F9500DFE8D2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BDD2B231F9500DFE8D2 /* UserManager.swift */; };
+		74B018602B39E155003F296F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 74B0185F2B39E155003F296F /* Reachability */; };
 		C074B2242B026DDA00BC19EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C074B2232B026DDA00BC19EA /* GoogleService-Info.plist */; };
 		C074B2272B026E9100BC19EA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2262B026E9100BC19EA /* FirebaseAnalytics */; };
 		C074B2292B026E9100BC19EA /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = C074B2282B026E9100BC19EA /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -129,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C074B2392B026E9100BC19EA /* FirebaseDatabase in Frameworks */,
+				74B018602B39E155003F296F /* Reachability in Frameworks */,
 				C074B2472B026E9100BC19EA /* FirebaseFunctionsCombine-Community in Frameworks */,
 				C074B23F2B026E9100BC19EA /* FirebaseFirestore in Frameworks */,
 				C074B22B2B026E9100BC19EA /* FirebaseAnalyticsSwift in Frameworks */,
@@ -342,6 +344,7 @@
 				C074B2562B026E9100BC19EA /* FirebaseRemoteConfigSwift */,
 				C074B2582B026E9100BC19EA /* FirebaseStorage */,
 				C074B25A2B026E9100BC19EA /* FirebaseStorageCombine-Community */,
+				74B0185F2B39E155003F296F /* Reachability */,
 			);
 			productName = Otzovik;
 			productReference = C07C40B42AE5338900761C3D /* Otzovik.app */;
@@ -373,6 +376,7 @@
 			mainGroup = C07C40AB2AE5338900761C3D;
 			packageReferences = (
 				C074B2252B026E9100BC19EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				74B0185E2B39E155003F296F /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = C07C40B52AE5338900761C3D /* Products */;
 			projectDirPath = "";
@@ -655,6 +659,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		74B0185E2B39E155003F296F /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C074B2252B026E9100BC19EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -666,6 +678,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		74B0185F2B39E155003F296F /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74B0185E2B39E155003F296F /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		C074B2262B026E9100BC19EA /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C074B2252B026E9100BC19EA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

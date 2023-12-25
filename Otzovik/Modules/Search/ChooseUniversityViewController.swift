@@ -70,14 +70,9 @@ final class ChooseUniversityViewController: UIViewController{
         }
         if self.allUniversities.count != 0{
             self.universityTable.reloadData()
+            return
         }
-        return
-            universityManager.loadUniversities{
-                self.allUniversities = self.universityManager.all_universities
-                self.universityTable.reloadData()
-            }
-        }
-    
+    }
     @objc
     private func didTapCloseButton(){
         dismiss(animated: true)
