@@ -7,24 +7,35 @@
 
 import UIKit
 
+protocol SendFiltersToSearchDelegate: AnyObject{
+    func sendfilters(_ filters: [String])
+}
+
 final class FilterViewController: UIViewController{
+    weak var filterDelegate: SendFiltersToSearchDelegate?
+    
+    private var alreadySaveParametrs = false
+    private var choosenFilters: [String] = []
+    var isUniversityChanged: Bool?
     var currentUniversity: String?
-    var selectedIndexPaths: [IndexPath] = []
-    let universityManager = Manager()
-    var allUniversities: [University] = []
-    let facultyManager = Manager()
-    var allDepartments: [String] = []
-    var allFaculties: [Faculty] = []
+    private var selectedIndexPaths: [IndexPath] = []
+    private var newSelectedCells: [IndexPath] = []
+    private let universityManager = Manager()
+    private var allUniversities: [University] = []
+    private let facultyManager = Manager()
+    private var allDepartments: [String] = []
+    
     let facultyTable = UITableView.init(frame: CGRect.zero, style: .insetGrouped)
+    
     private var doneCustomButton: UIButton = {
         let button = UIButton(type: .system)
-        
         button.setTitle("Готово", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         button.addTarget(nil, action: #selector(goBack), for: .touchUpInside)
         
         return button
     }()
+    
     private var infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Можете выбрать несколько пунктов"
@@ -36,7 +47,7 @@ final class FilterViewController: UIViewController{
     
     private var facultyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Факультеты"
+        label.text = "Кафедры"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 17)
         
@@ -44,14 +55,18 @@ final class FilterViewController: UIViewController{
     }()
     
     deinit{
-        if let encodedData = try? PropertyListEncoder().encode(selectedIndexPaths) {
-            UserDefaults.standard.set(encodedData, forKey: "selectedCells")
-            
+        if !alreadySaveParametrs{
+            if let encodedData = try? PropertyListEncoder().encode(selectedIndexPaths) {
+                UserDefaults.standard.set(encodedData, forKey: "selectedCells")
+                
+            }
         }
     }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
         let headerContainerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
         let bottomContainerView = UIView()
         title = "Фильтры"
@@ -84,19 +99,22 @@ final class FilterViewController: UIViewController{
         facultyTable.delegate = self
         
         facultyTable.register(FacultyCell.self, forCellReuseIdentifier: "FacultyCell")
-        
-        
-        allFaculties = facultyManager.loadFaculties()
+    
+        let isChanged = isUniversityChanged ?? false
+        if isChanged{
+            selectedIndexPaths = []
+        }
+        else{
         if let savedData = UserDefaults.standard.data(forKey: "selectedCells"),
            let loadedArray = try? PropertyListDecoder().decode([IndexPath].self, from: savedData) {
-            print("Загруженный массив из didload: \(loadedArray)")
             selectedIndexPaths = loadedArray
-            print("selected \(selectedIndexPaths)")
+            newSelectedCells = loadedArray
         }
-
+        }
     }
+    
     func loadDepartments(){
-        let unwrappedUniversityName = currentUniversity ?? "Default"
+        let unwrappedUniversityName = currentUniversity ?? "МГТУ им. Баумана"
         if let savedData = UserDefaults.standard.data(forKey: "all_univers"),
            let loadedArray = try? PropertyListDecoder().decode([University].self, from: savedData) {
             self.allUniversities = loadedArray
@@ -123,31 +141,48 @@ final class FilterViewController: UIViewController{
             }
         }
         self.facultyTable.reloadData()
-        print(allDepartments)
     }
+    
     @objc
     func goBack(){
+        choosenFilters = []
+        facultyTable.scrollToRow(at: [0, 0], at: .top, animated: false)
+        for indexPath in newSelectedCells{
+            if let cell = facultyTable.cellForRow(at: indexPath) {
+                if let configuration = cell.contentConfiguration as? UIListContentConfiguration{
+                    if let cellText = configuration.text{
+                        choosenFilters.append(cellText)
+                    }
+                }
+            }
+        }
+        filterDelegate?.sendfilters(choosenFilters)
+        alreadySaveParametrs = true
+        if let encodedData = try? PropertyListEncoder().encode(newSelectedCells) {
+            UserDefaults.standard.set(encodedData, forKey: "selectedCells")
+        }
         navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
 }
 extension FilterViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         facultyTable.deselectRow(at: indexPath, animated: true)
-        if let index = selectedIndexPaths.firstIndex(of: indexPath) {
-            selectedIndexPaths.remove(at: index)
-        }
-        else{
-            selectedIndexPaths.append(indexPath)
-        }
-        updateCellAccessoryType(at: indexPath)
+                if let index = newSelectedCells.firstIndex(of: indexPath) {
+                    newSelectedCells.remove(at: index)
+                }
+                else{
+                    newSelectedCells.append(indexPath)
+                }
+                updateCellAccessoryType(at: indexPath)
     }
     
     func updateCellAccessoryType(at indexPath: IndexPath) {
-            if let cell = facultyTable.cellForRow(at: indexPath) {
-                cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
-            }
+        if let cell = facultyTable.cellForRow(at: indexPath) {
+            cell.accessoryType = newSelectedCells.contains(indexPath) ? .checkmark : .none
         }
+    }
 }
 
 extension FilterViewController: UITableViewDataSource{
@@ -155,21 +190,13 @@ extension FilterViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = facultyTable.dequeueReusableCell(withIdentifier: "FacultyCell", for: indexPath)
         var conf = cell.defaultContentConfiguration()
-        //conf.text = allFaculties[indexPath.row].name
-        print(indexPath.row)
-        print(allDepartments)
-        
         conf.text = allDepartments[indexPath.row]
-        
-        print(conf.text)
         cell.contentConfiguration = conf
-        cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
+        cell.accessoryType = newSelectedCells.contains(indexPath) ? .checkmark : .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print(allFaculties.count)
-        //return 300
         return allDepartments.count
     }
 }
