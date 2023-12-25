@@ -38,12 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let root = navigationController
         window?.rootViewController = root
         window?.makeKeyAndVisible()
-        
+        UserDefaults.standard.removeObject(forKey: "selectedUniversityPath")
+        UserDefaults.standard.removeObject(forKey: "selectedCells")
         return true
     }
     func applicationWillTerminate(_ application: UIApplication) {
-        UserDefaults.standard.removeObject(forKey: "selectedUniversityPath")
-        UserDefaults.standard.removeObject(forKey: "selectedCells")
+        UserDefaults.standard.removeObject(forKey: "all_univers")
         
     }
 

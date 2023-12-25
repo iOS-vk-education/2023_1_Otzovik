@@ -1,17 +1,16 @@
 import UIKit
 import Firebase
 
-// MARK: 1st VC
-struct Univers{
-    let name: String
-}
-
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersToSearchDelegate, ReceiveTitleDelegate{
     
+    private var searchText = ""
+    private var currentFilters: [String] = []
+    private var isUniversityChanged: Bool = false
+    private var titleObservation: NSKeyValueObservation?
     private let tableView = UITableView()
-    
+    private var allUniversities: [University] = []
     private var teachers: [Teacher] = []
-    private let teacherManager = TeacherManager()
+    private let manager = Manager()
     
     private var ChangeUniversityButton: UIButton = {
         let button = UIButton(type: .system)
@@ -22,16 +21,86 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return button
     }()
     
+    private var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.hidesWhenStopped = true
+        
+        return indicator
+    }()
+    
+    private var TeachersNotFoundLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Преподаватели не найдены"
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    func sendfilters(_ filters: [String]) {
+        currentFilters = filters
+        search(searchText: "")
+    }
+    func receiveTitle(_ title: String) {
+        currentFilters = []
+        navigationItem.title = title
+        loadData()
+        isUniversityChanged = true
+        
+    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("changed")
+        search(searchText: searchText)
+        self.searchText = searchText
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.text = searchText
+    }
+    func search(searchText: String){
+        if searchText.count == 0{
+            loadData()
+            return
+        }
+        
+        self.teachers = []
+        if let savedData = UserDefaults.standard.data(forKey: "all_univers"),
+           let loadedArray = try? PropertyListDecoder().decode([University].self, from: savedData) {
+            self.allUniversities = loadedArray
+            
+        }
+        for university in self.allUniversities{
+            if university.name == self.navigationItem.title{
+                
+                if currentFilters.count != 0{
+                    for department in university.departments{
+                        if currentFilters.contains(department.name){
+                            for teacher in department.teachers{
+                                if teacher.name.contains(searchText){
+                                    let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                    self.teachers.append(teacher_toShow)
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    for department in university.departments{
+                        for teacher in department.teachers{
+                            if teacher.name.contains(searchText){
+                                let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                self.teachers.append(teacher_toShow)
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        self.tableView.reloadData()
     }
     
     @objc
     private func changeUniversity() {
         let universityController = ChooseUniversityViewController()
-        universityController.onDismiss = { [weak self, unowned universityController] in
-            self?.navigationItem.title = universityController.choosenUniversity
-        }
+        universityController.delegate = self
         self.present(UINavigationController(rootViewController: universityController), animated: true, completion: nil)
         
     }
@@ -39,46 +108,35 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     private func openFilters() {
         let filterViewController = FilterViewController()
         filterViewController.currentUniversity = self.navigationItem.title
+        filterViewController.isUniversityChanged = isUniversityChanged
+        filterViewController.filterDelegate = self
         navigationController?.pushViewController(filterViewController, animated: true)
-    }
-    @objc
-    private func openTest() {
-        let filterViewController = TestViewConroller()
-        navigationController?.pushViewController(filterViewController, animated: true)
-    }
-    
-    
-    
-    @objc
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @objc
-    func keyboardWillShow(notification: NSNotification) {
-        print(#function)
-        
-        
-    }
-    @objc
-    func keyboardWillHide(notification: NSNotification){
-        print(#function)
-        
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         openFilters()
-        //openTest()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         return true
     }
+    func showNotFoundLabel(){
+        view.addSubview(TeachersNotFoundLabel)
+        NSLayoutConstraint.activate([
+            TeachersNotFoundLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            TeachersNotFoundLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        isUniversityChanged = false
+    }
     override func viewDidLoad() {
+        
+        activityIndicator.center = view.center
         view.backgroundColor = .white
         title = "Поиск"
         navigationItem.title = "МГТУ им. Баумана"
-        
         ChangeUniversityButton.addTarget(self,
                                          action: #selector(changeUniversity), for: .touchUpInside)
         
@@ -92,39 +150,102 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         searchBar?.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
         searchBar?.placeholder = "Поиск"
         searchBar?.setValue("Отмена", forKey: "cancelButtonText")
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        
-        tableView.frame = view.bounds
+    
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         loadData()
-        view.addSubview(tableView)
+        
         super.viewDidLoad()
     }
     
-    
     func loadData() {
-        teacherManager.loadTeachers { [weak self] teachers in
-            self?.teachers = teachers
-            self?.tableView.reloadData()
+        activityIndicator.startAnimating()
+        teachers = []
+        if let savedData = UserDefaults.standard.data(forKey: "all_univers"),
+           let loadedArray = try? PropertyListDecoder().decode([University].self, from: savedData) {
+            self.allUniversities = loadedArray
         }
+        if self.allUniversities.count != 0{
+            for university in self.allUniversities{
+                if university.name == self.navigationItem.title{
+                    if currentFilters.count != 0{
+                        for department in university.departments{
+                            if currentFilters.contains(department.name){
+                                for teacher in department.teachers{
+                                    let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                    self.teachers.append(teacher_toShow)
+                                }
+                            }
+                        }
+                    }else{
+                        for department in university.departments{
+                            for teacher in department.teachers{
+                                let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                self.teachers.append(teacher_toShow)
+                            }
+                        }
+                    }
+                }
+            }
+        activityIndicator.stopAnimating()
+        self.tableView.reloadData()
+        
+        }
+        else{
+            manager.loadUniversities{
+                self.allUniversities = self.manager.all_universities
+                for university in self.allUniversities{
+                    if university.name == self.navigationItem.title{
+                        if self.currentFilters.count != 0{
+                            for department in university.departments{
+                                if self.currentFilters.contains(department.name){
+                                    for teacher in department.teachers{
+                                        let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                        self.teachers.append(teacher_toShow)
+                                    }
+                                }
+                            }
+                        }else{
+                            for department in university.departments{
+                                
+                                for teacher in department.teachers{
+                                    let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                    self.teachers.append(teacher_toShow)
+                                }
+                            }
+                        }
+                    }
+                }
+                self.activityIndicator.stopAnimating()
+                self.tableView.reloadData()
+                
+            }
+        }
+        
+        
     }
-    
 }
 
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if teachers.count == 0 && !activityIndicator.isAnimating{
+            showNotFoundLabel()
+        }
+        else{
+            TeachersNotFoundLabel.removeFromSuperview()
+        }
         return teachers.count
     }
     
@@ -142,7 +263,6 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print(sourceIndexPath, destinationIndexPath)
         let sourceProduct = teachers[sourceIndexPath.row]
         teachers.remove(at: sourceIndexPath.row)
         teachers.insert(sourceProduct, at: destinationIndexPath.row)
@@ -152,7 +272,6 @@ extension SearchViewController: UITableViewDataSource {
         guard editingStyle == .delete else {
             return
         }
-        
         teachers.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
@@ -174,3 +293,4 @@ extension SearchViewController: UITableViewDelegate {
         
     }
 }
+
