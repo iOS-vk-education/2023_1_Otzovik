@@ -230,18 +230,18 @@ struct Colors {
         get {
             switch colorScheme {
             case .light:
-                return .blue
+                return .systemBlue
             case .dark:
-                return .blue
+                return .systemBlue
             case .system:
                 if #available(iOS 12.0, *) {
                     if UIScreen.main.traitCollection.userInterfaceStyle == .light {
-                        return .blue
+                        return .systemBlue
                     } else {
-                        return .blue
+                        return .systemBlue
                     }
                 } else {
-                    return .blue
+                    return .systemBlue
                 }
             }
         }

@@ -59,12 +59,18 @@ extension SettingsViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
             case 0:
+                let changeUniversity = ChooseUniversityViewController()
+                present(changeUniversity, animated: true)
                 break
             case 1:
-                let changeInfoController = RegistrationNameViewController()
-                navigationController?.pushViewController(changeInfoController, animated: true)
+                let changeChair = FilterViewController()
+                present(changeChair, animated: true)
                 break
             case 2:
+                let changeInfoController = RegistrationNameViewController()
+                present(changeInfoController, animated: true)
+                break
+            case 3:
                 let alertController = UIAlertController(title: "Внимание!", message: "Вы уверены, что хотите сбросить все свои избранные?", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
                 let deleteAction = UIAlertAction(title: "Сбросить", style: .destructive) {UIAlertAction in print("deleted")}
@@ -84,7 +90,7 @@ extension SettingsViewController: UITableViewDataSource {
             return 1
         }
         else {
-            return 3
+            return 4
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -116,14 +122,17 @@ extension SettingsViewController: UITableViewDataSource {
         if indexPath.section == 1 {
             switch indexPath.row {
                 case 0:
-                    contentConfiguration.text = "Сменить вуз/кафедру"
+                    contentConfiguration.text = "Сменить ВУЗ"
                     cell.accessoryType = .disclosureIndicator
                     break
                 case 1:
+                    contentConfiguration.text = "Сменить кафедру"
+                    cell.accessoryType = .disclosureIndicator
+                case 2:
                     contentConfiguration.text = "Изменить информацию о себе"
                     cell.accessoryType = .disclosureIndicator
                     break
-                case 2:
+                case 3:
                     contentConfiguration.text = "Сбросить все свои избранные"
                     break
                 default:

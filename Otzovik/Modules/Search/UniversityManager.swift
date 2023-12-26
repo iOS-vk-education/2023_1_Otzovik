@@ -6,37 +6,44 @@
 //
 
 import Foundation
+import Firebase
+import Reachability
 
 final class Manager{
+    var all_universities: [University] = []
     
-    func loadUniversities(completion: @escaping (([University]) -> Void)) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let allUniversities: [University] = [
-                .init(abbreviation: "НИУ ВШЭ", fullName: "Высшая школа экономики"),
-                .init(abbreviation: "МАИ", fullName: "Московский авиационный институт"),
-                .init(abbreviation: "МПУ", fullName: "Московский политехнический университет"),
-                .init(abbreviation: "МГИМО", fullName: "Московский государственный инстиут международных отношений"),
-                .init(abbreviation: "МГТУ им. Н.Э. Баумана", fullName: "Московский государственный технический университет"),
-                .init(abbreviation: "РУТ МИИТ", fullName: "Российский университет транспорта"),
-                .init(abbreviation: "МПГУ", fullName: "Московский педагогический государственный университет"),
-                .init(abbreviation: "НИУ МЭИ", fullName: "Московский энергетический институт"),
-                .init(abbreviation: "НИЯУ МИФИ", fullName: "Московский инженерно-физический институт"),
-                .init(abbreviation: "РГСУ", fullName: "Российский государственный социальный университет")
-                
-            ]
-            
-            completion(allUniversities)
+    func loadUniversities(completion: @escaping (Result<[University], Error>) -> Void) {
+        guard let reachability = try? Reachability() else {
+            let error = NSError(domain: "No internet connection", code: 100, userInfo: nil)
+            completion(.failure(error))
+            return
         }
-    }
-    func loadFaculties() -> [Faculty] {
-        let allFaculties: [Faculty] = [
-            .init(name: "ИУ"),
-            .init(name: "РТ"),
-            .init(name: "СМ"),
-            .init(name: "МТ"),
-            .init(name: "РК"),
-            .init(name: "Л")
-        ]
-        return allFaculties
+
+        guard reachability.connection != .unavailable else {
+            let error = NSError(domain: "No internet connection", code: 101, userInfo: nil)
+            completion(.failure(error))
+            return
+        }
+
+        let ref = Database.database().reference().child("universities")
+
+        ref.observeSingleEvent(of: .value) { snapshot in
+            do {
+                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
+                      let universities = try? JSONDecoder().decode([University].self, from: data) else {
+                    throw NSError(domain: "Data decoding error", code: 0, userInfo: nil)
+                }
+
+                self.all_universities = universities
+                if let encodedData = try? PropertyListEncoder().encode(self.all_universities) {
+                    UserDefaults.standard.set(encodedData, forKey: "all_univers")
+                    completion(.success(universities))
+                } else {
+                    throw NSError(domain: "Encoding error", code: 1, userInfo: nil)
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
 }

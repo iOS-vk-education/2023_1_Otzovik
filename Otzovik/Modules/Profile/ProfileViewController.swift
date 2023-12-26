@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseAuth
 
+protocol ProfileViewControllerDelegate: AnyObject {
+    func changeValueOfIsLogging()
+}
+
 final class ProfileViewController: UIViewController {
     
     private let userManager = UserManager()
@@ -24,8 +28,13 @@ final class ProfileViewController: UIViewController {
     private let logInButton = UIButton(type: .system)
     private let lableOfRegistration = UILabel()
     
-    override func viewDidAppear(_ animated: Bool) {
-        // ...
+    private var isLogged: Bool = false {
+        willSet {
+            loadView()
+            viewDidLoad()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
     }
 
     override func viewDidLoad() {
@@ -66,10 +75,9 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc func didLogInButtonTapped(sender: UIButton) {
-        present(EntranceViewController(), animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        let entranceViewController = EntranceViewController()
+        entranceViewController.delegate = self
+        present(entranceViewController, animated: true)
     }
 }
 
@@ -92,8 +100,7 @@ extension ProfileViewController: UITableViewDelegate {
                 UIAlertAction in
                 do {
                     try Auth.auth().signOut()
-                    self.loadView()
-                    self.viewDidLoad()
+                    self.isLogged = false
                 } catch _ {
                     print("Error of sign out")
                 }
@@ -233,3 +240,8 @@ extension ProfileViewController {
     }
 }
 
+extension ProfileViewController: ProfileViewControllerDelegate {
+    func changeValueOfIsLogging() {
+        isLogged = true
+    }
+}

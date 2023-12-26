@@ -43,8 +43,8 @@ class RegistrationReadyViewController: BaseEntranceViewController {
     
     public override func nextVC() {
         //здесь регистрация
-            
         self.dismiss(animated: true)
+
     }
     
 }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+let IMAGES_PATH = ["avatar2", "Man", "Man2", "Woman2", "Woman"]
 final class SearchTableViewCell: UITableViewCell {
     
     private let iconImageView = UIImageView()
@@ -16,7 +16,7 @@ final class SearchTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        //self.clipsToBounds = true
         setup()
     }
     
@@ -84,10 +84,16 @@ final class SearchTableViewCell: UITableViewCell {
     
     func configure(with teacher: Teacher) {
         titleLabel.text = teacher.fio
-        chairLabel.text = "Кафедра: " + teacher.chair
-        iconImageView.image = .init(named: "avatar2")
+        if teacher.chair.count > 40{
+            chairLabel.text = "Кафедра: " + teacher.chair.prefix(40) + "..."
+        }
+        else{
+            chairLabel.text = "Кафедра: " + teacher.chair
+        }
         
-        let rating : Double = teacher.rating
+        iconImageView.image = .init(named: IMAGES_PATH[Int(arc4random_uniform(5))])
+        
+        let rating : Double = round(teacher.rating * 100) / 100
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = UIImage(systemName: "chevron.right")?.withTintColor(.gray)
         imageAttachment.bounds = CGRect(origin: .zero,
