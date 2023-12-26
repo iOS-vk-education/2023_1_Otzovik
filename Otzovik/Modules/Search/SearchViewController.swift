@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersToSearchDelegate, ReceiveTitleDelegate{
-    
+    private var noInternetConnection = false
     private var searchText = ""
     private var currentFilters: [String] = []
     private var isUniversityChanged: Bool = false
@@ -36,6 +36,26 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
         
         return label
     }()
+    
+    private var InternetConnectionErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Отсутсвует интернет соединение"
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    private var RetryConnectionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Попробовать еще раз", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     func sendfilters(_ filters: [String]) {
         currentFilters = filters
         search(searchText: "")
@@ -45,6 +65,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
         navigationItem.title = title
         loadData()
         isUniversityChanged = true
+        
+    }
+    
+    func showRetryButton(){
+        view.addSubview(InternetConnectionErrorLabel)
+        NSLayoutConstraint.activate([
+            InternetConnectionErrorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            InternetConnectionErrorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        view.addSubview(RetryConnectionButton)
+        NSLayoutConstraint.activate([
+            RetryConnectionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            RetryConnectionButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 60)
+        ])
+        RetryConnectionButton.addTarget(self, action: #selector(retry_to_load_data), for: .touchUpInside)
+        noInternetConnection = true
+        activityIndicator.stopAnimating()
         
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -105,6 +142,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
         
     }
     @objc
+    private func retry_to_load_data(){
+        RetryConnectionButton.removeFromSuperview()
+        InternetConnectionErrorLabel.removeFromSuperview()
+        loadData()
+    }
+    @objc
     private func openFilters() {
         let filterViewController = FilterViewController()
         filterViewController.currentUniversity = self.navigationItem.title
@@ -150,7 +193,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
         searchBar?.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
         searchBar?.placeholder = "Поиск"
         searchBar?.setValue("Отмена", forKey: "cancelButtonText")
-    
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         view.addSubview(activityIndicator)
@@ -198,49 +241,55 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
                     }
                 }
             }
-        activityIndicator.stopAnimating()
-        self.tableView.reloadData()
-        
+            activityIndicator.stopAnimating()
+            self.tableView.reloadData()
+            
         }
         else{
-            manager.loadUniversities{
-                self.allUniversities = self.manager.all_universities
-                for university in self.allUniversities{
-                    if university.name == self.navigationItem.title{
-                        if self.currentFilters.count != 0{
-                            for department in university.departments{
-                                if self.currentFilters.contains(department.name){
+            manager.loadUniversities{ result in
+                switch result {
+                case .success(let universities):
+                    self.noInternetConnection = false
+                    self.allUniversities = universities
+                    for university in self.allUniversities{
+                        if university.name == self.navigationItem.title{
+                            if self.currentFilters.count != 0{
+                                for department in university.departments{
+                                    if self.currentFilters.contains(department.name){
+                                        for teacher in department.teachers{
+                                            let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
+                                            self.teachers.append(teacher_toShow)
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                for department in university.departments{
+                                    
                                     for teacher in department.teachers{
                                         let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
                                         self.teachers.append(teacher_toShow)
                                     }
                                 }
                             }
-                        }else{
-                            for department in university.departments{
-                                
-                                for teacher in department.teachers{
-                                    let teacher_toShow = Teacher(fio: teacher.name, university: university.name, faculty: "", chair: department.name, imageURL: "", rating: Double(teacher.rating), degree: "Доцент", description: "description")
-                                    self.teachers.append(teacher_toShow)
-                                }
-                            }
                         }
                     }
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.reloadData()
+                    
+                case .failure(_):
+                    self.showRetryButton()
                 }
-                self.activityIndicator.stopAnimating()
-                self.tableView.reloadData()
-                
             }
         }
-        
-        
     }
 }
 
 
+
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if teachers.count == 0 && !activityIndicator.isAnimating{
+        if teachers.count == 0 && !activityIndicator.isAnimating && !noInternetConnection{
             showNotFoundLabel()
         }
         else{

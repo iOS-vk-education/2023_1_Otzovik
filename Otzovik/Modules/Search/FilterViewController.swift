@@ -47,9 +47,9 @@ final class FilterViewController: UIViewController{
     
     private var facultyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Кафедры"
+        label.text = "Выберете одну или несколько кафедр"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 17, weight: .medium)
         
         return label
     }()
@@ -90,8 +90,7 @@ final class FilterViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             facultyLabel.topAnchor.constraint(equalTo: headerContainerView.topAnchor),
-            facultyLabel.leadingAnchor.constraint(equalTo: headerContainerView.leadingAnchor, constant: 20),
-            facultyLabel.trailingAnchor.constraint(equalTo: headerContainerView.trailingAnchor),
+            facultyLabel.centerXAnchor.constraint(equalTo: headerContainerView.centerXAnchor),
             facultyLabel.bottomAnchor.constraint(equalTo: headerContainerView.bottomAnchor)
         ])
         loadDepartments()
@@ -129,14 +128,20 @@ final class FilterViewController: UIViewController{
             }
         }
         else{
-            universityManager.loadUniversities{
-                self.allUniversities = self.universityManager.all_universities
-                for university in self.allUniversities{
-                    if university.name == unwrappedUniversityName{
-                        for department in university.departments {
-                            self.allDepartments.append(department.name)
+            universityManager.loadUniversities{result in
+                switch result {
+                case .success(let universities):
+                    self.allUniversities = universities
+                    
+                    for university in self.allUniversities{
+                        if university.name == unwrappedUniversityName{
+                            for department in university.departments {
+                                self.allDepartments.append(department.name)
+                            }
                         }
                     }
+                case .failure(_):
+                    return
                 }
             }
         }
