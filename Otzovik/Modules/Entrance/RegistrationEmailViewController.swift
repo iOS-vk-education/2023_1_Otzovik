@@ -11,7 +11,7 @@ class RegistrationEmailViewController: BaseEntranceViewController {
 
     private let emailTextField: InsetTextField = {
         let textField = InsetTextField()
-        textField.config(leftInset: 65.0)
+        textField.config(leftInset: 70.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
