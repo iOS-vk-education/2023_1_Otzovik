@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-final class SettingsViewController : UIViewController {
+final class SettingsViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private let tableButtons = UITableView(frame: .zero, style: .insetGrouped)
     private let segmentedControl = UISegmentedControl(items: ["Светлая", "Системная", "Темная"])
@@ -43,12 +43,13 @@ final class SettingsViewController : UIViewController {
                 UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
                 break
             default:
+                
                 break
         }
     }
     
     private func setSelectedSegment() {
-        let theme = UserDefaults.standard.value(forKey: "theme") as! Theme.RawValue
+        let theme = UserDefaults.standard.value(forKey: "theme") as? Theme.RawValue
         switch theme {
             case "dark":
                 segmentedControl.selectedSegmentIndex = 2
@@ -60,9 +61,18 @@ final class SettingsViewController : UIViewController {
                 segmentedControl.selectedSegmentIndex = 1
                 break
             default:
+                segmentedControl.selectedSegmentIndex = 1
                 break
         }
     }
+    
+    private func didTapUploadImage() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true)
+    }
+
 }
 
 extension SettingsViewController: UITableViewDelegate {
@@ -89,6 +99,9 @@ extension SettingsViewController: UITableViewDelegate {
                 present(changeInfoController, animated: true)
                 break
             case 3:
+                didTapUploadImage()
+                break
+            case 4:
                 let alertController = UIAlertController(title: "Внимание!", message: "Вы уверены, что хотите сбросить все свои избранные?", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
                 let deleteAction = UIAlertAction(title: "Сбросить", style: .destructive) {UIAlertAction in print("deleted")}
@@ -108,11 +121,11 @@ extension SettingsViewController: UITableViewDataSource {
             return 1
         }
         else {
-            return 4
+            return 5
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let user = Auth.auth().currentUser {
+        if let _ = Auth.auth().currentUser {
             return 2
         }
         else {
@@ -151,6 +164,9 @@ extension SettingsViewController: UITableViewDataSource {
                     cell.accessoryType = .disclosureIndicator
                     break
                 case 3:
+                    contentConfiguration.text = "Загрузить новое фото профиля"
+                    break
+                case 4:
                     contentConfiguration.text = "Сбросить все свои избранные"
                     break
                 default:
@@ -174,7 +190,7 @@ extension SettingsViewController {
 
 
         tableButtons.widthAnchor.constraint(equalTo:view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
-        tableButtons.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        tableButtons.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor).isActive = true
         tableButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0).isActive = true
         
         segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true

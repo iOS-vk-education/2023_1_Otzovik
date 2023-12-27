@@ -34,13 +34,12 @@ final class ProfileViewController: UIViewController {
             viewDidLoad()
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .secondarySystemBackground
         title = "Профиль"
         if let _ = Auth.auth().currentUser {
+            setInfoAboutUser()
             loadData()
             setParamsOfElementsAuth()
             view.addSubview(avatarImage)
@@ -66,8 +65,6 @@ final class ProfileViewController: UIViewController {
             switch result {
                 case .success(let user):
                     authUser = user
-                    print(user)
-                    print(authUser)
                 case .failure(let error):
                     print(error)
             }
