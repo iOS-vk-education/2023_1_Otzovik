@@ -54,6 +54,8 @@
 		D04D26FF2AEBB39500B4B029 /* EntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */; };
 		D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */; };
 		D04D27032AEBB3DD00B4B029 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */; };
+		D04E46D42B3B639F00D525BB /* NetworkEntranceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E46D32B3B639F00D525BB /* NetworkEntranceManager.swift */; };
+		D04E46D62B3B63D000D525BB /* EntranceConstantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E46D52B3B63D000D525BB /* EntranceConstantes.swift */; };
 		D08AA8842B1D0A41008BD9E1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8832B1D0A41008BD9E1 /* Colors.swift */; };
 		D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */; };
 		D08AA8882B1D3F93008BD9E1 /* EntranceSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */; };
@@ -100,6 +102,8 @@
 		D04D26FE2AEBB39500B4B029 /* EntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewController.swift; sourceTree = "<group>"; };
 		D04D27002AEBB3B600B4B029 /* RegistrationNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNameViewController.swift; sourceTree = "<group>"; };
 		D04D27022AEBB3DD00B4B029 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D04E46D32B3B639F00D525BB /* NetworkEntranceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEntranceManager.swift; sourceTree = "<group>"; };
+		D04E46D52B3B63D000D525BB /* EntranceConstantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceConstantes.swift; sourceTree = "<group>"; };
 		D08AA8832B1D0A41008BD9E1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceTextFieldsView.swift; sourceTree = "<group>"; };
 		D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceSeparatorView.swift; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 			children = (
 				D0030DD02AFEF79100D458A3 /* LoginModel.swift */,
 				D0030DD22AFEF7AF00D458A3 /* RegistrationModel.swift */,
+				D04E46D32B3B639F00D525BB /* NetworkEntranceManager.swift */,
+				D04E46D52B3B63D000D525BB /* EntranceConstantes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 				C07C40D42AE536FC00761C3D /* ProfileViewController.swift in Sources */,
 				D0A60F4A2B1DBBD1003CAF84 /* EntranceButton.swift in Sources */,
 				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
+				D04E46D42B3B639F00D525BB /* NetworkEntranceManager.swift in Sources */,
 				D08AA8842B1D0A41008BD9E1 /* Colors.swift in Sources */,
 				D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */,
 				D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */,
@@ -438,6 +445,7 @@
 				66E27BDA2B2317FF00DFE8D2 /* FeedbackManager.swift in Sources */,
 				D0C89FBA2B160AAB00D89E69 /* University.swift in Sources */,
 				D0C89FB62B160A3D00D89E69 /* FilterViewController.swift in Sources */,
+				D04E46D62B3B63D000D525BB /* EntranceConstantes.swift in Sources */,
 				D0BD2E3B2AFFB08400EC4622 /* RegistrationPasswordViewController.swift in Sources */,
 				D0C89FA32B16039E00D89E69 /* FavoritesTableViewCell.swift in Sources */,
 				D0C89FB42B1609F300D89E69 /* ChooseUniversityViewController.swift in Sources */,

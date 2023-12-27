@@ -11,22 +11,6 @@ class BaseEntranceViewController: UIViewController {
     
     weak var delegate: ProfileViewControllerDelegate?
     
-    private lazy var backView: UIView = UIView()
-//    private lazy var backImageView: UIImageView = {
-//        var imageView = UIImageView()
-//        imageView.isUserInteractionEnabled = true
-//        imageView.image = UIImage(systemName: "chevron.backward")
-//        return imageView
-//    }()
-//    private lazy var backLabel: UILabel = {
-//        var label = UILabel()
-//        label.font = .systemFont(ofSize: 18)
-//        label.textAlignment = .left
-//        label.numberOfLines = 1
-//        label.text = "Назад"
-//        label.textColor = Colors.labelBackText
-//        return label
-//    }()
     private lazy var iconImageView: UIImageView = UIImageView()
     public lazy var titleLabel: UILabel = {
         var label = UILabel()
@@ -43,10 +27,6 @@ class BaseEntranceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.background
-        view.addSubview(backView)
-//        backView.addSubview(backImageView)
-//        backView.addSubview(backLabel)
-        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTap(_:))))
         view.addSubview(iconImageView)
         view.addSubview(titleLabel)
         view.addSubview(buttonView)
@@ -60,10 +40,10 @@ class BaseEntranceViewController: UIViewController {
     public func setIcon(image: UIImage) {
         iconImageView.image = image
     }
-    @objc
-    private func backTap(_ sender: UITapGestureRecognizer) {
+
+    @objc func cancelButtonTapped() {
+        // Действия при нажатии на кнопку "Cancel"
         self.dismiss(animated: true, completion: nil)
-        //self.navigationController?.popViewController(animated: true)
     }
     @objc
     private func nextVC(_ sender: UITapGestureRecognizer) {
@@ -83,26 +63,11 @@ class BaseEntranceViewController: UIViewController {
 extension BaseEntranceViewController {
     private func setConstraints() {
         let _ = [
-            backView,
-//            backImageView,
-//            backLabel,
             iconImageView,
             titleLabel,
             buttonView
         ].map({ $0.translatesAutoresizingMaskIntoConstraints = false })
         
-        backView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 7).isActive = true
-        backView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        backView.heightAnchor.constraint(equalToConstant: 35).isActive = true
-//        
-//        backImageView.centerYAnchor.constraint(equalTo: backView.centerYAnchor).isActive = true
-//        backImageView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 15).isActive = true
-//        backImageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
-//        backImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        
-//        backLabel.centerYAnchor.constraint(equalTo: backView.centerYAnchor).isActive = true
-//        backLabel.leadingAnchor.constraint(equalTo: backImageView.trailingAnchor, constant: 3).isActive = true
         
         iconImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         iconImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -250).isActive = true
