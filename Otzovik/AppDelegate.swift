@@ -22,15 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                   firebaseOptions.databaseURL = "https://otzovik-484f7-default-rtdb.europe-west1.firebasedatabase.app"
           firebaseOptions.projectID = "otzovik-484f7"
           FirebaseApp.configure(options: firebaseOptions)
-        //FirebaseApp.configure()
         window?.backgroundColor = .white
         let firebaseAuth = Auth.auth()
         var rootViewController: UIViewController?
-//        if let user = firebaseAuth.currentUser {
-//            rootViewController = factory.buildTabBar()
-//        } else {
-//            rootViewController = EntranceViewController()
-//        }
         rootViewController = factory.buildTabBar()
         guard let rootViewController else { return false }
         let navigationController = UINavigationController(rootViewController: rootViewController)
