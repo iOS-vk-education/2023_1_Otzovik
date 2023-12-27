@@ -10,10 +10,31 @@ import UIKit
 class EntranceViewController: UIViewController {
     
     weak var delegate: ProfileViewControllerDelegate?
+    
+    private lazy var infoLabel: UILabel = {
+       let label = UILabel()
+        label.numberOfLines = 20
+        label.textAlignment = .center
+        label.text = "Надежный спутник студента\n в образовательном мире.\n"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        
+        return label
+    }()
+    
+    private lazy var functionListLabel: UILabel = {
+       let label = UILabel()
+        label.numberOfLines = 20
+        label.text = "Узнавайте все необходимое о преподавателях своего вуза:\n\n• Информация\n\n• Отзывы\n\n• Расписание\n\n• Добавляйте в избранные"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
+        
+        return label
+    }()
 
     private lazy var logoImageView: UIImageView = {
         var iv = UIImageView()
-        iv.image = UIImage(named: "logo.png")
+        iv.image = UIImage(named: "Launch Image")
         return iv
     }()
     private lazy var buttonLoginView: EntranceButton = {
@@ -37,6 +58,8 @@ class EntranceViewController: UIViewController {
         view.addSubview(buttonRegistrationView)
 
         view.addSubview(logoImageView)
+        view.addSubview(infoLabel)
+        view.addSubview(functionListLabel)
         buttonLoginView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.loginTap(_:))))
         buttonRegistrationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.registrationTap(_:))))
         setConstraints()
@@ -97,9 +120,20 @@ extension EntranceViewController {
         buttonLoginView.bottomAnchor.constraint(equalTo: buttonRegistrationView.topAnchor, constant: -20).isActive = true
         buttonRegistrationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
         
-        logoImageView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        logoImageView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: -100.0).isActive = true
+        logoImageView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor, constant: 10).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
+        ])
+        NSLayoutConstraint.activate([
+            functionListLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            functionListLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+            functionListLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 20)
+        ])
     }
 }
