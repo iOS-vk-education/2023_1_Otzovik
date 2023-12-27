@@ -10,7 +10,7 @@ import FirebaseStorage
 
 protocol ImageLoaderDescription {
     func upload(image: UIImage, completion: @escaping(Result<String, Error>) -> Void)
-    func image(with name: String, completion: @escaping(Result<UIImage, Error>) -> Void)
+    func LoadImage(with name: String, completion: @escaping(Result<UIImage, Error>) -> Void)
 }
 
 enum ImageLoaderError: Error {
@@ -24,7 +24,7 @@ final class ImageLoader: ImageLoaderDescription {
     
     private var imageCache: [String: UIImage] = [:]
     
-    private init() {}
+    init() {}
     
     func upload(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         guard let data = image.jpegData(compressionQuality: 0.5) else {
@@ -47,7 +47,7 @@ final class ImageLoader: ImageLoaderDescription {
         }
     }
     
-    func image(with name: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func LoadImage(with name: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         if let image = imageCache[name] {
             completion(.success(image))
             return
