@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         firebaseOptions.apiKey = "AIzaSyDnpsNJ_rDaCU7wpIR0fUSzQM3rpCpghD8"
         firebaseOptions.databaseURL = "https://otzovik-484f7-default-rtdb.europe-west1.firebasedatabase.app"
         firebaseOptions.projectID = "otzovik-484f7"
+        firebaseOptions.storageBucket = "otzovik-484f7.appspot.com"
         FirebaseApp.configure(options: firebaseOptions)
         window?.backgroundColor = .white
         let firebaseAuth = Auth.auth()

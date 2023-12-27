@@ -8,7 +8,9 @@
 import UIKit
 import FirebaseAuth
 
-final class SettingsViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+final class SettingsViewController : UIViewController {
+    
+    private let userManager = UserManager()
     
     private let tableButtons = UITableView(frame: .zero, style: .insetGrouped)
     private let segmentedControl = UISegmentedControl(items: ["Светлая", "Системная", "Темная"])
@@ -69,8 +71,31 @@ final class SettingsViewController : UIViewController, UIImagePickerControllerDe
     private func didTapUploadImage() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        
         present(imagePickerController, animated: true)
+    }
+    
+    func upload(image: UIImage?) {
+        guard let image else {
+            return
+        }
+        ImageLoader.shared.upload(image: image) { [weak self] result in
+            switch result {
+                case .success(let name):
+                    self?.userManager.updateData(imageName: name, completion: {res in
+                        switch res {
+                            case .success():
+                                break
+                            case .failure(let err):
+                                print(err)
+                                break
+                        }
+                    })
+                    break
+                case .failure(let error):
+                    print(error)
+                    break
+            }
+        }
     }
 
 }
@@ -196,5 +221,15 @@ extension SettingsViewController {
         segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
         segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+    }
+}
+
+extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        
+        upload(image: image)
+        
+        picker.dismiss(animated: true)
     }
 }

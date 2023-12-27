@@ -15,6 +15,7 @@ protocol ProfileViewControllerDelegate: AnyObject {
 final class ProfileViewController: UIViewController {
     
     private let userManager = UserManager()
+    private let imageLoader = ImageLoader()
     private var authUser: User?
     
     private var avatarImage = UIImageView()
@@ -205,7 +206,20 @@ extension ProfileViewController {
     private func setInfoAboutUser() {
         guard let usr = authUser else {return}
         university.text = "Студент " + (usr.university)
-        avatarImage.image = UIImage(named: usr.profileImageName ?? "avatar2")
+        if let nameImage = usr.profileImageName {
+            imageLoader.LoadImage(with: nameImage) { [weak self] result in
+                switch result {
+                    case .success(let image):
+                        self?.avatarImage.image = image
+                        break
+                    case .failure(let error):
+                        print(error)
+                        self?.avatarImage.image = UIImage(named: "defaultProfileImage")
+                        break
+                }
+            }
+        }
+        else { avatarImage.image = UIImage(named: usr.profileImageName ?? "avatar2") }
         faculty.text = "Факультет: " + (usr.faculty)
         nameOfStudent.text = usr.name
         cathedra.text = "Кафедра: " + (usr.cathedra)
