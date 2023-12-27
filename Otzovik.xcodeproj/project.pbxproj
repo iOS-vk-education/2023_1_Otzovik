@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6691B2AF2B3CC3AE00F18D2A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6691B2AE2B3CC3AE00F18D2A /* ImageLoader.swift */; };
+		6691B2B12B3CE20700F18D2A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6691B2B02B3CE20700F18D2A /* ChangeNameViewController.swift */; };
 		66E27BD82B23158200DFE8D2 /* CellFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BD72B23158200DFE8D2 /* CellFeedback.swift */; };
 		66E27BDA2B2317FF00DFE8D2 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BD92B2317FF00DFE8D2 /* FeedbackManager.swift */; };
 		66E27BDC2B231EBE00DFE8D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E27BDB2B231EBE00DFE8D2 /* User.swift */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		6691B2AE2B3CC3AE00F18D2A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		6691B2B02B3CE20700F18D2A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		66E27BD72B23158200DFE8D2 /* CellFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFeedback.swift; sourceTree = "<group>"; };
 		66E27BD92B2317FF00DFE8D2 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		66E27BDB2B231EBE00DFE8D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				66E27BDB2B231EBE00DFE8D2 /* User.swift */,
 				66E27BDD2B231F9500DFE8D2 /* UserManager.swift */,
 				D0C89FAB2B1604EA00D89E69 /* Feedback.swift */,
+				6691B2B02B3CE20700F18D2A /* ChangeNameViewController.swift */,
 				6691B2AE2B3CC3AE00F18D2A /* ImageLoader.swift */,
 				66E27BD72B23158200DFE8D2 /* CellFeedback.swift */,
 				66E27BD92B2317FF00DFE8D2 /* FeedbackManager.swift */,
@@ -439,6 +442,7 @@
 				D0C89FA52B1603F200D89E69 /* TeacherManager.swift in Sources */,
 				6691B2AF2B3CC3AE00F18D2A /* ImageLoader.swift in Sources */,
 				D04D27012AEBB3B600B4B029 /* RegistrationNameViewController.swift in Sources */,
+				6691B2B12B3CE20700F18D2A /* ChangeNameViewController.swift in Sources */,
 				D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */,
 				66E27BDC2B231EBE00DFE8D2 /* User.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
@@ -598,7 +602,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-
 				DEVELOPMENT_TEAM = 65S7WB3693;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
@@ -627,7 +630,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-
 				DEVELOPMENT_TEAM = 65S7WB3693;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Otzovik/Info.plist;
