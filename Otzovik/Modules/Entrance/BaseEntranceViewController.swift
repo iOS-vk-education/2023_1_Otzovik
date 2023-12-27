@@ -42,7 +42,6 @@ class BaseEntranceViewController: UIViewController {
     }
 
     @objc func cancelButtonTapped() {
-        // Действия при нажатии на кнопку "Cancel"
         self.dismiss(animated: true, completion: nil)
     }
     @objc

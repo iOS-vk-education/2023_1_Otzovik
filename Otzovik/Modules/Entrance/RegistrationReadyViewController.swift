@@ -42,7 +42,7 @@ class RegistrationReadyViewController: BaseEntranceViewController {
     }
     
     public override func nextVC() {
-        RegistrationModel.shared.registration { isOk, message in
+        /*RegistrationModel.shared.registration { isOk, message in
             if isOk {
                 //здесь регистрация
                 self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
@@ -52,7 +52,8 @@ class RegistrationReadyViewController: BaseEntranceViewController {
                 }))
                 self.present(alert, animated: true, completion: nil)
             }
-        }
+        }*/
+        self.dismiss(animated: true)
     }
     
 }
