@@ -36,15 +36,12 @@ final class ProfileViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .secondarySystemBackground
         title = "Профиль"
-        
-        if let user = Auth.auth().currentUser {
+        if let _ = Auth.auth().currentUser {
             loadData()
-            setInfoAboutUser()
             setParamsOfElementsAuth()
             view.addSubview(avatarImage)
             view.addSubview(nameOfStudent)
@@ -64,11 +61,20 @@ final class ProfileViewController: UIViewController {
     }
     
     private func loadData() {
-        userManager.loadUserInfo() {[weak self] authUser_ in
+        userManager.observeUser { [weak self] result in
             guard let self else {return}
-            authUser = authUser_}
+            switch result {
+                case .success(let user):
+                    authUser = user
+                    print(user)
+                    print(authUser)
+                case .failure(let error):
+                    print(error)
+            }
+            setInfoAboutUser()
+        }
     }
-    
+
     @objc func didButtonSettingsTapped(sender: UIButton) {
         let settingsViewController = SettingsViewController()
         navigationController?.pushViewController(settingsViewController, animated: true)
@@ -159,7 +165,7 @@ final class buttonInTable: UITableViewCell {}
 
 extension ProfileViewController {
     private func setConstraints() {
-        if let user = Auth.auth().currentUser {
+        if let _ = Auth.auth().currentUser {
             let _ = [
             avatarImage,
             nameOfStudent,
@@ -200,12 +206,12 @@ extension ProfileViewController {
     }
     
     private func setInfoAboutUser() {
-        university.text = "Студент " + (authUser?.university ?? "")
-        avatarImage.image = UIImage(named: authUser?.profileImageURL ?? "")
-        faculty.text = "Факультет: " + (authUser?.faculty ?? "")
-        nameOfStudent.text = authUser?.name
-        cathedra.text = "Кафедра: " + (authUser?.cathedra ?? "")
-
+        guard let usr = authUser else {return}
+        university.text = "Студент " + (usr.university)
+        avatarImage.image = UIImage(named: usr.profileImageName ?? "avatar2")
+        faculty.text = "Факультет: " + (usr.faculty)
+        nameOfStudent.text = usr.name
+        cathedra.text = "Кафедра: " + (usr.cathedra)
     }
     
     private func setParamsOfElementsAuth() {

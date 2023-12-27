@@ -12,7 +12,7 @@ class RegistrationNameViewController: BaseEntranceViewController {
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var firstnameTextField: InsetTextField = {
         var textField = InsetTextField()
-        textField.config(leftInset: 95.0)
+        textField.config(leftInset: 100.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
@@ -29,7 +29,7 @@ class RegistrationNameViewController: BaseEntranceViewController {
     }()
     private lazy var lastnameTextField: InsetTextField = {
         var textField = InsetTextField()
-        textField.config(leftInset: 95.0)
+        textField.config(leftInset: 100.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText

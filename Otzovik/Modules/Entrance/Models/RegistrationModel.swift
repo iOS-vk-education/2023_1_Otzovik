@@ -9,23 +9,51 @@ import Foundation
 import FirebaseAuth
 
 class RegistrationModel {
-    
-    public func registration(completion: @escaping (Error?) -> Void) {
-        /*Auth.auth().createUser(withEmail: self.email, password: self.password) { registrationResult, error in
-            if error != nil {
-                completion(error)
-            } else {
-                Auth.auth().signIn(withEmail: self.email, password: self.password) {
-                    authResult, error in
-                    if error != nil {
-                        completion(error)
-                    } else {
-                        completion(nil)
-                    }
-                    
-                }
+
+    private func checkLoginValid() -> (Bool, String) {
+        if email.count >= EntranceConstantes.loginMinLength && email.count <= EntranceConstantes.loginMaxLength {
+            return (true, "")
+        } else {
+            if email.count < EntranceConstantes.loginMinLength {
+                return (false, "Минимальная длина логина \(EntranceConstantes.loginMinLength) симолов")
             }
-        }*/
+            if email.count > EntranceConstantes.loginMaxLength {
+                return (false, "Максимальная длина логина \(EntranceConstantes.loginMaxLength) симолов")
+            }
+            return (false, "")
+        }
+    }
+    private func checkPasswordValid() -> (Bool, String) {
+        if password.count >= EntranceConstantes.passwordMinLength && password.count <= EntranceConstantes.passwordMaxLength {
+            if password == confirmation {
+                return (true, "")
+            } else {
+                return (false, "Пароль и его подтвержение не совпадают")
+            }
+        } else {
+            if password.count < EntranceConstantes.passwordMinLength {
+                return (false, "Минимальная длина пароля \(EntranceConstantes.passwordMinLength) симолов")
+            }
+            if password.count > EntranceConstantes.passwordMaxLength {
+                return (false, "Максимальная длина пароля \(EntranceConstantes.passwordMaxLength) симолов")
+            }
+            return (false, "")
+        }
+    }
+    public func registration(completionHandler: @escaping (Bool, String) -> Void) {
+        if checkLoginValid().0 && checkPasswordValid().0 {
+            NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message in
+                completionHandler(true, message)
+            }
+        } else {
+            if !checkLoginValid().0 {
+                completionHandler(false, checkLoginValid().1)
+            }
+            if !checkPasswordValid().0 {
+                completionHandler(false, checkPasswordValid().1)
+            }
+        }
+        completionHandler(false, "")
     }
     private init() {}
     static let shared = RegistrationModel()
@@ -38,4 +66,6 @@ class RegistrationModel {
     public var hei: String = ""
     public var faculty: String = ""
     public var department: String = ""
+    
+    
 }
