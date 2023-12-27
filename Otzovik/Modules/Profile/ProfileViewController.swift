@@ -61,9 +61,16 @@ final class ProfileViewController: UIViewController {
     }
     
     private func loadData() {
-        userManager.getUserFromDict { [weak self] user in
+        userManager.observeUser { [weak self] result in
             guard let self else {return}
-            authUser = user
+            switch result {
+                case .success(let user):
+                    authUser = user
+                    print(user)
+                    print(authUser)
+                case .failure(let error):
+                    print(error)
+            }
             setInfoAboutUser()
         }
     }
@@ -199,11 +206,12 @@ extension ProfileViewController {
     }
     
     private func setInfoAboutUser() {
-        university.text = "Студент " + (authUser?.university ?? "")
-        avatarImage.image = UIImage(named: authUser?.profileImageName ?? "avatar2")
-        faculty.text = "Факультет: " + (authUser?.faculty ?? "")
-        nameOfStudent.text = authUser?.name
-        cathedra.text = "Кафедра: " + (authUser?.cathedra ?? "")
+        guard let usr = authUser else {return}
+        university.text = "Студент " + (usr.university)
+        avatarImage.image = UIImage(named: usr.profileImageName ?? "avatar2")
+        faculty.text = "Факультет: " + (usr.faculty)
+        nameOfStudent.text = usr.name
+        cathedra.text = "Кафедра: " + (usr.cathedra)
     }
     
     private func setParamsOfElementsAuth() {
