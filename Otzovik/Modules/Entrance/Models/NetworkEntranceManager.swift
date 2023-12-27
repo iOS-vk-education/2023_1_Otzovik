@@ -15,19 +15,20 @@ final class NetworkEntranceManager {
     private init() {}
     static let shared = NetworkEntranceManager()
     
-    public func registration(email: String, password: String, completionHandler: @escaping (Bool) -> Void) {
+    public func registration(email: String, password: String, completionHandler: @escaping (Bool, String) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-          // Проверка на ошибки при регистрации
           if let error = error {
-            print("Ошибка при регистрации нового пользователя: \(error.localizedDescription)")
-            completionHandler(false)
+              let message = "Ошибка при регистрации нового пользователя: \(error.localizedDescription)"
+              print(message)
+              completionHandler(false, message)
           } else {
               if let authResult = authResult {
                   print("Пользователь успешно зарегистрирован с ID: \(authResult.user.uid)")
-                  completionHandler(true)
+                  completionHandler(true, "")
               } else {
-                  print("Неизвестная ошибка при регистрации нового пользователя.")
-                  completionHandler(false)
+                  let message = "Неизвестная ошибка при регистрации нового пользователя"
+                  print(message)
+                  completionHandler(false, message)
               }
           }
         }

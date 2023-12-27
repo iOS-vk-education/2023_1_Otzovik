@@ -42,7 +42,9 @@ class RegistrationModel {
     }
     public func registration(completionHandler: @escaping (Bool, String) -> Void) {
         if checkLoginValid().0 && checkPasswordValid().0 {
-            completionHandler(true, checkLoginValid().1)
+            NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message in
+                completionHandler(true, message)
+            }
         } else {
             if !checkLoginValid().0 {
                 completionHandler(false, checkLoginValid().1)

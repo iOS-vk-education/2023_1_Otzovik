@@ -12,11 +12,11 @@ class LoginViewController: BaseEntranceViewController {
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var loginTextField: InsetTextField = {
         var textField = InsetTextField()
-        textField.config(leftInset: 85.0)
+        textField.config(leftInset: 90.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        //textField.placeholder = "почта"
+        textField.placeholder = "почта"
         return textField
     }()
     private lazy var loginTextFieldLabel: UILabel = {
@@ -28,12 +28,12 @@ class LoginViewController: BaseEntranceViewController {
     }()
     private lazy var passwordTextField: InsetTextField = {
         var textField = InsetTextField()
-        textField.config(leftInset: 85.0)
+        textField.config(leftInset: 90.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.isSecureTextEntry = true
-        //textField.placeholder = "пароль"
+        textField.placeholder = "пароль"
         return textField
     }()
     private lazy var passwordTextFieldLabel: UILabel = {
@@ -87,7 +87,6 @@ class LoginViewController: BaseEntranceViewController {
         }
     }
     public override func nextVC() {
-//        print(#function)
         LoginModel.shared.login(completion: { errorMessage in
             if let errorMessage = errorMessage {
                 let alert = UIAlertController(title: "Ошибка", message: "Проверьте правильность введенных данных и повторите попытку (\(errorMessage)", preferredStyle: .alert)
@@ -97,10 +96,6 @@ class LoginViewController: BaseEntranceViewController {
                 }))
                 self.present(alert, animated: true, completion: nil)
             } else {
-//                let factory = AppFactory()
-//                let vc = factory.buildTabBar()
-//                //self.navigationController?.pushViewController(vc, animated: true)
-//                self.present(vc, animated: true)
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
             }
         })

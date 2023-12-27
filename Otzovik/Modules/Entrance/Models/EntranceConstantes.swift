@@ -9,7 +9,7 @@ import Foundation
 
 struct EntranceConstantes {
     static let loginMinLength: Int = 5
-    static let loginMaxLength: Int = 10
+    static let loginMaxLength: Int = 20
     static let passwordMinLength: Int = 4
     static let passwordMaxLength: Int = 8
 }
