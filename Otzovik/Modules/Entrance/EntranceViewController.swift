@@ -15,6 +15,7 @@ class EntranceViewController: UIViewController {
        let label = UILabel()
         label.numberOfLines = 20
         label.textAlignment = .center
+        label.textColor = .black
         label.text = "Надежный спутник студента\n в образовательном мире.\n"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .light)
@@ -26,6 +27,7 @@ class EntranceViewController: UIViewController {
        let label = UILabel()
         label.numberOfLines = 20
         label.text = "Узнавайте все необходимое о преподавателях своего вуза:\n\n• Информация\n\n• Отзывы\n\n• Расписание\n\n• Добавляйте в избранные"
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18)
         

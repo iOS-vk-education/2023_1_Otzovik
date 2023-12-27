@@ -103,9 +103,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
             self.allUniversities = loadedArray
             
         }
+        
         for university in self.allUniversities{
             if university.name == self.navigationItem.title{
-                
                 if currentFilters.count != 0{
                     for department in university.departments{
                         if currentFilters.contains(department.name){
@@ -127,13 +127,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
                             }
                         }
                     }
-                    
                 }
             }
         }
         self.tableView.reloadData()
     }
-    
     @objc
     private func changeUniversity() {
         let universityController = ChooseUniversityViewController()
@@ -175,7 +173,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
         isUniversityChanged = false
     }
     override func viewDidLoad() {
-        
         activityIndicator.center = view.center
         view.backgroundColor = .white
         title = "Поиск"
@@ -208,7 +205,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, SendFiltersTo
         
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         loadData()
-        
         super.viewDidLoad()
     }
     
