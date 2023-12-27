@@ -22,8 +22,9 @@ final class SettingsViewController : UIViewController {
         tableButtons.register(tableCell.self, forCellReuseIdentifier: "TableCell")
         tableButtons.delegate = self
         tableButtons.dataSource = self
-        segmentedControl.selectedSegmentIndex = Colors.getColorSchemeForSegmentedControl()
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
+        
+        setSelectedSegment()
         setConstraints()
     }
     
@@ -31,15 +32,32 @@ final class SettingsViewController : UIViewController {
         switch sender.selectedSegmentIndex {
             case 0:
                 print("light theme")
-                Colors.colorScheme = .light
+                UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
                 break
             case 1:
                 print("system theme")
-                Colors.colorScheme = .system
+                UserDefaults.standard.setValue(Theme.system.rawValue, forKey: "theme")
                 break
             case 2:
                 print("dark theme")
-                Colors.colorScheme = .dark
+                UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+                break
+            default:
+                break
+        }
+    }
+    
+    private func setSelectedSegment() {
+        let theme = UserDefaults.standard.value(forKey: "theme") as! Theme.RawValue
+        switch theme {
+            case "dark":
+                segmentedControl.selectedSegmentIndex = 2
+                break
+            case "light":
+                segmentedControl.selectedSegmentIndex = 0
+                break
+            case "system":
+                segmentedControl.selectedSegmentIndex = 1
                 break
             default:
                 break
