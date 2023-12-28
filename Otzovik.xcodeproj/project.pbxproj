@@ -63,6 +63,7 @@
 		D08AA8842B1D0A41008BD9E1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8832B1D0A41008BD9E1 /* Colors.swift */; };
 		D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */; };
 		D08AA8882B1D3F93008BD9E1 /* EntranceSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */; };
+		D0A37DC92B3D39BF00529545 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A37DC82B3D39BF00529545 /* UserProfile.swift */; };
 		D0A60F4A2B1DBBD1003CAF84 /* EntranceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */; };
 		D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3D1562AFE601200414D50 /* InsetTextField.swift */; };
 		D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */; };
@@ -115,6 +116,7 @@
 		D08AA8832B1D0A41008BD9E1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceTextFieldsView.swift; sourceTree = "<group>"; };
 		D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceSeparatorView.swift; sourceTree = "<group>"; };
+		D0A37DC82B3D39BF00529545 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceButton.swift; sourceTree = "<group>"; };
 		D0B3D1562AFE601200414D50 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				D0030DD22AFEF7AF00D458A3 /* RegistrationModel.swift */,
 				D04E46D32B3B639F00D525BB /* NetworkEntranceManager.swift */,
 				D04E46D52B3B63D000D525BB /* EntranceConstantes.swift */,
+				D0A37DC82B3D39BF00529545 /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
 				D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */,
 				D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */,
+				D0A37DC92B3D39BF00529545 /* UserProfile.swift in Sources */,
 				D0C89FBC2B160BE800D89E69 /* SearchTableViewCell.swift in Sources */,
 				66E27BD82B23158200DFE8D2 /* CellFeedback.swift in Sources */,
 				C07C40B82AE5338900761C3D /* AppDelegate.swift in Sources */,

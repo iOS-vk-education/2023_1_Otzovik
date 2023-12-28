@@ -43,7 +43,23 @@ class RegistrationModel {
     public func registration(completionHandler: @escaping (Bool, String) -> Void) {
         if checkLoginValid().0 && checkPasswordValid().0 {
             NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message in
-                completionHandler(true, message)
+                if isOk {
+                    UserProfile.firstName = self.firstName
+                    UserProfile.lastName = self.lastName
+                    UserProfile.email = self.email
+                    UserProfile.hei = self.hei
+                    UserProfile.department = self.department
+                    LoginModel.shared.login { errorMessage in
+                        if let errorMessage = errorMessage {
+                            completionHandler(false, errorMessage)
+                        } else {
+                            completionHandler(true, message)
+                        }
+                    }
+                    completionHandler(true, message)
+                } else {
+                    completionHandler(false, message)
+                }
             }
         } else {
             if !checkLoginValid().0 {
