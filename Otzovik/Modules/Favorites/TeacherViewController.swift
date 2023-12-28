@@ -35,7 +35,6 @@ final class TeacherViewController: UIViewController {
         l.isHidden = true
         l.textColor = .systemGray
         l.text = "    Отправить"
-
         l.font = .systemFont(ofSize: 14)
         return l
     }()
@@ -74,7 +73,7 @@ final class TeacherViewController: UIViewController {
         iv.isUserInteractionEnabled = true
         return iv
     }()
-   
+    private var stars: Int = 0
     private lazy var textView: UITextView = {
         let tv = UITextView()
         tv.font = .systemFont(ofSize: 18)
@@ -188,6 +187,12 @@ final class TeacherViewController: UIViewController {
         feedbackView.addSubview(star3ImageView)
         feedbackView.addSubview(star4ImageView)
         feedbackView.addSubview(star5ImageView)
+        star1ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.star1Tapped(_:))))
+        star2ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.star2Tapped(_:))))
+        star3ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.star3Tapped(_:))))
+        star4ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.star4Tapped(_:))))
+        star5ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.star5Tapped(_:))))
+        
         feedbackView.addSubview(sendView)
         sendView.addSubview(sendLabel)
         sendView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.sendFeedback(_:))))
@@ -293,6 +298,108 @@ final class TeacherViewController: UIViewController {
 
 
 
+    }
+    
+    @objc
+    private func star1Tapped(_ sender: UITapGestureRecognizer) {
+        if stars == 0 {
+            stars = 1
+            star1ImageView.image = UIImage(systemName: "star.fill")
+            star2ImageView.image = UIImage(systemName: "star")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+            
+        } else {
+            stars = 0
+            star1ImageView.image = UIImage(systemName: "star")
+            star2ImageView.image = UIImage(systemName: "star")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+                
+        }
+    }
+    @objc
+    private func star2Tapped(_ sender: UITapGestureRecognizer) {
+        if stars == 0 {
+            stars = 2
+            star1ImageView.image = UIImage(systemName: "star.fill")
+            star2ImageView.image = UIImage(systemName: "star.fill")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+            
+        } else {
+            stars = 0
+            star1ImageView.image = UIImage(systemName: "star")
+            star2ImageView.image = UIImage(systemName: "star")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+                
+        }
+        
+    }
+    @objc
+    private func star3Tapped(_ sender: UITapGestureRecognizer) {
+        if stars == 0 {
+            stars = 3
+            star1ImageView.image = UIImage(systemName: "star.fill")
+            star2ImageView.image = UIImage(systemName: "star.fill")
+            star3ImageView.image = UIImage(systemName: "star.fill")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+            
+        } else {
+            stars = 0
+            star1ImageView.image = UIImage(systemName: "star")
+            star2ImageView.image = UIImage(systemName: "star")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+                
+        }
+    }
+    @objc
+    private func star4Tapped(_ sender: UITapGestureRecognizer) {
+        if stars == 0 {
+            stars = 4
+            star1ImageView.image = UIImage(systemName: "star.fill")
+            star2ImageView.image = UIImage(systemName: "star.fill")
+            star3ImageView.image = UIImage(systemName: "star.fill")
+            star4ImageView.image = UIImage(systemName: "star.fill")
+            star5ImageView.image = UIImage(systemName: "star")
+            
+        } else {
+            stars = 0
+            star1ImageView.image = UIImage(systemName: "star")
+            star2ImageView.image = UIImage(systemName: "star")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+                
+        }
+    }
+    @objc
+    private func star5Tapped(_ sender: UITapGestureRecognizer) {
+        if stars == 0 {
+            stars = 5
+            star1ImageView.image = UIImage(systemName: "star.fill")
+            star2ImageView.image = UIImage(systemName: "star.fill")
+            star3ImageView.image = UIImage(systemName: "star.fill")
+            star4ImageView.image = UIImage(systemName: "star.fill")
+            star5ImageView.image = UIImage(systemName: "star.fill")
+            
+        } else {
+            stars = 0
+            star1ImageView.image = UIImage(systemName: "star")
+            star2ImageView.image = UIImage(systemName: "star")
+            star3ImageView.image = UIImage(systemName: "star")
+            star4ImageView.image = UIImage(systemName: "star")
+            star5ImageView.image = UIImage(systemName: "star")
+                
+        }
     }
     @objc
     private func sendFeedback(_ sender: UITapGestureRecognizer) {

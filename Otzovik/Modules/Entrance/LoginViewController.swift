@@ -12,7 +12,7 @@ class LoginViewController: BaseEntranceViewController {
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var loginTextField: InsetTextField = {
         var textField = InsetTextField()
-        textField.config(leftInset: 90.0)
+        textField.config(leftInset: 90.0, rightInset: 15)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
@@ -32,7 +32,7 @@ class LoginViewController: BaseEntranceViewController {
     }()
     private lazy var passwordTextField: InsetTextField = {
         var textField = InsetTextField()
-        textField.config(leftInset: 90.0)
+        textField.config(leftInset: 90.0, rightInset: 15.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText

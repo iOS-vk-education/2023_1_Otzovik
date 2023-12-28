@@ -28,7 +28,7 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var heiTextField: InsetTextField = {
         let textField = InsetTextField()
-        textField.config(leftInset: 100.0)
+        textField.config(leftInset: 100.0, rightInset: 15.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
@@ -66,7 +66,7 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
     }()*/
     private lazy var departmentTextField: InsetTextField = {
         let textField = InsetTextField()
-        textField.config(leftInset: 100.0)
+        textField.config(leftInset: 100.0, rightInset: 35.0)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
