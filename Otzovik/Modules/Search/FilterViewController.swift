@@ -173,8 +173,10 @@ class FilterViewController: UIViewController{
             filterDelegate?.sendfilters(choosenFilters)
         }
         alreadySaveParametrs = true
-        if let encodedData = try? PropertyListEncoder().encode(newSelectedCells) {
-            UserDefaults.standard.set(encodedData, forKey: "selectedCells")
+        if !isCalledFromRegistration{
+            if let encodedData = try? PropertyListEncoder().encode(newSelectedCells) {
+                UserDefaults.standard.set(encodedData, forKey: "selectedCells")
+            }
         }
         navigationController?.popViewController(animated: true)
         dismiss(animated: true)

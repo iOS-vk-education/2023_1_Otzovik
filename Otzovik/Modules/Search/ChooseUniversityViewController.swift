@@ -32,8 +32,10 @@ final class ChooseUniversityViewController: UIViewController{
     private let universityManager = Manager()
     
     deinit{
-        if let encodedData = try? PropertyListEncoder().encode(selectedIndexPaths) {
-            UserDefaults.standard.set(encodedData, forKey: "selectedUniversityPath")
+        if !isCalledFromRegistration{
+            if let encodedData = try? PropertyListEncoder().encode(selectedIndexPaths) {
+                UserDefaults.standard.set(encodedData, forKey: "selectedUniversityPath")
+            }
         }
     }
     
