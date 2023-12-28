@@ -100,5 +100,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3714F33B-A2AD-4924-A236-BCF0481AA0FB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Otzovik/Modules/Entrance/RegistrationReadyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "nextVC()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3714F33B-A2AD-4924-A236-BCF0481AA0FB - d3e89ac926afc320"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Otzovik.RegistrationReadyViewController.nextVC() -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrdenisov/2023_1_Otzovik/Otzovik/Modules/Entrance/RegistrationReadyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "3714F33B-A2AD-4924-A236-BCF0481AA0FB - 7d4464126c347c14"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Otzovik.RegistrationReadyViewController.nextVC() -&gt; ()"
+                  moduleName = "Otzovik"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrdenisov/2023_1_Otzovik/Otzovik/Modules/Entrance/RegistrationReadyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

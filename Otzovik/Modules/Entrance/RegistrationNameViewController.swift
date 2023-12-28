@@ -8,7 +8,7 @@
 import UIKit
 
 class RegistrationNameViewController: BaseEntranceViewController {
-    
+        
     private lazy var separatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var firstnameTextField: InsetTextField = {
         var textField = InsetTextField()

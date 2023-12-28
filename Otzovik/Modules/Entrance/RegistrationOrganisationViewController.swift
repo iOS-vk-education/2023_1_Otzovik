@@ -255,3 +255,15 @@ extension RegistrationOrganisationViewController {
         toDepartmentImageView.heightAnchor.constraint(equalTo: departmentTextField.heightAnchor, multiplier: 0.6).isActive = true
     }
 }
+
+extension RegistrationOrganisationViewController: ChangeUniversityViewControllerDelegate{
+    func getUniversity() -> [String] {
+        var str:[String] = []
+        if let s1 = departmentTextField.text,
+           let s2 = heiTextField.text,
+           !s1.isEmpty && !s2.isEmpty {
+            str = [s1, s2]
+        }
+        return str
+    }
+}
