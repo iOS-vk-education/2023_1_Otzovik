@@ -7,6 +7,8 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
+import Firebase
 
 class RegistrationModel {
 
@@ -42,23 +44,36 @@ class RegistrationModel {
     }
     public func registration(completionHandler: @escaping (Bool, String) -> Void) {
         if checkLoginValid().0 && checkPasswordValid().0 {
-            NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message in
+            NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message, authResult in
                 if isOk {
-                    UserProfile.firstName = self.firstName
-                    UserProfile.lastName = self.lastName
-                    UserProfile.email = self.email
-                    UserProfile.hei = self.hei
-                    UserProfile.department = self.department
-                    LoginModel.shared.login { errorMessage in
-                        if let errorMessage = errorMessage {
-                            completionHandler(false, errorMessage)
-                        } else {
-                            completionHandler(true, message)
+                    if let authResult = authResult {
+                        let db = Firestore.firestore()
+                        db.collection("Profile").document(authResult.user.uid).setData([
+                            "name": "\(self.firstName) \(self.lastName)",
+                            "university": self.hei,
+                            "faculty": "",
+                            "chair": self.department,
+                            "profileImageName": "profileImage1.jpg"
+                        ])
+                        UserProfile.firstName = self.firstName
+                        UserProfile.lastName = self.lastName
+                        UserProfile.email = self.email
+                        UserProfile.hei = self.hei
+                        UserProfile.department = self.department
+                        LoginModel.shared.login { errorMessage in
+                            if let errorMessage = errorMessage {
+                                completionHandler(false, errorMessage)
+                            } else {
+                                completionHandler(true, message + " 1")
+                            }
                         }
+                        completionHandler(true, message + " 2")
+                    } else {
+                        completionHandler(false, message + " 3")
                     }
-                    completionHandler(true, message)
+                    
                 } else {
-                    completionHandler(false, message)
+                    completionHandler(false, message + " 4")
                 }
             }
         } else {

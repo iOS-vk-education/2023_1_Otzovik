@@ -29,11 +29,19 @@ final class UserManager {
                             let name = dat["name"] as! String
 //                            let faculty = dat["faculty"] as! String
                             let chair = dat["chair"] as! String
-                            var profileImageName = dat["profileImageName"] as! String
+                            //var profileImageName = dat["profileImageName"] as! String
+                            var profileImageName: String = ""
+                            if let img = dat["profileImageName"] as? String {
+                                profileImageName = img
+                            }
                             if profileImageName == "" {
                                 profileImageName = "defaultProfileImage"
                             }
-                            let university = dat["university"] as! String
+                            //let university = dat["university"] as! String
+                            var university : String = ""
+                            if let un = dat["university"] as? String {
+                                university = un
+                            }
 //                            user = User(name: name, profileImageName: profileImageName, university: university, faculty: faculty, cathedra: chair)
                             user = User(name: name, profileImageName: profileImageName, university: university, cathedra: chair)
                             if let usr = user {
