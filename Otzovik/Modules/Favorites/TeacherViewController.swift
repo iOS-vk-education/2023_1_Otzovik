@@ -15,6 +15,60 @@ final class TeacherViewController: UIViewController {
     private let degreeLabel = UILabel()
     private let favoritesButton = UIButton()
     
+    private var isKeyboardUp = false
+    
+    private lazy var feedbackView: UIView = {
+        let v = UIView()
+        v.isHidden = true
+        v.backgroundColor = .red
+        return v
+    }()
+    private lazy var star1ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.isHidden = true
+        iv.backgroundColor = .red
+        return iv
+    }()
+    private lazy var star2ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.isHidden = true
+        iv.backgroundColor = .red
+        return iv
+    }()
+    private lazy var star3ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.isHidden = true
+        iv.backgroundColor = .red
+        return iv
+    }()
+    private lazy var star4ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.isHidden = true
+        iv.backgroundColor = .red
+        return iv
+    }()
+    private lazy var star5ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.isHidden = true
+        iv.backgroundColor = .red
+        return iv
+    }()
+   
+    private lazy var textView: UITextView = {
+        let tv = UITextView()
+        tv.font = .systemFont(ofSize: 18)
+        tv.text = ""
+        tv.backgroundColor = .blue
+        tv.isScrollEnabled = true
+        tv.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        tv.layer.borderColor = CGColor(gray: 0.9, alpha: 0.9)
+        tv.layer.borderWidth = 1.0
+        tv.layer.cornerRadius = 12
+        tv.layer.masksToBounds = true
+        tv.isHidden = true
+        return tv
+    }()
+    
     private let feedbackCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -33,6 +87,8 @@ final class TeacherViewController: UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
+    
+    
     
     let cardData = ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5", "Card 6", "Card 7", "Card 8"]
     
@@ -58,7 +114,9 @@ final class TeacherViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         imageView.contentMode = .scaleAspectFill
         imageView.image = .init(named: "avatar2")
         imageView.layer.cornerRadius = 12
@@ -91,6 +149,7 @@ final class TeacherViewController: UIViewController {
         favoritesButton.contentHorizontalAlignment = .left
         favoritesButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
+        addFeedBackButton.addTarget(self, action: #selector(didAddFeedBackButton), for: .touchUpInside)
         
         feedbackCollectionView.delegate = self
         feedbackCollectionView.dataSource = self
@@ -101,6 +160,8 @@ final class TeacherViewController: UIViewController {
         view.addSubview(favoritesButton)
         view.addSubview(addFeedBackButton)
         view.addSubview(feedbackCollectionView)
+        view.addSubview(textView)
+        view.addSubview(feedbackView)
     }
     
     override func viewDidLayoutSubviews() {
@@ -143,13 +204,56 @@ final class TeacherViewController: UIViewController {
         feedbackCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         feedbackCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         feedbackCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        // MARK: textView
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        textView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        // MARK: feedbackView
+        feedbackView.translatesAutoresizingMaskIntoConstraints = false
+        feedbackView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: 0).isActive = true
+        feedbackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        feedbackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        feedbackView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
     }
-    
+    private func sendFeedback() {
+        self.feedbackView.isHidden = true
+        self.textView.isHidden = true
+
+    }
     @objc
     private func didTapCloseButton() {
         dismiss(animated: true)
     }
-    
+    @objc
+    private func didAddFeedBackButton() {
+        self.feedbackView.isHidden = false
+        self.textView.isHidden = false
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.isKeyboardUp = true
+            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -keyboardSize.height).isActive = true
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.isKeyboardUp = false
+        textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
     @objc
     private func didTapButton() {
         favoritesFlag.toggle()
@@ -171,7 +275,19 @@ final class TeacherViewController: UIViewController {
         }
     }
 }
-
+extension TeacherViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        print(textView.text)
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            sendFeedback()
+            return false
+        }
+        return true
+    }
+}
 extension TeacherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cardData.count
