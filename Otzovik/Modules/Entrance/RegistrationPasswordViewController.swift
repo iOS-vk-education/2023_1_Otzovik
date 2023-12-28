@@ -91,7 +91,6 @@ class RegistrationPasswordViewController: BaseEntranceViewController {
     public override func nextVC() {
         RegistrationModel.shared.registration { isOk, message in
             if isOk {
-                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
                 let vc: RegistrationReadyViewController = RegistrationReadyViewController()
                 self.present(vc, animated: true, completion: {vc.delegate = self.delegate})
             } else {

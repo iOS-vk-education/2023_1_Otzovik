@@ -85,9 +85,6 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         view.addSubview(textFieldsView)
         textFieldsView.addSubview(heiTextField)
         heiTextField.delegate = self
-        heiTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
-        heiTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
-        heiTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         heiTextField.addTarget(self, action: #selector(heiTextFieldTapped), for: .touchDown)
         //textFieldsView.addSubview(facultyTextField)
         //facultyTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
@@ -95,9 +92,6 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         //facultyTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         textFieldsView.addSubview(departmentTextField)
         departmentTextField.delegate = self
-        departmentTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
-        departmentTextField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: UIControl.Event.editingDidBegin)
-        departmentTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: UIControl.Event.editingDidEnd)
         departmentTextField.addTarget(self, action: #selector(departmentTextFieldTapped), for: .touchDown)
         textFieldsView.addSubview(separatorView)
         //textFieldsView.addSubview(upperSeparatorView)
@@ -147,28 +141,6 @@ extension RegistrationOrganisationViewController: UITextFieldDelegate {
         return false;
     }
     @objc
-    private func textFieldDidChanged(textField: UITextField) {
-        if let text = textField.text {
-            print(text)
-            if textField == heiTextFieldLabel {
-                RegistrationModel.shared.hei = text
-            }
-            /*if textField == facultyTextField {
-                RegistrationModel.shared.faculty = text
-            }*/
-            if textField == departmentTextField {
-                RegistrationModel.shared.department = text
-            }
-        }
-        
-    }
-    @objc
-    private func textFieldDidBeginEditing(textField: UITextField) { }
-    @objc
-    private func textFieldDidEndEditing(textField: UITextField) { }
-    @objc
-    private func onReturn(textField: UITextField) { }
-    @objc
     private func heiTextFieldTapped() {
         universityViewController.delegate = self
         present(universityViewController, animated: true)
@@ -183,11 +155,13 @@ extension RegistrationOrganisationViewController: ReceiveTitleDelegate, SendFilt
 
     func receiveTitle(_ title: String) {
         heiTextField.text = title
+        RegistrationModel.shared.hei = title
     }
     func sendfilters(_ filters: [String]) {
         print(#function)
         if !filters.isEmpty, let department = filters.first {
             departmentTextField.text = department
+            RegistrationModel.shared.department = department
         }
     }
 }
