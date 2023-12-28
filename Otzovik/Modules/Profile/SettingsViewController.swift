@@ -33,15 +33,12 @@ final class SettingsViewController : UIViewController {
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
             case 0:
-                print("light theme")
                 UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
                 break
             case 1:
-                print("system theme")
                 UserDefaults.standard.setValue(Theme.system.rawValue, forKey: "theme")
                 break
             case 2:
-                print("dark theme")
                 UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
                 break
             default:

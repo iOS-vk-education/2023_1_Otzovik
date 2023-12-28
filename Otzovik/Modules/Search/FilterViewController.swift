@@ -11,7 +11,7 @@ protocol SendFiltersToSearchDelegate: AnyObject{
     func sendfilters(_ filters: [String])
 }
 
-final class FilterViewController: UIViewController{
+class FilterViewController: UIViewController{
     weak var filterDelegate: SendFiltersToSearchDelegate?
     
     private var alreadySaveParametrs = false

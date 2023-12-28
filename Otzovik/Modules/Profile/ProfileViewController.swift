@@ -21,7 +21,7 @@ final class ProfileViewController: UIViewController {
     private var avatarImage = UIImageView()
     private let nameOfStudent = UILabel()
     private let university = UILabel()
-    private let faculty = UILabel()
+//    private let faculty = UILabel()
     private let cathedra = UILabel()
     private let buttonsTable = UITableView(frame: CGRect(), style: .insetGrouped)
     
@@ -46,7 +46,7 @@ final class ProfileViewController: UIViewController {
             view.addSubview(avatarImage)
             view.addSubview(nameOfStudent)
             view.addSubview(university)
-            view.addSubview(faculty)
+//            view.addSubview(faculty)
             view.addSubview(cathedra)
             view.addSubview(buttonsTable)
         }
@@ -168,7 +168,7 @@ extension ProfileViewController {
             avatarImage,
             nameOfStudent,
             university,
-            faculty,
+//            faculty,
             cathedra,
             buttonsTable
             ].map({$0.translatesAutoresizingMaskIntoConstraints = false
@@ -179,9 +179,9 @@ extension ProfileViewController {
             nameOfStudent.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 15.0).isActive = true
             university.topAnchor.constraint(equalTo: nameOfStudent.bottomAnchor, constant: 8.0).isActive = true
             university.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-            faculty.topAnchor.constraint(equalTo: university.bottomAnchor, constant: 3.0).isActive = true
-            faculty.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-            cathedra.topAnchor.constraint(equalTo: faculty.bottomAnchor, constant: 3.0).isActive = true
+//            faculty.topAnchor.constraint(equalTo: university.bottomAnchor, constant: 3.0).isActive = true
+//            faculty.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+            cathedra.topAnchor.constraint(equalTo: university.bottomAnchor, constant: 3.0).isActive = true
             cathedra.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
             buttonsTable.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
             buttonsTable.heightAnchor.constraint(equalToConstant: 176.0).isActive = true
@@ -220,7 +220,7 @@ extension ProfileViewController {
             }
         }
         else { avatarImage.image = UIImage(named: usr.profileImageName ?? "avatar2") }
-        faculty.text = "Факультет: " + (usr.faculty)
+//        faculty.text = "Факультет: " + (usr.faculty)
         nameOfStudent.text = usr.name
         cathedra.text = "Кафедра: " + (usr.cathedra)
     }
@@ -232,9 +232,9 @@ extension ProfileViewController {
         university.font = university.font.withSize(13.0)
         university.numberOfLines = 0
         university.textAlignment = .center
-        faculty.font = faculty.font.withSize(13.0)
-        faculty.numberOfLines = 0
-        faculty.textAlignment = .center
+//        faculty.font = faculty.font.withSize(13.0)
+//        faculty.numberOfLines = 0
+//        faculty.textAlignment = .center
         cathedra.font = cathedra.font.withSize(13.0)
         cathedra.numberOfLines = 0
         cathedra.textAlignment = .center

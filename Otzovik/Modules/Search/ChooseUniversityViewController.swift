@@ -12,7 +12,7 @@ protocol ReceiveTitleDelegate{
 }
 
 
-final class ChooseUniversityViewController: UIViewController{
+class ChooseUniversityViewController: UIViewController{
     
     var choosenUniversity: String?
     var delegate: ReceiveTitleDelegate?
