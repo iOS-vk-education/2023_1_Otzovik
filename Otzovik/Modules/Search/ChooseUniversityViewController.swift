@@ -13,7 +13,7 @@ protocol ReceiveTitleDelegate{
 
 
 final class ChooseUniversityViewController: UIViewController{
-    
+    var isCalledFromRegistration = false
     var choosenUniversity: String?
     var delegate: ReceiveTitleDelegate?
     var selectedIndexPaths: [IndexPath] = []
@@ -60,6 +60,9 @@ final class ChooseUniversityViewController: UIViewController{
         }
         if selectedIndexPaths.count == 0{
             selectedIndexPaths = [[0,5]]
+        }
+        if isCalledFromRegistration{
+            selectedIndexPaths = []
         }
     }
     

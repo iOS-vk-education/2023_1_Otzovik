@@ -9,8 +9,8 @@ import UIKit
 
 class RegistrationOrganisationViewController: BaseEntranceViewController {
     
-    private let universityViewController = ChooseUniversityViewController()
-    private let departmentViewController = FilterViewController()
+    //private let universityViewController = ChooseUniversityViewController()
+    //private let departmentViewController = FilterViewController()
     //private lazy var upperSeparatorView: EntranceSeparatorView = EntranceSeparatorView()
     //private lazy var bottomSeparatorView: EntranceSeparatorView = EntranceSeparatorView()
     private lazy var toHeiImageView: UIImageView = {
@@ -170,13 +170,21 @@ extension RegistrationOrganisationViewController: UITextFieldDelegate {
     private func onReturn(textField: UITextField) { }
     @objc
     private func heiTextFieldTapped() {
+        let universityViewController = ChooseUniversityViewController()
         universityViewController.delegate = self
+        universityViewController.isCalledFromRegistration = true
         present(universityViewController, animated: true)
     }
     @objc
     private func departmentTextFieldTapped() {
+        if heiTextField.text?.count == 0{
+            return
+        }
+        let departmentViewController = FilterViewController()
         departmentViewController.filterDelegate = self
-        present(departmentViewController, animated: true)
+        departmentViewController.isCalledFromRegistration = true
+        departmentViewController.currentUniversity = heiTextField.text
+        present(UINavigationController(rootViewController: departmentViewController), animated: true, completion: nil)
     }
 }
 extension RegistrationOrganisationViewController: ReceiveTitleDelegate, SendFiltersToSearchDelegate {

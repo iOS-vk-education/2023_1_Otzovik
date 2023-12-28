@@ -18,6 +18,7 @@ final class FilterViewController: UIViewController{
     private var choosenFilters: [String] = []
     var isUniversityChanged: Bool?
     var currentUniversity: String?
+    var isCalledFromRegistration = false
     private var selectedIndexPaths: [IndexPath] = []
     private var newSelectedCells: [IndexPath] = []
     private let universityManager = Manager()
@@ -69,7 +70,6 @@ final class FilterViewController: UIViewController{
 
         let headerContainerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
         let bottomContainerView = UIView()
-        title = "Фильтры"
         
         self.navigationItem.setRightBarButton(UIBarButtonItem(customView: doneCustomButton), animated: false)
         view.backgroundColor = .systemGroupedBackground
@@ -78,6 +78,14 @@ final class FilterViewController: UIViewController{
         facultyTable.allowsMultipleSelection = true
         
         view.addSubview(facultyTable)
+        if isCalledFromRegistration{
+            title = "Выберете кафедру:"
+            facultyLabel.text = ""
+        }
+        else{
+            title = "Фильтры"
+        }
+        
         headerContainerView.addSubview(facultyLabel)
         doneCustomButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
@@ -175,14 +183,26 @@ final class FilterViewController: UIViewController{
 extension FilterViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        facultyTable.deselectRow(at: indexPath, animated: true)
-                if let index = newSelectedCells.firstIndex(of: indexPath) {
-                    newSelectedCells.remove(at: index)
-                }
-                else{
-                    newSelectedCells.append(indexPath)
-                }
-                updateCellAccessoryType(at: indexPath)
+        if isCalledFromRegistration{
+            facultyTable.deselectRow(at: indexPath, animated: true)
+            for cellIndex in newSelectedCells{
+                let cell = facultyTable.cellForRow(at: cellIndex)
+                cell?.accessoryType = .none
+            }
+            newSelectedCells = []
+            newSelectedCells.append(indexPath)
+            updateCellAccessoryType(at: indexPath)
+        }
+        else{
+            facultyTable.deselectRow(at: indexPath, animated: true)
+            if let index = newSelectedCells.firstIndex(of: indexPath) {
+                newSelectedCells.remove(at: index)
+            }
+            else{
+                newSelectedCells.append(indexPath)
+            }
+            updateCellAccessoryType(at: indexPath)
+        }
     }
     
     func updateCellAccessoryType(at indexPath: IndexPath) {

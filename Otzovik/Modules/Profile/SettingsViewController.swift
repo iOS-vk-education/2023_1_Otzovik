@@ -113,10 +113,12 @@ extension SettingsViewController: UITableViewDelegate {
         switch indexPath.row {
             case 0:
                 let changeUniversity = ChooseUniversityViewController()
+                changeUniversity.isCalledFromRegistration = true
                 present(changeUniversity, animated: true)
                 break
             case 1:
                 let changeChair = FilterViewController()
+                changeChair.isCalledFromRegistration = true
                 present(changeChair, animated: true)
                 break
             case 2:
