@@ -64,6 +64,8 @@
 		D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */; };
 		D08AA8882B1D3F93008BD9E1 /* EntranceSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */; };
 		D0A37DC92B3D39BF00529545 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A37DC82B3D39BF00529545 /* UserProfile.swift */; };
+		D0A37DCB2B3D5E2B00529545 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A37DCA2B3D5E2B00529545 /* TeacherViewController.swift */; };
+		D0A37DCD2B3D67AD00529545 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A37DCC2B3D67AD00529545 /* FeedbackViewController.swift */; };
 		D0A60F4A2B1DBBD1003CAF84 /* EntranceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */; };
 		D0B3D1572AFE601200414D50 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3D1562AFE601200414D50 /* InsetTextField.swift */; };
 		D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */; };
@@ -73,7 +75,7 @@
 		D0C89FA12B16036800D89E69 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */; };
 		D0C89FA32B16039E00D89E69 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */; };
 		D0C89FA52B1603F200D89E69 /* TeacherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA42B1603F200D89E69 /* TeacherManager.swift */; };
-		D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA62B16043200D89E69 /* TeacherViewController.swift */; };
+		D0C89FA72B16043200D89E69 /* TeacherViewController_.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA62B16043200D89E69 /* TeacherViewController_.swift */; };
 		D0C89FAA2B16047600D89E69 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FA92B16047600D89E69 /* Teacher.swift */; };
 		D0C89FAC2B1604EA00D89E69 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FAB2B1604EA00D89E69 /* Feedback.swift */; };
 		D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C89FAD2B16050E00D89E69 /* MyFeedbacksViewController.swift */; };
@@ -117,6 +119,8 @@
 		D08AA8852B1D32DB008BD9E1 /* EntranceTextFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceTextFieldsView.swift; sourceTree = "<group>"; };
 		D08AA8872B1D3F93008BD9E1 /* EntranceSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceSeparatorView.swift; sourceTree = "<group>"; };
 		D0A37DC82B3D39BF00529545 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		D0A37DCA2B3D5E2B00529545 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		D0A37DCC2B3D67AD00529545 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		D0A60F492B1DBBD1003CAF84 /* EntranceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceButton.swift; sourceTree = "<group>"; };
 		D0B3D1562AFE601200414D50 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		D0BD2E362AFFAFFF00EC4622 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +130,7 @@
 		D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		D0C89FA42B1603F200D89E69 /* TeacherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherManager.swift; sourceTree = "<group>"; };
-		D0C89FA62B16043200D89E69 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		D0C89FA62B16043200D89E69 /* TeacherViewController_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController_.swift; sourceTree = "<group>"; };
 		D0C89FA92B16047600D89E69 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		D0C89FAB2B1604EA00D89E69 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		D0C89FAD2B16050E00D89E69 /* MyFeedbacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedbacksViewController.swift; sourceTree = "<group>"; };
@@ -269,9 +273,11 @@
 				D0C89FA82B16045400D89E69 /* Teacher */,
 				C07C40D12AE536EE00761C3D /* FavoritesViewController.swift */,
 				D0C89FA02B16036700D89E69 /* CustomCollectionViewCell.swift */,
-				D0C89FA62B16043200D89E69 /* TeacherViewController.swift */,
+				D0C89FA62B16043200D89E69 /* TeacherViewController_.swift */,
 				D0C89FA22B16039E00D89E69 /* FavoritesTableViewCell.swift */,
 				D0C89FA42B1603F200D89E69 /* TeacherManager.swift */,
+				D0A37DCA2B3D5E2B00529545 /* TeacherViewController.swift */,
+				D0A37DCC2B3D67AD00529545 /* FeedbackViewController.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -436,10 +442,11 @@
 				6691B2B52B3CFC6800F18D2A /* ChangeCathedraViewController.swift in Sources */,
 				D0A60F4A2B1DBBD1003CAF84 /* EntranceButton.swift in Sources */,
 				D0030DD32AFEF7AF00D458A3 /* RegistrationModel.swift in Sources */,
+				D0A37DCD2B3D67AD00529545 /* FeedbackViewController.swift in Sources */,
 				D04E46D42B3B639F00D525BB /* NetworkEntranceManager.swift in Sources */,
 				D08AA8842B1D0A41008BD9E1 /* Colors.swift in Sources */,
 				D08AA8862B1D32DB008BD9E1 /* EntranceTextFieldsView.swift in Sources */,
-				D0C89FA72B16043200D89E69 /* TeacherViewController.swift in Sources */,
+				D0C89FA72B16043200D89E69 /* TeacherViewController_.swift in Sources */,
 				C07C40D62AE5370600761C3D /* SearchViewController.swift in Sources */,
 				D0C89FAE2B16050E00D89E69 /* MyFeedbacksViewController.swift in Sources */,
 				D0BD2E372AFFAFFF00EC4622 /* RegistrationEmailViewController.swift in Sources */,
@@ -459,6 +466,7 @@
 				66E27BDC2B231EBE00DFE8D2 /* User.swift in Sources */,
 				C07C40D22AE536EE00761C3D /* FavoritesViewController.swift in Sources */,
 				D0030DCE2AFED34300D458A3 /* BaseEntranceViewController.swift in Sources */,
+				D0A37DCB2B3D5E2B00529545 /* TeacherViewController.swift in Sources */,
 				D0C89FB82B160A7C00D89E69 /* UniversityManager.swift in Sources */,
 				C07C40D82AE53A6F00761C3D /* AppFactory.swift in Sources */,
 				D0030DD12AFEF79100D458A3 /* LoginModel.swift in Sources */,
