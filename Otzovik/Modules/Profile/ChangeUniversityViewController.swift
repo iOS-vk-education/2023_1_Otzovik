@@ -12,7 +12,7 @@ protocol ChangeUniversityViewControllerDelegate {
     func recieveChoosenOption()
 }
 
-final class ChangeUniversityViewController: ChooseUniversityViewController {
+final class ChangeUniversityViewController: UIViewController {
     
     private let userManager = UserManager()
     private var user_: User?
