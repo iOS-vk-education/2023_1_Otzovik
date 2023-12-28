@@ -153,6 +153,7 @@ extension RegistrationOrganisationViewController: UITextFieldDelegate {
             return
         }
         let departmentViewController = FilterViewController()
+        departmentViewController.isUniversityChanged = true
         departmentViewController.filterDelegate = self
         departmentViewController.isCalledFromRegistration = true
         departmentViewController.currentUniversity = heiTextField.text
@@ -163,6 +164,7 @@ extension RegistrationOrganisationViewController: ReceiveTitleDelegate, SendFilt
 
     func receiveTitle(_ title: String) {
         heiTextField.text = title
+        departmentTextField.text = ""
         RegistrationModel.shared.hei = title
     }
     func sendfilters(_ filters: [String]) {
