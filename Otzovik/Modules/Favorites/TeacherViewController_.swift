@@ -2,10 +2,10 @@
 //  TeacherViewController.swift
 //  Otzovik
 //
-//  Created by  Alexander Fedoseev on 28.12.2023.
+//  Created by Начын Сарыглар on 27.11.2023.
 //
 
-import UIKit
+/*import UIKit
 
 final class TeacherViewController: UIViewController {
     private let teacher: Teacher
@@ -17,25 +17,17 @@ final class TeacherViewController: UIViewController {
     
     private let feedbackCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         return collectionView
     }()
-    
-    private let addFeedBackButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Добавить отзыв", for: .normal)
-        button.backgroundColor = .systemGroupedBackground
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
     let cardData = ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5", "Card 6", "Card 7", "Card 8"]
     
+    private let descTitle = UILabel()
+    private let descContent = UILabel()
     
     private var favoritesFlag = Bool()
 
@@ -57,7 +49,6 @@ final class TeacherViewController: UIViewController {
         navigationItem.leftBarButtonItem = closeButton
         
         view.backgroundColor = .systemBackground
-        
         
         imageView.contentMode = .scaleAspectFill
         imageView.image = .init(named: "avatar2")
@@ -91,6 +82,13 @@ final class TeacherViewController: UIViewController {
         favoritesButton.contentHorizontalAlignment = .left
         favoritesButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
+        descTitle.text = "О преподавателе"
+        descTitle.font = .systemFont(ofSize: 22, weight: .bold)
+        
+        descContent.text = teacher.description
+        descContent.font = .systemFont(ofSize: 15, weight: .regular)
+        descContent.lineBreakMode = .byWordWrapping
+        descContent.numberOfLines = 0
         
         feedbackCollectionView.delegate = self
         feedbackCollectionView.dataSource = self
@@ -99,7 +97,8 @@ final class TeacherViewController: UIViewController {
         view.addSubview(fioLabel)
         view.addSubview(degreeLabel)
         view.addSubview(favoritesButton)
-        view.addSubview(addFeedBackButton)
+        view.addSubview(descTitle)
+        view.addSubview(descContent)
         view.addSubview(feedbackCollectionView)
     }
     
@@ -126,23 +125,26 @@ final class TeacherViewController: UIViewController {
         
         // MARK: favoritesButton
         favoritesButton.translatesAutoresizingMaskIntoConstraints = false
-        favoritesButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -5).isActive = true
+        favoritesButton.topAnchor.constraint(equalTo: degreeLabel.bottomAnchor, constant: 28).isActive = true
         favoritesButton.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 27).isActive = true
         
+        // MARK: descTitle
+        descTitle.translatesAutoresizingMaskIntoConstraints = false
+        descTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 40).isActive = true
+        descTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         
-        // MARK: addFeedBackButton
-        addFeedBackButton.translatesAutoresizingMaskIntoConstraints = false
-        addFeedBackButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 13).isActive = true
-        addFeedBackButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        addFeedBackButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        addFeedBackButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        // MARK: descContent
+        descContent.translatesAutoresizingMaskIntoConstraints = false
+        descContent.topAnchor.constraint(equalTo: descTitle.bottomAnchor, constant: 13).isActive = true
+        descContent.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        descContent.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         
         // MARK: feedbackCollectionView
         feedbackCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        feedbackCollectionView.topAnchor.constraint(equalTo: addFeedBackButton.bottomAnchor, constant: 20).isActive = true
+        feedbackCollectionView.topAnchor.constraint(equalTo: descContent.bottomAnchor, constant: 30).isActive = true
         feedbackCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         feedbackCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        feedbackCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        feedbackCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     @objc
@@ -202,5 +204,4 @@ extension TeacherViewController: UIScrollViewDelegate {
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
     }
-}
-
+}*/

@@ -7,6 +7,8 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
+import Firebase
 
 class RegistrationModel {
 
@@ -20,7 +22,7 @@ class RegistrationModel {
             if email.count > EntranceConstantes.loginMaxLength {
                 return (false, "Максимальная длина логина \(EntranceConstantes.loginMaxLength) симолов")
             }
-            return (false, "")
+            return (false, "6")
         }
     }
     private func checkPasswordValid() -> (Bool, String) {
@@ -37,23 +39,61 @@ class RegistrationModel {
             if password.count > EntranceConstantes.passwordMaxLength {
                 return (false, "Максимальная длина пароля \(EntranceConstantes.passwordMaxLength) симолов")
             }
-            return (false, "")
+            return (false, "7")
         }
     }
     public func registration(completionHandler: @escaping (Bool, String) -> Void) {
         if checkLoginValid().0 && checkPasswordValid().0 {
-            NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message in
-                completionHandler(true, message)
+            NetworkEntranceManager.shared.registration(email: email, password: password) { isOk, message, authResult in
+                if isOk {
+                    if let authResult = authResult {
+                        let db = Firestore.firestore()
+                        db.collection("Profile").document(authResult.user.uid).setData([
+                            "name": "\(self.firstName) \(self.lastName)",
+                            "university": self.hei,
+                            "faculty": "",
+                            "chair": self.department,
+                            "profileImageName": "profileImage1.jpg"
+                        ])
+                        UserProfile.firstName = self.firstName
+                        UserProfile.lastName = self.lastName
+                        UserProfile.email = self.email
+                        UserProfile.hei = self.hei
+                        UserProfile.department = self.department
+                        LoginModel.shared.login { errorMessage in
+                            if let errorMessage = errorMessage {
+                                completionHandler(false, errorMessage)
+                                return
+                            } else {
+                                completionHandler(true, message + " 1")
+                                return
+                            }
+                        }
+                        completionHandler(true, message + " 2")
+                        return
+                    } else {
+                        completionHandler(false, message + " 3")
+                        return
+                    }
+                    
+                } else {
+                    completionHandler(false, message + " 4")
+                    return
+                }
             }
         } else {
             if !checkLoginValid().0 {
                 completionHandler(false, checkLoginValid().1)
+                return
             }
             if !checkPasswordValid().0 {
                 completionHandler(false, checkPasswordValid().1)
+                return
             }
+            completionHandler(false, "8")
+            return
         }
-        completionHandler(false, "")
+
     }
     private init() {}
     static let shared = RegistrationModel()

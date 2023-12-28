@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let theme = Theme(rawValue: themeValue)?.uiInterfaceStyle
         else { return }
 
-        UIView.animate(withDuration: 1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             self?.window?.overrideUserInterfaceStyle = theme
         }, completion: .none)
     }

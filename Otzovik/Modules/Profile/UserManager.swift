@@ -27,15 +27,23 @@ final class UserManager {
                         let data = snap.data()
                         if let dat = data {
                             let name = dat["name"] as! String
-                            let faculty = dat["faculty"] as! String
+//                            let faculty = dat["faculty"] as! String
                             let chair = dat["chair"] as! String
-                            var profileImageName = dat["profileImageName"] as! String
+                            //var profileImageName = dat["profileImageName"] as! String
+                            var profileImageName: String = ""
+                            if let img = dat["profileImageName"] as? String {
+                                profileImageName = img
+                            }
                             if profileImageName == "" {
                                 profileImageName = "defaultProfileImage"
                             }
-                            let university = dat["university"] as! String
-                            user = User(name: name, profileImageName: profileImageName, university: university, faculty: faculty, cathedra: chair)
-                            print(user as Any)
+                            //let university = dat["university"] as! String
+                            var university : String = ""
+                            if let un = dat["university"] as? String {
+                                university = un
+                            }
+//                            user = User(name: name, profileImageName: profileImageName, university: university, faculty: faculty, cathedra: chair)
+                            user = User(name: name, profileImageName: profileImageName, university: university, cathedra: chair)
                             if let usr = user {
                                 completion(.success(usr))}
                         }
@@ -44,7 +52,8 @@ final class UserManager {
             }
         }
     }
-    func updateData(imageName: String, completion: @escaping (Result<Void, Error>) -> ()) {
+    
+    func updateImage(imageName: String, completion: @escaping (Result<Void, Error>) -> ()) {
         if let us = Auth.auth().currentUser {
             let userID: String = us.uid
             database.collection("Profile").document(userID).getDocument { snapshot, error in
@@ -55,6 +64,105 @@ final class UserManager {
                         snap.reference.updateData([
                             "profileImageName": imageName
                         ])
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateName(name: String, completion: @escaping (Result<Void, Error>) -> ()) {
+        if let us = Auth.auth().currentUser {
+            let userID: String = us.uid
+            database.collection("Profile").document(userID).getDocument { snapshot, error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    if let snap = snapshot {
+                        snap.reference.updateData([
+                            "name": name
+                        ])
+                    }
+                }
+            }
+        }
+    }
+    
+//    func updateFaculty(faculty: String, completion: @escaping (Result<Void, Error>) -> ()) {
+//        if let us = Auth.auth().currentUser {
+//            let userID: String = us.uid
+//            database.collection("Profile").document(userID).getDocument { snapshot, error in
+//                if let error {
+//                    completion(.failure(error))
+//                } else {
+//                    if let snap = snapshot {
+//                        snap.reference.updateData([
+//                            "faculty": faculty
+//                        ])
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    func updateChair(chair: String, completion: @escaping (Result<Void, Error>) -> ()) {
+        if let us = Auth.auth().currentUser {
+            let userID: String = us.uid
+            database.collection("Profile").document(userID).getDocument { snapshot, error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    if let snap = snapshot {
+                        snap.reference.updateData([
+                            "chair": chair
+                        ])
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateUniversity(university: String, completion: @escaping (Result<Void, Error>) -> ()) {
+        if let us = Auth.auth().currentUser {
+            let userID: String = us.uid
+            database.collection("Profile").document(userID).getDocument { snapshot, error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    if let snap = snapshot {
+                        snap.reference.updateData([
+                            "university": university
+                        ])
+                    }
+                }
+            }
+        }
+    }
+    
+    func getUser(completion: @escaping (Result<User, Error>) -> ()) {
+        var user: User?
+        if let us = Auth.auth().currentUser {
+            let userID: String = us.uid
+            database.collection("Profile").document(userID).getDocument { snapshot, error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    if let snap = snapshot {
+                        let data = snap.data()
+                        if let dat = data {
+                            let name = dat["name"] as! String
+                            let faculty = dat["faculty"] as! String
+                            let chair = dat["chair"] as! String
+                            var profileImageName = dat["profileImageName"] as! String
+                            if profileImageName == "" {
+                                profileImageName = "defaultProfileImage"
+                            }
+                            let university = dat["university"] as! String
+//                            user = User(name: name, profileImageName: profileImageName, university: university, faculty: faculty, cathedra: chair)
+                            user = User(name: name, profileImageName: profileImageName, university: university, cathedra: chair)
+
+                            if let usr = user {
+                                completion(.success(usr))}
+                        }
                     }
                 }
             }

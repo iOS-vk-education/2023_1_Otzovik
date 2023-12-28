@@ -12,8 +12,13 @@ protocol ReceiveTitleDelegate{
 }
 
 
+<<<<<<< HEAD
 final class ChooseUniversityViewController: UIViewController{
     var isCalledFromRegistration = false
+=======
+class ChooseUniversityViewController: UIViewController{
+    
+>>>>>>> c4d2a2fdc0c6068cf7a4c22fe182be5830425653
     var choosenUniversity: String?
     var delegate: ReceiveTitleDelegate?
     var selectedIndexPaths: [IndexPath] = []

@@ -33,15 +33,12 @@ final class SettingsViewController : UIViewController {
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
             case 0:
-                print("light theme")
                 UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
                 break
             case 1:
-                print("system theme")
                 UserDefaults.standard.setValue(Theme.system.rawValue, forKey: "theme")
                 break
             case 2:
-                print("dark theme")
                 UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
                 break
             default:
@@ -81,7 +78,7 @@ final class SettingsViewController : UIViewController {
         ImageLoader.shared.upload(image: image) { [weak self] result in
             switch result {
                 case .success(let name):
-                    self?.userManager.updateData(imageName: name, completion: {res in
+                    self?.userManager.updateImage(imageName: name, completion: {res in
                         switch res {
                             case .success():
                                 break
@@ -122,8 +119,9 @@ extension SettingsViewController: UITableViewDelegate {
                 present(changeChair, animated: true)
                 break
             case 2:
-                let changeInfoController = RegistrationNameViewController()
-                present(changeInfoController, animated: true)
+                let changeInfoController = ChangeNameViewController()
+                let navigationController = UINavigationController(rootViewController: changeInfoController)
+                present(navigationController, animated: true)
                 break
             case 3:
                 didTapUploadImage()

@@ -339,3 +339,12 @@ extension SearchViewController: UITableViewDelegate {
     }
 }
 
+extension SearchViewController: ChangeUniversityViewControllerDelegate {
+    func setStartCheckmark() {
+        
+    }
+    
+    func recieveChoosenOption() {
+        
+    }
+}

@@ -42,18 +42,7 @@ class RegistrationReadyViewController: BaseEntranceViewController {
     }
     
     public override func nextVC() {
-        /*RegistrationModel.shared.registration { isOk, message in
-            if isOk {
-                //здесь регистрация
-                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
-            } else {
-                let alert = UIAlertController(title: "Ошибка", message: "Проверьте правильность введенных данных и повторите попытку (\(message)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: { (action: UIAlertAction) in
-                }))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }*/
-        self.dismiss(animated: true)
+        self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {self.delegate?.changeValueOfIsLogging()})
     }
     
 }
