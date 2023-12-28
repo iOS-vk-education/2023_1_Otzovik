@@ -16,6 +16,10 @@ class RegistrationEmailViewController: BaseEntranceViewController {
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.text = RegistrationModel.shared.email
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "email"
         return textField
     }()

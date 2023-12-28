@@ -33,6 +33,10 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.text = RegistrationModel.shared.hei
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "ВУЗ",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "ВУЗ"
         return textField
     }()
@@ -67,6 +71,10 @@ class RegistrationOrganisationViewController: BaseEntranceViewController {
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.text = RegistrationModel.shared.department
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "кафедра",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "кафедра"
         return textField
     }()

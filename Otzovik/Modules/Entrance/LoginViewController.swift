@@ -16,6 +16,10 @@ class LoginViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "почта",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "почта"
         return textField
     }()
@@ -33,6 +37,10 @@ class LoginViewController: BaseEntranceViewController {
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.isSecureTextEntry = true
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "пароль",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "пароль"
         return textField
     }()

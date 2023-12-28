@@ -54,7 +54,7 @@ final class ChangeNameViewController: UIViewController {
         
         let _ = [nameTextField, surnameTextField].map({
             $0.layer.cornerRadius = 8
-            $0.backgroundColor = .white
+            $0.backgroundColor = .systemBackground
             $0.layer.sublayerTransform = CATransform3DMakeTranslation(9, 0, 0);
 
         })

@@ -17,6 +17,10 @@ class RegistrationNameViewController: BaseEntranceViewController {
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.text = RegistrationModel.shared.firstName
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "имя",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "имя"
         return textField
     }()
@@ -34,6 +38,10 @@ class RegistrationNameViewController: BaseEntranceViewController {
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
         textField.text = RegistrationModel.shared.lastName
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "фамилия",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "фамилия"
         return textField
     }()
