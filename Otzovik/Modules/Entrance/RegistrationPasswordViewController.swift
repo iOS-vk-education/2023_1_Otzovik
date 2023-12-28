@@ -16,7 +16,11 @@ class RegistrationPasswordViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
-        textField.placeholder = "введите пароль"
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "пароль",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+        textField.placeholder = "пароль"
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -33,6 +37,10 @@ class RegistrationPasswordViewController: BaseEntranceViewController {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.textColor = Colors.textFieldText
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "введите пароль повторно",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         textField.placeholder = "введите пароль повторно"
         textField.isSecureTextEntry = true
         return textField
