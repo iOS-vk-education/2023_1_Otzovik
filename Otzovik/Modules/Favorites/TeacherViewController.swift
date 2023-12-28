@@ -20,37 +20,58 @@ final class TeacherViewController: UIViewController {
     private lazy var feedbackView: UIView = {
         let v = UIView()
         v.isHidden = true
-        v.backgroundColor = .red
+        v.backgroundColor = .systemBackground
         return v
+    }()
+    private lazy var sendView: UIView = {
+        let v = UIView()
+        v.isHidden = true
+        v.backgroundColor = .red
+        v.backgroundColor = .systemBackground
+        return v
+    }()
+    private lazy var sendLabel: UILabel = {
+        let l = UILabel()
+        l.isHidden = true
+        l.textColor = .systemGray
+        l.text = "    Отправить"
+
+        l.font = .systemFont(ofSize: 14)
+        return l
     }()
     private lazy var star1ImageView: UIImageView = {
         let iv = UIImageView()
         iv.isHidden = true
-        iv.backgroundColor = .red
+        iv.image = UIImage(systemName: "star")
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     private lazy var star2ImageView: UIImageView = {
         let iv = UIImageView()
         iv.isHidden = true
-        iv.backgroundColor = .red
+        iv.image = UIImage(systemName: "star")
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     private lazy var star3ImageView: UIImageView = {
         let iv = UIImageView()
         iv.isHidden = true
-        iv.backgroundColor = .red
+        iv.image = UIImage(systemName: "star")
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     private lazy var star4ImageView: UIImageView = {
         let iv = UIImageView()
         iv.isHidden = true
-        iv.backgroundColor = .red
+        iv.image = UIImage(systemName: "star")
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     private lazy var star5ImageView: UIImageView = {
         let iv = UIImageView()
         iv.isHidden = true
-        iv.backgroundColor = .red
+        iv.image = UIImage(systemName: "star")
+        iv.isUserInteractionEnabled = true
         return iv
     }()
    
@@ -58,7 +79,7 @@ final class TeacherViewController: UIViewController {
         let tv = UITextView()
         tv.font = .systemFont(ofSize: 18)
         tv.text = ""
-        tv.backgroundColor = .blue
+        tv.backgroundColor = .systemGray
         tv.isScrollEnabled = true
         tv.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         tv.layer.borderColor = CGColor(gray: 0.9, alpha: 0.9)
@@ -82,7 +103,7 @@ final class TeacherViewController: UIViewController {
     private let addFeedBackButton: UIButton = {
         let button = UIButton()
         button.setTitle("Добавить отзыв", for: .normal)
-        button.backgroundColor = .systemGroupedBackground
+        button.backgroundColor = .systemGray
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         return button
@@ -162,6 +183,14 @@ final class TeacherViewController: UIViewController {
         view.addSubview(feedbackCollectionView)
         view.addSubview(textView)
         view.addSubview(feedbackView)
+        feedbackView.addSubview(star1ImageView)
+        feedbackView.addSubview(star2ImageView)
+        feedbackView.addSubview(star3ImageView)
+        feedbackView.addSubview(star4ImageView)
+        feedbackView.addSubview(star5ImageView)
+        feedbackView.addSubview(sendView)
+        sendView.addSubview(sendLabel)
+        sendView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.sendFeedback(_:))))
     }
     
     override func viewDidLayoutSubviews() {
@@ -219,11 +248,66 @@ final class TeacherViewController: UIViewController {
         feedbackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         feedbackView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-    }
-    private func sendFeedback() {
-        self.feedbackView.isHidden = true
-        self.textView.isHidden = true
+        // MARK: stars
+        star3ImageView.translatesAutoresizingMaskIntoConstraints = false
+        star3ImageView.centerXAnchor.constraint(equalTo: feedbackView.centerXAnchor, constant: 0).isActive = true
+        star3ImageView.centerYAnchor.constraint(equalTo: feedbackView.centerYAnchor, constant: 0).isActive = true
+        star3ImageView.heightAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        star3ImageView.widthAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        star2ImageView.translatesAutoresizingMaskIntoConstraints = false
+        star2ImageView.centerYAnchor.constraint(equalTo: feedbackView.centerYAnchor, constant: 0).isActive = true
+        star2ImageView.trailingAnchor.constraint(equalTo: star3ImageView.leadingAnchor, constant: -5).isActive = true
+        star2ImageView.heightAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        star2ImageView.widthAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        star1ImageView.translatesAutoresizingMaskIntoConstraints = false
+        star1ImageView.centerYAnchor.constraint(equalTo: feedbackView.centerYAnchor, constant: 0).isActive = true
+        star1ImageView.trailingAnchor.constraint(equalTo: star2ImageView.leadingAnchor, constant: -5).isActive = true
+        star1ImageView.heightAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        star1ImageView.widthAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        star4ImageView.translatesAutoresizingMaskIntoConstraints = false
+        star4ImageView.centerYAnchor.constraint(equalTo: feedbackView.centerYAnchor, constant: 0).isActive = true
+        star4ImageView.leadingAnchor.constraint(equalTo: star3ImageView.trailingAnchor, constant: 5).isActive = true
+        star4ImageView.heightAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        star4ImageView.widthAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        star5ImageView.translatesAutoresizingMaskIntoConstraints = false
+        star5ImageView.centerYAnchor.constraint(equalTo: feedbackView.centerYAnchor, constant: 0).isActive = true
+        star5ImageView.leadingAnchor.constraint(equalTo: star4ImageView.trailingAnchor, constant: 5).isActive = true
+        star5ImageView.heightAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        star5ImageView.widthAnchor.constraint(equalTo: feedbackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        sendView.translatesAutoresizingMaskIntoConstraints = false
+        sendView.centerYAnchor.constraint(equalTo: feedbackView.centerYAnchor, constant: 0).isActive = true
+        sendView.leadingAnchor.constraint(equalTo: star5ImageView.trailingAnchor, constant: 5).isActive = true
+        sendView.trailingAnchor.constraint(equalTo: feedbackView.trailingAnchor, constant: 0).isActive = true
+        sendView.heightAnchor.constraint(equalTo: feedbackView.heightAnchor).isActive = true
+        
+        sendLabel.translatesAutoresizingMaskIntoConstraints = false
+        sendLabel.centerYAnchor.constraint(equalTo: sendView.centerYAnchor, constant: 0).isActive = true
+        sendLabel.centerXAnchor.constraint(equalTo: sendView.centerXAnchor, constant: 0).isActive = true
+        sendLabel.heightAnchor.constraint(equalTo: sendView.heightAnchor).isActive = true
+        sendLabel.widthAnchor.constraint(equalTo: sendView.widthAnchor).isActive = true
 
+
+
+    }
+    @objc
+    private func sendFeedback(_ sender: UITapGestureRecognizer) {
+        feedbackView.isHidden = true
+        textView.isHidden = true
+        star1ImageView.isHidden = true
+        star2ImageView.isHidden = true
+        star3ImageView.isHidden = true
+        star4ImageView.isHidden = true
+        star5ImageView.isHidden = true
+        sendView.isHidden = true
+        sendLabel.isHidden = true
+        if textView.isFirstResponder {
+            textView.resignFirstResponder()
+        }
     }
     @objc
     private func didTapCloseButton() {
@@ -231,8 +315,15 @@ final class TeacherViewController: UIViewController {
     }
     @objc
     private func didAddFeedBackButton() {
-        self.feedbackView.isHidden = false
-        self.textView.isHidden = false
+        feedbackView.isHidden = false
+        textView.isHidden = false
+        star1ImageView.isHidden = false
+        star2ImageView.isHidden = false
+        star3ImageView.isHidden = false
+        star4ImageView.isHidden = false
+        star5ImageView.isHidden = false
+        sendView.isHidden = false
+        sendLabel.isHidden = false
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -279,14 +370,7 @@ extension TeacherViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         print(textView.text)
     }
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            textView.resignFirstResponder()
-            sendFeedback()
-            return false
-        }
-        return true
-    }
+    
 }
 extension TeacherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
